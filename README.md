@@ -8,7 +8,7 @@ Install
 
 You can install it form your R session doing:
 
-```
+```r
 rary (devtools)
 install_github ("mdgsa",  username = "dmontaner")
 ```
