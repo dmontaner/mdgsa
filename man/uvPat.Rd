@@ -1,0 +1,53 @@
+\name{uvPat}
+\alias{uvPat}
+\title{Uni-Variate Gene Set Analysis Pattern Classification.}
+\usage{
+  uvPat(gsaout, cutoff = 0.05, pvalue = "padj",
+    statistic = "lor")
+}
+\arguments{
+  \item{gsaout}{data.frame; output from uvGsa.}
+
+  \item{cutoff}{p-value cutoff for considering significant
+  a Gene Set.}
+
+  \item{pvalue}{p-value column to be used. Default is named
+  "padj" as in uvGsa output.}
+
+  \item{statistic}{name of the column containing the log
+  odds ratio from the uvGsa analysis.}
+}
+\value{
+  A numeric vector (values: -1, 0, 1) indicating
+  relationship between the Gene Set and the ranking
+  variable: \describe{ \item{1:}{indicates that the gene
+  set is significantly associated to high values of the
+  ranking statistic.} \item{-1:}{indicates that the gene
+  set is significantly associated to low values of the
+  ranking statistic.} \item{0:}{indicates that the gene set
+  not related to the ranking statistic (no enrichment).} }
+}
+\description{
+  Classifies significant patterns form a Uni-Variate Gene
+  Set Analysis.
+}
+\details{
+  Sign of the 'lor' and p-value are used to define
+  functional blocks as up-regulated, down-regulated or not
+  enriched.
+}
+\examples{
+data (breast)
+res <- uvGsa (ranking[,1], annot)
+cbind (res, uvPat (res))
+}
+\author{
+  David Montaner \email{dmontaner@cipf.es}
+}
+\seealso{
+  \code{\link{uvGsa}}, \code{mdPat}
+}
+\keyword{GSA}
+\keyword{pattern}
+\keyword{univariate}
+

@@ -1,0 +1,68 @@
+\name{plotMdGsa}
+\alias{plotMdGsa}
+\title{Plot Multi-Dimensional Gene Set}
+\usage{
+  plotMdGsa(index, block, cr = 0.95, pch = 21,
+    pch.block = "*", col.all = "blue", col.block = "red",
+    project = TRUE, col.proj = "green", diagonals = FALSE,
+    col.diag = "grey", ...)
+}
+\arguments{
+  \item{index}{matrix or data frame with the two columns of
+  ranking statistics.}
+
+  \item{block}{matrix or data frame with \strong{gene} ids
+  in the first column and \strong{gene set} ids in the
+  second column.}
+
+  \item{cr}{level of the confidence region.}
+
+  \item{pch}{plotting character for all genes.}
+
+  \item{pch.block}{plotting character for the genes in the
+  gene set or functional block.}
+
+  \item{col.all}{color used to represent all genes.}
+
+  \item{col.block}{color used to represent the genes in the
+  gene set being plotted.}
+
+  \item{project}{if TRUE projection over the axis are
+  displayed for the genes of the gene set.}
+
+  \item{col.proj}{color used to plot the projection.}
+
+  \item{diagonals}{if TRUE diagonals are plotted.}
+
+  \item{col.diag}{color used to plot the diagonals.}
+
+  \item{\dots}{arguments to be passed to plot}
+}
+\value{
+  A plot.
+}
+\description{
+  Plots confidence region for a Gene Set in a two
+  dimensional space.
+}
+\details{
+  Black dots show all genes in the dataset. Red stars show
+  the genes in the Gene Set. Blue axis show the "center" of
+  the distribution of all genes; blue ellipse shows the
+  confidence region for all genes. Red axis show the
+  "center" of the distribution of the genes in the Gene
+  Set; red ellipse shows the confidence region for genes in
+  the Gene Set.
+}
+\author{
+  David Montaner \email{dmontaner@cipf.es}
+}
+\seealso{
+  \code{\link{mdGsa}}, \code{\link{mdPat}},
+  \code{\link{mdPat}}, \code{ellipsoidPoints}
+}
+\keyword{GSA}
+\keyword{multidimensional}
+\keyword{multivariate}
+\keyword{plot}
+

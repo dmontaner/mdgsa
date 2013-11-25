@@ -1,0 +1,71 @@
+\name{annotFilter}
+\alias{annotFilter}
+\title{Checks and filters an annotation list.}
+\usage{
+  annotFilter(annot, index, minBlockSize = 10,
+    maxBlockSize = 500, verbose = TRUE)
+}
+\arguments{
+  \item{annot}{an annotation list.}
+
+  \item{index}{ranking index. vector or matrix or
+  data.frame}
+
+  \item{minBlockSize}{minimum block size kept}
+
+  \item{maxBlockSize}{maximum block size kept}
+
+  \item{verbose}{verbose}
+}
+\value{
+  a filtered annotation list.
+}
+\description{
+  Checks that the annotated genes (those in the annotation
+  list) are consistent with the universe of genes defined
+  by the ranking index. Filters out functional blocks too
+  'big' or too 'small'.
+}
+\details{
+  \code{index} is optional. When it is not provided, the
+  annotation lists is just filtered out by the sizes of the
+  blocks of genes defined in the list.
+
+  If a ranking index is provided its names are assumed to
+  be the universe of genes under study. The genes in the
+  annotation list are compared against those of the ranking
+  index and the ones not belonging to the universe are
+  removed out form the annotation in order to compute the
+  size of each functional block. Then the list is filtered
+  by sizes; too big and too small blocks are removed.
+
+  No transformation is done over the ranking index or its
+  names (gene IDs).
+}
+\examples{
+rindex <- 1:10
+names (rindex) <- paste ("gene", rindex, sep = "")
+rindex
+
+annot <- list (paste ("gene", 1:2, sep = ""),          ##too small block
+               paste ("gene", 1:6, sep = ""),          ##right size
+               paste ("gene", 1:5, sep = ""),          ##too big block
+               paste ("gene", c(1:3, 1:3), sep = ""))  ##duplicated IDs
+annot[[2]][1] <- NA
+annot[[2]][2] <- ""
+annot[[2]][3] <- "BAD_ID"
+annot
+
+annotFilter (annot, minBlockSize = 3, maxBlockSize = 5)
+annotFilter (annot, rindex, minBlockSize = 3, maxBlockSize = 5)
+}
+\author{
+  David Montaner \email{dmontaner@cipf.es}
+}
+\seealso{
+  \code{\link{annotMat2list}}
+}
+\keyword{annotation}
+\keyword{filter}
+\keyword{list}
+

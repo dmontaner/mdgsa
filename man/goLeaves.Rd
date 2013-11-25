@@ -1,0 +1,49 @@
+\name{goLeaves}
+\alias{goLeaves}
+\title{Keep just leaf nodes from the Gene Ontology DAG.}
+\usage{
+  goLeaves(gsaout, cutoff = 0.05, pvalue = "padj",
+    statistic = "lor", verbose = TRUE, sort = TRUE)
+}
+\arguments{
+  \item{gsaout}{data.frame; output from uvGsa.}
+
+  \item{cutoff}{p-value cutoff for considering significant
+  a Gene Set.}
+
+  \item{pvalue}{p-value column to be used. Default is named
+  "padj" as in uvGsa output.}
+
+  \item{statistic}{name of the column containing the log
+  odds ratio from the uvGsa analysis.}
+
+  \item{sort}{if TRUE the output data.frame is ordered
+  according to significance.}
+
+  \item{verbose}{verbose}
+}
+\value{
+  The input data.frame but keeping just the 'significant'
+  and 'non redundant' GO terms.
+}
+\description{
+  Cuts significant terms and filters out all redundant GO
+  terms from a list of \code{uvGsa} results.
+}
+\details{
+  Uses the library GO.db to find the 'ancestors' of each GO
+  term. Those ancestors are discarded form the \code{uvGsa}
+  results.
+}
+\author{
+  David Montaner \email{dmontaner@cipf.es}
+}
+\seealso{
+  \code{\link{uvGsa}}, \code{\link{uvPat}},
+  \code{\link{propagateGO}}, \code{\link{pval2index}}
+}
+\keyword{child}
+\keyword{go}
+\keyword{leaves}
+\keyword{terms}
+
