@@ -28,9 +28,13 @@
   and its associated statistic into a ranking index.
 }
 \details{
-  By default the transformation is (-1) * log (pval) * sign
+  The default transformation is (-1) * log (pval) * sign
   (sign). When log = FALSE the transformation is (1 - pval)
   * sign (sign).
+
+  Missing values are allowed and return NA values. Some
+  infinite values may be returned if pval has values
+  exactly equal to zero.
 }
 \examples{
 my.statistic <- rnorm (1000)

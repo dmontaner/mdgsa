@@ -20,8 +20,11 @@
 ##' The function helps transforming the p-value and its associated statistic into a ranking index.
 ##' 
 ##' @details
-##' By default the transformation is (-1) * log (pval) * sign (sign).
+##' The default transformation is (-1) * log (pval) * sign (sign).
 ##' When log = FALSE the transformation is (1 - pval) * sign (sign).
+##'
+##' Missing values are allowed and return NA values.
+##' Some infinite values may be returned if pval has values exactly equal to zero.
 ##'
 ##' @param pval a vector or matrix of p-values.
 ##' @param sign a vector or matrix of signs associated to the p-values.
@@ -45,13 +48,13 @@
 pval2index <- function (pval, sign, log = TRUE, verbose = TRUE) {
   
   pval.cero <- pval == 0
-  if (sum (pval.cero) & verbose) {
+  if (any (pval.cero, na.rm = TRUE) & verbose) {
     cat ("\n", "Some p-values are strictly zero; infinite values will be returned.", "\n", fill = TRUE)
   }
   
   sign.cero <- sign == 0
-  if (sum (sign.cero) & verbose) {
-    cat ("\n", "Some p-values are strictly zero; infinite values will be returned.", "\n", fill = TRUE)
+  if (any (sign.cero, na.rm = TRUE) & verbose) {
+    cat ("\n", "Some sign statistics are zero; zero values will be returned.", "\n", fill = TRUE)
   }
   
   if (log) {
