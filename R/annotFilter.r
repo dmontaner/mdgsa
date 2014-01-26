@@ -31,9 +31,12 @@
 ##' Then the list is filtered by sizes; too big and too small blocks are removed.
 ##'
 ##' No transformation is done over the ranking index or its names (gene IDs).
+##'
+##' \code{index} may just be a character vector containing the names of the genes in the universe, 
+##' that is, the names or rownames of the ranking index.
 ##' 
 ##' @param annot an annotation list.
-##' @param index ranking index. vector or matrix or data.frame
+##' @param index ranking index. Vector, matrix or data.frame
 ##' @param minBlockSize minimum block size kept
 ##' @param maxBlockSize maximum block size kept
 ##' @param verbose verbose
