@@ -108,7 +108,11 @@ annotFilter <- function (annot, index, minBlockSize = 10, maxBlockSize = 500, ve
     if (is.matrix (index) | is.data.frame (index)) {
       gen.universe <- rownames (index)
     } else {
-      gen.universe <- names (index) ##assuming that 'index' is a vector
+      if (is.character (index)) {
+        gen.universe <- index       ##see whether it is convenient this usage of the index variable; may be we should create a gene universe third variable
+      } else {
+        gen.universe <- names (index) ##assuming that 'index' is a vector
+      }
     }
     
     if (is.null (gen.universe)) {
