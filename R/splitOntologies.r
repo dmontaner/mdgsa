@@ -61,9 +61,9 @@ splitOntologies <- function (annot, na.rm = FALSE, verbose = TRUE) {
   es.na <- ontologia == "missing"
   
   res <- list ()
-  res[["BP"]] <- annot[es.bp]
-  res[["CC"]] <- annot[es.cc]
-  res[["MF"]] <- annot[es.mf]
+  res[["bp"]] <- annot[es.bp]
+  res[["cc"]] <- annot[es.cc]
+  res[["mf"]] <- annot[es.mf]
   
   if (sum (es.na) > 0) {
     cat ("Some GO ids where not found, ", fill = FALSE)
