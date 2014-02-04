@@ -31,7 +31,7 @@
 ##'
 ##' @param pval a vector or matrix of p-values.
 ##' @param sign a vector or matrix of signs associated to the p-values.
-##' @param names a character vector of the names of the features
+##' @param names a character vector of the names of the features.
 ##' @param log = TRUE
 ##' @param verbose verbose
 ##'
