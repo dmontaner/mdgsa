@@ -26,8 +26,12 @@
 ##' Missing values are allowed and return NA values.
 ##' Some infinite values may be returned if pval has values exactly equal to zero.
 ##'
+##' By default the names of the output vector (or row names in a matrix) are those
+##' of \code{pval} or \code{sign}. If \code{names} is provided, then it is used instead.
+##'
 ##' @param pval a vector or matrix of p-values.
 ##' @param sign a vector or matrix of signs associated to the p-values.
+##' @param names a character vector of the names of the features
 ##' @param log = TRUE
 ##' @param verbose verbose
 ##'
@@ -45,7 +49,7 @@
 ##' #plot (my.statistic, index)
 ##' 
 ##' @export
-pval2index <- function (pval, sign, log = TRUE, verbose = TRUE) {
+pval2index <- function (pval, sign, names = NULL, log = TRUE, verbose = TRUE) {
   
   pval.cero <- pval == 0
   if (any (pval.cero, na.rm = TRUE) & verbose) {
@@ -61,6 +65,10 @@ pval2index <- function (pval, sign, log = TRUE, verbose = TRUE) {
     res <- (-1) * log (pval) * sign (sign)
   } else {
     res <- (1 - pval) * sign (sign)
+  }
+
+  if (!is.null (names)) {
+      names (res) <- names
   }
   
   return (res)

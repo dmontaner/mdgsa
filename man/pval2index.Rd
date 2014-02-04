@@ -2,13 +2,17 @@
 \alias{pval2index}
 \title{Transform p-values in into a ranking index.}
 \usage{
-  pval2index(pval, sign, log = TRUE, verbose = TRUE)
+  pval2index(pval, sign, names = NULL, log = TRUE,
+    verbose = TRUE)
 }
 \arguments{
   \item{pval}{a vector or matrix of p-values.}
 
   \item{sign}{a vector or matrix of signs associated to the
   p-values.}
+
+  \item{names}{a character vector of the names of the
+  features}
 
   \item{log}{= TRUE}
 
@@ -35,6 +39,10 @@
   Missing values are allowed and return NA values. Some
   infinite values may be returned if pval has values
   exactly equal to zero.
+
+  By default the names of the output vector (or row names
+  in a matrix) are those of \code{pval} or \code{sign}. If
+  \code{names} is provided, then it is used instead.
 }
 \examples{
 my.statistic <- rnorm (1000)
