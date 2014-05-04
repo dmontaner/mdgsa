@@ -2,8 +2,8 @@
 \alias{annotFilter}
 \title{Checks and filters an annotation list.}
 \usage{
-  annotFilter(annot, index, minBlockSize = 10,
-    maxBlockSize = 500, verbose = TRUE)
+annotFilter(annot, index, minBlockSize = 10, maxBlockSize = 500,
+  verbose = TRUE)
 }
 \arguments{
   \item{annot}{an annotation list.}
@@ -17,33 +17,33 @@
   \item{verbose}{verbose}
 }
 \value{
-  a filtered annotation list.
+a filtered annotation list.
 }
 \description{
-  Checks that the annotated genes (those in the annotation
-  list) are consistent with the universe of genes defined
-  by the ranking index. Filters out functional blocks too
-  'big' or too 'small'.
+Checks that the annotated genes (those in the annotation
+list) are consistent with the universe of genes defined by
+the ranking index. Filters out functional blocks too 'big'
+or too 'small'.
 }
 \details{
-  \code{index} is optional. When it is not provided, the
-  annotation lists is just filtered out by the sizes of the
-  blocks of genes defined in the list.
+\code{index} is optional. When it is not provided, the
+annotation lists is just filtered out by the sizes of the
+blocks of genes defined in the list.
 
-  If a ranking index is provided its names are assumed to
-  be the universe of genes under study. The genes in the
-  annotation list are compared against those of the ranking
-  index and the ones not belonging to the universe are
-  removed out form the annotation in order to compute the
-  size of each functional block. Then the list is filtered
-  by sizes; too big and too small blocks are removed.
+If a ranking index is provided its names are assumed to be
+the universe of genes under study. The genes in the
+annotation list are compared against those of the ranking
+index and the ones not belonging to the universe are
+removed out form the annotation in order to compute the
+size of each functional block. Then the list is filtered by
+sizes; too big and too small blocks are removed.
 
-  No transformation is done over the ranking index or its
-  names (gene IDs).
+No transformation is done over the ranking index or its
+names (gene IDs).
 
-  \code{index} may just be a character vector containing
-  the names of the genes in the universe, that is, the
-  names or rownames of the ranking index.
+\code{index} may just be a character vector containing the
+names of the genes in the universe, that is, the names or
+rownames of the ranking index.
 }
 \examples{
 rindex <- 1:10
@@ -63,10 +63,10 @@ annotFilter (annot, minBlockSize = 3, maxBlockSize = 5)
 annotFilter (annot, rindex, minBlockSize = 3, maxBlockSize = 5)
 }
 \author{
-  David Montaner \email{dmontaner@cipf.es}
+David Montaner \email{dmontaner@cipf.es}
 }
 \seealso{
-  \code{\link{annotMat2list}}
+\code{\link{annotMat2list}}
 }
 \keyword{annotation}
 \keyword{filter}

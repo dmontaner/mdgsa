@@ -2,7 +2,7 @@
 \alias{getGOnames}
 \title{Get Gene Ontology names}
 \usage{
-  getGOnames(x, verbose = TRUE)
+getGOnames(x, verbose = TRUE)
 }
 \arguments{
   \item{x}{a character vector of GO ids.}
@@ -10,23 +10,26 @@
   \item{verbose}{verbose.}
 }
 \value{
-  A character vector with the corresponding GO names.
+A character vector with the corresponding GO names.
 }
 \description{
-  Finds the GO name form GO id.
+Finds the GO name form GO id.
 }
 \details{
-  Uses the library GO.db.
+Uses the library GO.db.
+
+\code{x} may be a \code{data.frame}. In such case, GO ids
+are expected in its row names.
 }
 \examples{
 getGOnames (c("GO:0000018", "GO:0000038", "BAD_GO"))
 }
 \author{
-  David Montaner \email{dmontaner@cipf.es}
+David Montaner \email{dmontaner@cipf.es}
 }
 \seealso{
-  \code{\link{propagateGO}}, \code{\link{goLeaves}},
-  \code{\link{splitOntologies}}, \code{\link{getKEGGnames}}
+\code{\link{propagateGO}}, \code{\link{goLeaves}},
+\code{\link{splitOntologies}}, \code{\link{getKEGGnames}}
 }
 \keyword{GO}
 \keyword{names}

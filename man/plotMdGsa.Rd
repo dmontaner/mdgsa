@@ -2,10 +2,9 @@
 \alias{plotMdGsa}
 \title{Plot Multi-Dimensional Gene Set}
 \usage{
-  plotMdGsa(index, block, cr = 0.95, pch = 21,
-    pch.block = "*", col.all = "blue", col.block = "red",
-    project = TRUE, col.proj = "green", diagonals = FALSE,
-    col.diag = "grey", ...)
+plotMdGsa(index, block, cr = 0.95, pch = 21, pch.block = "*",
+  col.all = "blue", col.block = "red", project = TRUE,
+  col.proj = "green", diagonals = FALSE, col.diag = "grey", ...)
 }
 \arguments{
   \item{index}{matrix or data frame with the two columns of
@@ -39,27 +38,27 @@
   \item{\dots}{arguments to be passed to plot}
 }
 \value{
-  A plot.
+A plot.
 }
 \description{
-  Plots confidence region for a Gene Set in a two
-  dimensional space.
+Plots confidence region for a Gene Set in a two dimensional
+space.
 }
 \details{
-  Black dots show all genes in the dataset. Red stars show
-  the genes in the Gene Set. Blue axis show the "center" of
-  the distribution of all genes; blue ellipse shows the
-  confidence region for all genes. Red axis show the
-  "center" of the distribution of the genes in the Gene
-  Set; red ellipse shows the confidence region for genes in
-  the Gene Set.
+Black dots show all genes in the dataset. Red stars show
+the genes in the Gene Set. Blue axis show the "center" of
+the distribution of all genes; blue ellipse shows the
+confidence region for all genes. Red axis show the "center"
+of the distribution of the genes in the Gene Set; red
+ellipse shows the confidence region for genes in the Gene
+Set.
 }
 \author{
-  David Montaner \email{dmontaner@cipf.es}
+David Montaner \email{dmontaner@cipf.es}
 }
 \seealso{
-  \code{\link{mdGsa}}, \code{\link{mdPat}},
-  \code{\link{mdPat}}, \code{ellipsoidPoints}
+\code{\link{mdGsa}}, \code{\link{mdPat}},
+\code{\link{mdPat}}, \code{ellipsoidPoints}
 }
 \keyword{GSA}
 \keyword{multidimensional}

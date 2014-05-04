@@ -2,8 +2,8 @@
 \alias{transferIndex}
 \title{Transfer a ranking index from regulatory elements to genes.}
 \usage{
-  transferIndex(index, targets, method = "sum",
-    verbose = TRUE, transferMatrix = FALSE)
+transferIndex(index, targets, method = "sum", verbose = TRUE,
+  transferMatrix = FALSE)
 }
 \arguments{
   \item{index}{ranking index, generally a numerical named
@@ -22,50 +22,48 @@
   \item{verbose}{verbose.}
 }
 \value{
-  A ranking index transferred to the IDs in the elements of
-  the list \code{targets}.
+A ranking index transferred to the IDs in the elements of
+the list \code{targets}.
 }
 \description{
-  Transfers the ranking index information from some
-  regulatory elements to their target genes. It can be for
-  instance used to infer gene regulation levels from miRNA
-  differential expression levels. Afterwords, the inferred
-  gene index can be explored in a univariate gene set
-  analysis using \code{uvGsa}, or in a multivariate gene
-  set analysis using \code{mdGsa}.
+Transfers the ranking index information from some
+regulatory elements to their target genes. It can be for
+instance used to infer gene regulation levels from miRNA
+differential expression levels. Afterwords, the inferred
+gene index can be explored in a univariate gene set
+analysis using \code{uvGsa}, or in a multivariate gene set
+analysis using \code{mdGsa}.
 }
 \details{
-  The function was in principle designed to transfer a
-  ranking index defined for miRNAs to their target genes,
-  but it may also be used to deal with some other
-  regulatory elements as transcription factors for
-  instance.
+The function was in principle designed to transfer a
+ranking index defined for miRNAs to their target genes, but
+it may also be used to deal with some other regulatory
+elements as transcription factors for instance.
 
-  If we have for instance a t statistic accounting for
-  miRNAs differential expression levels, we may add up (or
-  average) all t values from the miRNAs that regulate a
-  gene in order to derive an interference score for that
-  gene. Thus we may get an interference index which may be
-  interpreted in terms of functional blocks or gene sets.
+If we have for instance a t statistic accounting for miRNAs
+differential expression levels, we may add up (or average)
+all t values from the miRNAs that regulate a gene in order
+to derive an interference score for that gene. Thus we may
+get an interference index which may be interpreted in terms
+of functional blocks or gene sets.
 
-  \code{index} may be a matrix. In such case just the first
-  column will be used.
+\code{index} may be a matrix. In such case just the first
+column will be used.
 
-  \code{targets} should be a named list. The names of the
-  list have to coincide (or at least overlap) with the
-  names in the \code{index}. The elements of the list are
-  character vectors containing gene IDs. In the miRNA
-  example, each element of \code{targets} will contain the
-  genes regulated by a miRNA, and the miRNA IDs will appear
-  in the names of the \code{targets} list as well as in the
-  ranking index.
+\code{targets} should be a named list. The names of the
+list have to coincide (or at least overlap) with the names
+in the \code{index}. The elements of the list are character
+vectors containing gene IDs. In the miRNA example, each
+element of \code{targets} will contain the genes regulated
+by a miRNA, and the miRNA IDs will appear in the names of
+the \code{targets} list as well as in the ranking index.
 }
 \author{
-  David Montaner \email{dmontaner@cipf.es}
+David Montaner \email{dmontaner@cipf.es}
 }
 \seealso{
-  \code{\link{uvGsa}}, \code{\link{mdGsa}},
-  \code{\link{indexTransform}}
+\code{\link{uvGsa}}, \code{\link{mdGsa}},
+\code{\link{indexTransform}}
 }
 \keyword{genes}
 \keyword{index}

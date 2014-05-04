@@ -2,7 +2,7 @@
 \alias{propagateGO}
 \title{Propagate Gene Ontology annotation.}
 \usage{
-  propagateGO(annot, verbose = TRUE)
+propagateGO(annot, verbose = TRUE)
 }
 \arguments{
   \item{annot}{annotation list or matrix.}
@@ -10,15 +10,14 @@
   \item{verbose}{verbose}
 }
 \value{
-  A annotation matrix or list with the propagated
-  annotation.
+A annotation matrix or list with the propagated annotation.
 }
 \description{
-  Genes annotated under a GO term inherit the annotation
-  for all its ancestors.
+Genes annotated under a GO term inherit the annotation for
+all its ancestors.
 }
 \details{
-  Uses the library GO.db.
+Uses the library GO.db.
 }
 \examples{
 mat <- cbind (c("gene1", "gene2"), c("GO:0034390", "GO:0042889"))
@@ -30,10 +29,10 @@ li
 propagateGO (li)
 }
 \author{
-  David Montaner \email{dmontaner@cipf.es}
+David Montaner \email{dmontaner@cipf.es}
 }
-\keyword{gene}
 \keyword{GO}
+\keyword{gene}
 \keyword{ontology}
 \keyword{propagate}
 

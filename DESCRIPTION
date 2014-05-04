@@ -1,7 +1,7 @@
 Package: mdgsa
 Type: Package
 Title: Multi Dimensional Gene Set Analysis.
-Version: 0.3.3
+Version: 0.3.4
 Date: 2013-09-26
 Author: David Montaner <dmontaner@cipf.es>
 Maintainer: David Montaner <dmontaner@cipf.es>

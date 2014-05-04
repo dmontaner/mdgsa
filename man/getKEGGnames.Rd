@@ -2,7 +2,7 @@
 \alias{getKEGGnames}
 \title{Get KEGG  names}
 \usage{
-  getKEGGnames(x, verbose = TRUE)
+getKEGGnames(x, verbose = TRUE)
 }
 \arguments{
   \item{x}{a character vector of KEGG ids.}
@@ -10,22 +10,25 @@
   \item{verbose}{verbose.}
 }
 \value{
-  A character vector with the corresponding KEGG names.
+A character vector with the corresponding KEGG names.
 }
 \description{
-  Finds the KEGG name form KEGG id.
+Finds the KEGG name form KEGG id.
 }
 \details{
-  Uses the library KEGG.db.
+Uses the library KEGG.db.
+
+\code{x} may be a \code{data.frame}. In such case, GO ids
+are expected in its row names.
 }
 \examples{
 getKEGGnames (c("00010", "00020", "BAD_KEGG"))
 }
 \author{
-  David Montaner \email{dmontaner@cipf.es}
+David Montaner \email{dmontaner@cipf.es}
 }
 \seealso{
-  \code{\link{getGOnames}}
+\code{\link{getGOnames}}
 }
 \keyword{KEGG}
 \keyword{names}

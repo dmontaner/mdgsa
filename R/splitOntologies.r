@@ -33,7 +33,7 @@
 ##'
 ##' @export
 
-splitOntologies <- function (annot, na.rm = FALSE, verbose = TRUE) {
+splitOntologies <- function (annot, na.rm = TRUE, verbose = TRUE) {
 
   if (verbose) {
     message ("\n", "Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.3.5

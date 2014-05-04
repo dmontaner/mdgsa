@@ -2,7 +2,7 @@
 \alias{indexTransform}
 \title{Transform ranking index distribution.}
 \usage{
-  indexTransform(index, method = "normalize")
+indexTransform(index, method = "normalize")
 }
 \arguments{
   \item{index}{a ranking index; a numeric vector, matrix or
@@ -11,24 +11,24 @@
   \item{method}{transformation method. See details.}
 }
 \value{
-  A transformed index. Its class will be that of the the
-  input object.
+A transformed index. Its class will be that of the the
+input object.
 }
 \description{
-  The function performs a transformation of the ranking
-  index so that its distribution is suitable as independent
-  variable of the logistic regression model.
+The function performs a transformation of the ranking index
+so that its distribution is suitable as independent
+variable of the logistic regression model.
 }
 \details{
-  Works for vector, matrices and data.frames. In the case
-  of matrices the function transforms each column
-  separately from the other ones.
+Works for vector, matrices and data.frames. In the case of
+matrices the function transforms each column separately
+from the other ones.
 
-  Two methods are currently implemented: \describe{ \item{-
-  normalize:}{transforms the index into quantiles of a
-  normal distribution.} \item{- standardize:}{performs an
-  statistical standardization by subtracting the mean and
-  dividing by the standard deviation.} }
+Two methods are currently implemented: \describe{ \item{-
+normalize:}{transforms the index into quantiles of a normal
+distribution.} \item{- standardize:}{performs an
+statistical standardization by subtracting the mean and
+dividing by the standard deviation.} }
 }
 \examples{
 myIndex <- runif (1000)
@@ -36,7 +36,7 @@ myTransformedIndex <- indexTransform (myIndex)
 plot (myIndex, myTransformedIndex)
 }
 \author{
-  David Montaner \email{dmontaner@cipf.es}
+David Montaner \email{dmontaner@cipf.es}
 }
 \keyword{index}
 \keyword{ranking}

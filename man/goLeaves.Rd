@@ -2,8 +2,8 @@
 \alias{goLeaves}
 \title{Keep just leaf nodes from the Gene Ontology DAG.}
 \usage{
-  goLeaves(gsaout, cutoff = 0.05, pvalue = "padj",
-    statistic = "lor", verbose = TRUE, sort = TRUE)
+goLeaves(gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor",
+  verbose = TRUE, sort = TRUE)
 }
 \arguments{
   \item{gsaout}{data.frame; output from uvGsa.}
@@ -23,24 +23,24 @@
   \item{verbose}{verbose}
 }
 \value{
-  The input data.frame but keeping just the 'significant'
-  and 'non redundant' GO terms.
+The input data.frame but keeping just the 'significant' and
+'non redundant' GO terms.
 }
 \description{
-  Cuts significant terms and filters out all redundant GO
-  terms from a list of \code{uvGsa} results.
+Cuts significant terms and filters out all redundant GO
+terms from a list of \code{uvGsa} results.
 }
 \details{
-  Uses the library GO.db to find the 'ancestors' of each GO
-  term. Those ancestors are discarded form the \code{uvGsa}
-  results.
+Uses the library GO.db to find the 'ancestors' of each GO
+term. Those ancestors are discarded form the \code{uvGsa}
+results.
 }
 \author{
-  David Montaner \email{dmontaner@cipf.es}
+David Montaner \email{dmontaner@cipf.es}
 }
 \seealso{
-  \code{\link{uvGsa}}, \code{\link{uvPat}},
-  \code{\link{propagateGO}}, \code{\link{pval2index}}
+\code{\link{uvGsa}}, \code{\link{uvPat}},
+\code{\link{propagateGO}}, \code{\link{pval2index}}
 }
 \keyword{child}
 \keyword{go}

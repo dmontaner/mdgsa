@@ -19,6 +19,8 @@
 ##' 
 ##' @details
 ##' Uses the library GO.db.
+##'
+##' \code{x} may be a \code{data.frame}. In such case, GO ids are expected in its row names.
 ##' 
 ##' @param x a character vector of GO ids.
 ##' @param verbose verbose.
@@ -34,6 +36,11 @@
 ##' @export
 
 getGOnames <- function (x, verbose = TRUE) {
+    
+  if (is.data.frame (x) | is.matrix (x)) {
+    if (verbose) cat ("\n", "Using rownames of x", "\n", fill = TRUE)
+    x <- rownames (x)
+  }
   
   if (verbose) {
     message ("\n", "Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.9.0
@@ -79,6 +86,8 @@ getGOnames <- function (x, verbose = TRUE) {
 ##' 
 ##' @details
 ##' Uses the library KEGG.db.
+##'
+##' \code{x} may be a \code{data.frame}. In such case, GO ids are expected in its row names.
 ##' 
 ##' @param x a character vector of KEGG ids.
 ##' @param verbose verbose.
@@ -94,7 +103,12 @@ getGOnames <- function (x, verbose = TRUE) {
 ##' @export
 
 getKEGGnames <- function (x, verbose = TRUE) {
-  
+
+  if (is.data.frame (x) | is.matrix (x)) {
+    if (verbose) cat ("\n", "Using rownames of x", "\n", fill = TRUE)
+    x <- rownames (x)
+  }
+    
   if (verbose) {
     message ("\n", "Using KEGG.db version: ", packageDescription ("KEGG.db", fields = "Version")) #2.9.0
   }

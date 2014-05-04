@@ -2,7 +2,7 @@
 \alias{splitOntologies}
 \title{Split an annotation list of GO terms by ontologies.}
 \usage{
-  splitOntologies(annot, na.rm = FALSE, verbose = TRUE)
+splitOntologies(annot, na.rm = TRUE, verbose = TRUE)
 }
 \arguments{
   \item{annot}{annotation list.}
@@ -12,24 +12,24 @@
   \item{verbose}{verbose}
 }
 \value{
-  A list with tree components, one for each ontology. A
-  fourth component is included is some term could not be
-  allocated to any of the three GO ontologies.
+A list with tree components, one for each ontology. A
+fourth component is included is some term could not be
+allocated to any of the three GO ontologies.
 }
 \description{
-  Splits an annotation list of GO terms according to the
-  ontology to which each term belongs to.
+Splits an annotation list of GO terms according to the
+ontology to which each term belongs to.
 }
 \details{
-  Uses the information form the library GO.db. If some id
-  could not be associated to any ontology, they are
-  returned in an unknown ontology named "missing".
+Uses the information form the library GO.db. If some id
+could not be associated to any ontology, they are returned
+in an unknown ontology named "missing".
 }
 \author{
-  David Montaner \email{dmontaner@cipf.es}
+David Montaner \email{dmontaner@cipf.es}
 }
 \seealso{
-  \code{\link{propagateGO}}, \code{\link{goLeaves}}
+\code{\link{propagateGO}}, \code{\link{goLeaves}}
 }
 \keyword{GO}
 \keyword{ontology}
