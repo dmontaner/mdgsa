@@ -49,7 +49,7 @@
 ##' 
 ##' @export
 uvGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(),
-                   verbose = TRUE, verbosity = 100, fulltable = FALSE, ...) {
+                   verbose = TRUE, verbosity = 100, fulltable = TRUE, ...) {
 
   
   ## INPUT FORMATTING ##########################################################
