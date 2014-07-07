@@ -10,7 +10,7 @@
 ## @aliases 
 ##' 
 ##' @keywords GO ontology names
-##' @seealso \code{\link{propagateGO}}, \code{\link{goLeaves}}, \code{\link{splitOntologies}}, \code{\link{getKEGGnames}}
+##' @seealso \code{\link{propagateGO}}, \code{\link{goLeaves}}, \code{\link{splitOntologies}}, \code{\link{getKEGGnames}}, \code{\link{getOntology}}
 ##' 
 ##' @title Get Gene Ontology names
 ##'

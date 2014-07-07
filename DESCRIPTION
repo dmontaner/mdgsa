@@ -10,5 +10,12 @@ Description: Functions to preform a Gene Set Analysis in several genomic
 License: GPL
 LazyLoad: yes
 LazyData: FALSE
-Depends: R (>= 2.14)
-Imports: AnnotationDbi, DBI, GO.db, KEGG.db, cluster, Matrix
+Depends:
+    R (>= 2.14)
+Imports:
+    AnnotationDbi,
+    DBI,
+    GO.db,
+    KEGG.db,
+    cluster,
+    Matrix
