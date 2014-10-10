@@ -6,8 +6,8 @@
 \title{Multi-Dimensional Gene Set Analysis.}
 \usage{
 mdGsa(index, annot, p.adjust.method = "BY", family = quasibinomial(),
-  verbose = TRUE, verbosity = 100, fulltable = TRUE, useColnames = TRUE,
-  ...)
+  verbose = TRUE, verbosity = 100, fulltable = FALSE,
+  useColnames = TRUE, ...)
 }
 \arguments{
 \item{index}{ranking index, generally a two column matrix.}

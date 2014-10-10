@@ -1,8 +1,9 @@
 ##propagateGO.r
 ##2013-04-03 dmontaner@cipf.es
+##2014-10-10 dmontaner@cipf.es
 
 ## To Do
-##  Eliminate most of all warnings.
+## Eliminate almost all warnings.
 
 ##' @name propagateGO
 ## @docType 
@@ -39,7 +40,7 @@
 ##' @import GO.db
 ##' 
 ##' @export
-propagateGO <- function (annot, verbose = TRUE) {
+propagateGO <- function (annot, verbose = FALSE) {
   
   if (is.matrix (annot) | is.data.frame (annot)) {
     annot <- propagateGO.matrix (annot, verbose = verbose)
@@ -84,11 +85,7 @@ propagateGO <- function (annot, verbose = TRUE) {
 ## @export
 propagateGO.matrix <- function (annotation, verbose = TRUE) {
 
-  if (verbose) {
-    message ("\n", "Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.3.5
-  }
-  
-  if (verbose) cat ("", fill = TRUE)
+  if (verbose) cat ("\n", "Using GO.db version: ", packageDescription ("GO.db", fields = "Version"), "\n", sep = "", fill = TRUE) #2.3.5
   
   t0 <- proc.time ()
 
@@ -132,7 +129,7 @@ propagateGO.matrix <- function (annotation, verbose = TRUE) {
   t8 <- proc.time ()
   if (verbose) cat (c ("   duplicated 2 :", round ((t8 - t7)[1:3], 2)), fill = TRUE)
 
-  cat ("", fill = TRUE)
+  if (verbose) cat ("", fill = TRUE)
 
   colnames (annotation) <- columnas
   

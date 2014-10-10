@@ -5,7 +5,7 @@
 \title{Uni-Variate Gene Set Analysis.}
 \usage{
 uvGsa(index, annot, p.adjust.method = "BY", family = quasibinomial(),
-  verbose = TRUE, verbosity = 100, fulltable = TRUE, ...)
+  verbose = TRUE, verbosity = 100, fulltable = FALSE, ...)
 }
 \arguments{
 \item{index}{ranking index, generally a numerical named vector.}

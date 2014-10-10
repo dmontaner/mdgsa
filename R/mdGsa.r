@@ -55,7 +55,7 @@
 ##' 
 ##' @export
 mdGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(),
-                   verbose = TRUE, verbosity = 100, fulltable = TRUE, useColnames = TRUE, ...) {
+                   verbose = TRUE, verbosity = 100, fulltable = FALSE, useColnames = TRUE, ...) {
 
   
   ## INPUT FORMATTING ##########################################################

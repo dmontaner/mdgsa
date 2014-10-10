@@ -3,7 +3,7 @@
 \alias{propagateGO}
 \title{Propagate Gene Ontology annotation.}
 \usage{
-propagateGO(annot, verbose = TRUE)
+propagateGO(annot, verbose = FALSE)
 }
 \arguments{
 \item{annot}{annotation list or matrix.}
