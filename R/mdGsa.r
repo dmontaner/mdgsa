@@ -140,7 +140,7 @@ mdGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
   ##Time
   t1 <- proc.time ()
   if (verbose) {
-    cat ("time in seconds:", fill = TRUE)
+    cat ("\n", "time in seconds:", sep = "", fill = TRUE)
     print (t1-t0)
   }
   
