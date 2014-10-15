@@ -11,7 +11,7 @@
 ##' @keywords transfer index to genes miRNAs
 ##' @seealso \code{\link{uvGsa}}, \code{\link{mdGsa}}, \code{\link{indexTransform}}
 ##'
-##' @title Transfer a ranking index from regulatory elements to genes.
+##' @title Transfer a ranking index from regulatory elements, such as miRNAs, to genes.
 ##' 
 ##' @description
 ##' Transfers the ranking index information from some regulatory elements to their target genes.

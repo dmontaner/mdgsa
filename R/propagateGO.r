@@ -93,7 +93,9 @@ propagateGO.matrix <- function (annotation, verbose = TRUE) {
   annotation <- as.matrix (annotation)
   dimnames (annotation) <- NULL
   
-  duplicados <- duplicated (annotation)
+  ##duplicados <- duplicated (annotation)
+  duplicados <- duplicated (paste (annotation[,1], annotation[,2]))) # much faster
+
   annotation <- annotation[!duplicados,]
   t1 <- proc.time ()
   if (verbose) cat (c ("   duplicated 1 :", round ((t1 - t0)[1:3], 2)), fill = TRUE)
@@ -124,7 +126,8 @@ propagateGO.matrix <- function (annotation, verbose = TRUE) {
   t7 <- proc.time ()
   if (verbose) cat (c ("     remove all :", round ((t7 - t6)[1:3], 2)), fill = TRUE)
   
-  duplicados <- duplicated (annotation)
+  ##duplicados <- duplicated (annotation)
+  duplicados <- duplicated (paste (annotation[,1], annotation[,2]))) # much faster
   annotation <- annotation[!duplicados,]
   t8 <- proc.time ()
   if (verbose) cat (c ("   duplicated 2 :", round ((t8 - t7)[1:3], 2)), fill = TRUE)

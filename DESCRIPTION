@@ -19,3 +19,9 @@ Imports:
     KEGG.db,
     cluster,
     Matrix
+Suggests:
+    knitr,
+    limma,
+    ALL,
+    hgu95av2.db
+VignetteBuilder: knitr
