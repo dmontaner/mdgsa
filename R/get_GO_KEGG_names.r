@@ -38,12 +38,12 @@
 getGOnames <- function (x, verbose = TRUE) {
     
   if (is.data.frame (x) | is.matrix (x)) {
-    if (verbose) cat ("\n", "Using rownames of x", "\n", fill = TRUE)
+    if (verbose) cat ("Using row names of the input matrix.", fill = TRUE)
     x <- rownames (x)
   }
   
   if (verbose) {
-    cat ("\n", "Using GO.db version: ", packageDescription ("GO.db", fields = "Version"), sep = "", fill = TRUE) #2.9.0
+    cat ("Using GO.db version: ", packageDescription ("GO.db", fields = "Version"), sep = "", fill = TRUE) #2.9.0
   }
   
   ##go id to ontology
@@ -105,12 +105,12 @@ getGOnames <- function (x, verbose = TRUE) {
 getKEGGnames <- function (x, verbose = TRUE) {
 
   if (is.data.frame (x) | is.matrix (x)) {
-    if (verbose) cat ("\n", "Using rownames of x", "\n", fill = TRUE)
+    if (verbose) cat ("Using row names of the input matrix.", fill = TRUE)
     x <- rownames (x)
   }
     
   if (verbose) {
-    cat ("\n", "Using KEGG.db version: ", packageDescription ("KEGG.db", fields = "Version"), sep = "", fill = TRUE) #2.9.0
+    cat ("Using KEGG.db version: ", packageDescription ("KEGG.db", fields = "Version"), sep = "", fill = TRUE) #2.9.0
   }
 
   ##kegg id to kegg name
