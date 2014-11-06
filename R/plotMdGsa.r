@@ -29,6 +29,7 @@
 ##' @param cr level of the confidence region.
 ##' @param pch plotting character for all genes.
 ##' @param pch.block plotting character for the genes in the gene set or functional block.
+##' @param lwd line width. Used when drawing ellipses and other lines. 
 ##' @param col.all color used to represent all genes.
 ##' @param col.block color used to represent the genes in the gene set being plotted.
 ##' @param project if TRUE projection over the axis are displayed for the genes of the gene set.
@@ -48,7 +49,7 @@
 ##' @export
 
 plotMdGsa <- function (index, block, cr = 0.95,
-                       pch = 21, pch.block = "*",
+                       pch = 20, pch.block = 20, lwd = 2, 
                        col.all = "blue", col.block = "red",
                        project = TRUE, col.proj = "green",
                        diagonals = FALSE, col.diag = "grey",
@@ -57,34 +58,34 @@ plotMdGsa <- function (index, block, cr = 0.95,
   genes <- rownames (index)
   
   ##all genes
-  plot (index[,1], index[,2], xlab = colnames (index)[1], ylab = colnames (index)[2], pch = pch, ...)
+  plot (index[,1], index[,2], xlab = colnames (index)[1], ylab = colnames (index)[2], pch = pch, lwd = lwd, ...)
   
   ##genes in the Gene Set
-  points (index[block, 1], index[block, 2], col = col.block, pch = pch.block, ...)
+  points (index[block, 1], index[block, 2], col = col.block, pch = pch.block, lwd = lwd, ...)
   
   ##ellipses; needs the library (cluster)
   C.ls <- cov      (index[block,])
   m.ls <- colMeans (index[block,])
   d2 <- qchisq(cr, df = 2)
-  lines (ellipsoidPoints(C.ls, d2, loc = m.ls), col = col.block, ...)
-  abline (v = m.ls[1], h = m.ls[2], col = col.block, ...)
+  lines (ellipsoidPoints(C.ls, d2, loc = m.ls), col = col.block, lwd = lwd, ...)
+  abline (v = m.ls[1], h = m.ls[2], col = col.block, lwd = lwd, ...)
   ##
   C.ls <- cov (index)
   m.ls <- colMeans (index)
   d2 <- qchisq(cr, df = 2)
-  lines (ellipsoidPoints(C.ls, d2, loc = m.ls), col = col.all, ...)
-  abline (v = m.ls[1], h = m.ls[2], col = col.all, ...)
+  lines (ellipsoidPoints(C.ls, d2, loc = m.ls), col = col.all, lwd = lwd, ...)
+  abline (v = m.ls[1], h = m.ls[2], col = col.all, lwd = lwd, ...)
   
   ##projections
   if (project) {
-    points (index[block, 1], rep (m.ls[2], times = length (block)), col = col.proj, pch = "|", ...)
-    points (rep (m.ls[1], times = length (block)), index[block, 2], col = col.proj, pch = "_", ...)
+    points (index[block, 1], rep (m.ls[2], times = length (block)), col = col.proj, pch = "|", lwd = lwd, ...)
+    points (rep (m.ls[1], times = length (block)), index[block, 2], col = col.proj, pch = "_", lwd = lwd, ...)
   }
   
   ##diagonals
   if (diagonals) {
-    abline (a = m.ls[2]-m.ls[1], b =  1, col = col.diag, ...)
-    abline (a = m.ls[2]+m.ls[1], b = -1, col = col.diag, ...)
+    abline (a = m.ls[2]-m.ls[1], b =  1, col = col.diag, lwd = lwd, ...)
+    abline (a = m.ls[2]+m.ls[1], b = -1, col = col.diag, lwd = lwd, ...)
   }
 }
 

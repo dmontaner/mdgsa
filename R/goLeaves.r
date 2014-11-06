@@ -46,7 +46,7 @@
 goLeaves <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor", verbose = TRUE, sort = TRUE) {
     
     if (verbose) {
-        message ("\n", "Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.3.5
+        cat ("Using GO.db version: ", packageDescription ("GO.db", fields = "Version"), fill = TRUE) #2.3.5
     }
     
     ancestros <- c (as.list (GOBPANCESTOR), as.list (GOMFANCESTOR), as.list (GOCCANCESTOR))  

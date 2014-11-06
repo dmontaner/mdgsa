@@ -3,7 +3,7 @@
 \alias{plotMdGsa}
 \title{Plot Multi-Dimensional Gene Set}
 \usage{
-plotMdGsa(index, block, cr = 0.95, pch = 21, pch.block = "*",
+plotMdGsa(index, block, cr = 0.95, pch = 20, pch.block = 20, lwd = 2,
   col.all = "blue", col.block = "red", project = TRUE,
   col.proj = "green", diagonals = FALSE, col.diag = "grey", ...)
 }
@@ -17,6 +17,8 @@ plotMdGsa(index, block, cr = 0.95, pch = 21, pch.block = "*",
 \item{pch}{plotting character for all genes.}
 
 \item{pch.block}{plotting character for the genes in the gene set or functional block.}
+
+\item{lwd}{line width. Used when drawing ellipses and other lines.}
 
 \item{col.all}{color used to represent all genes.}
 
