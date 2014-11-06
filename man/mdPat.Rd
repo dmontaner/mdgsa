@@ -23,16 +23,11 @@ Sign of the three 'lor' and p-values are used to classify functional blocks.
 The classification is done in the two dimensional space previously analyzed
 by mdGsa.
 }
-\examples{
-data (breast)
-res <- mdGsa (ranking, annot)
-cbind (res, mdPat (res))
-}
 \author{
 David Montaner \email{dmontaner@cipf.es}
 }
 \references{
-\href{fhttp://www.plosone.org/article/info\%3Adoi\%2F10.1371\%2Fjournal.pone.0010348}{Montaner et al. 2010 "Multidimensional Gene Set Analysis of Genomic Data." PLoS ONE.}
+Montaner et al. (2010) "Multidimensional Gene Set Analysis of Genomic Data." PLoS ONE.
 }
 \seealso{
 \code{\link{mdGsa}}, \code{\link{uvPat}}

@@ -6,15 +6,15 @@ output:
   pdf_document:
     toc: yes
     highlight: default
-    fig_width: 5
-    fig_height: 5
+    fig_width: 4
+    fig_height: 4
   html_document:
     toc: yes
     theme: cerulean
     fig_width: 5
     fig_height: 5
 vignette: >
-  %\VignetteIndexEntry{mdgsa}
+  %\VignetteIndexEntry{mdgsa_vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
@@ -24,8 +24,9 @@ vignette: >
 <!-- OPTIONS ------------------------------------------------------------------>
 
 ```{r, include = FALSE}
-#opts_chunk$set (fig.align = "center") ## use this just with HTML documents
+library (knitr) ## this is needed when R CMD build
 opts_chunk$set (message = FALSE)
+#opts_chunk$set (fig.align = "center") ## use this just with HTML documents
 ```
 
 <!-- LINKS -------------------------------------------------------------------->
@@ -106,7 +107,7 @@ head (des.mat)
 ```
 
 Then we can use `limma` to carry out
-some gene expression comaprisons.
+some gene expression comparisons.
 We can for instance compare 
 _ALL_ samples to _NEG_ control samples or 
 explore gene differential expression between 
@@ -249,7 +250,7 @@ Negative values (-1) correspond to significant and negative _log odds ratios_.
 Zeros correspond to non enriched blocks.
 
 As in this example we are analyzing [KEGG] pathways we can use the function `getKEGGnames`
-to find out the "name" of the pathways^[Simmilar function `getGOnames` is available to be used with [Gene Ontology][go] terms.].
+to find out the "name" of the pathways^[Similar function `getGOnames` is available to be used with [Gene Ontology][go] terms.].
 
 ```{r, results = "hide"}
 res.uv[,"KEGG"] <- getKEGGnames (res.uv)
@@ -293,7 +294,7 @@ rindex[1:3,]
 Now we can explore the bi-dimensional distribution of this ranking indexes
 
 ```{r}
-plot (rindex)
+plot (rindex, pch = ".")
 ```
 
 and search for gene sets enrichment patterns in both _dimensions_
@@ -351,20 +352,20 @@ _ALL_ and _NEG_ when compared to the controls in the _NEG_ group.
 
 \  
 
-Simmirarly we can explore a _bimodal_ (__b13__) KEGG.
+Similarly we can explore a _bimodal_ (__b13__) KEGG.
 This pattern classification indicates us that
 the functional block has two __sub-modules__ of genes
-with oposite patterns of expression. 
+with opposite patterns of expression. 
 One subset of the KEGG is up-regulated in both conditions while
 the other subset is down-regulated also in both dimensions analyzed.
 
 It may be worth pointing here that,
 this _bimodal_ pattern will be missed by standard _univariate_ gene set methods,
-and that it may be just dectected in the _multidimensional_ analysis. 
+and that it may be just detected in the _multidimensional_ analysis. 
 
 ```{r}
 BI <- rownames (res.md)[res.md$pat == "b13"]
-plotMdGsa (rindex, block = annot[[BI]], main = getKEGGnames (BI))
+plotMdGsa (rindex, block = annot[[BI]], main = res.md[BI, "KEGG"])
 ```
 
 \  
@@ -372,12 +373,12 @@ plotMdGsa (rindex, block = annot[[BI]], main = getKEGGnames (BI))
 
 As third example we could display some KEGG enriched in one dimension
 but not in the other.
-The __yh__ patern indicates gene set over-representation just in the _Y_ axis but not in the horizontal axis.
+The __yh__ pattern indicates gene set over-representation just in the _Y_ axis but not in the horizontal axis.
 In our case, KEGG pathways with at __yh__ pattern are those
-over expresed in _BRC_ compared to _NEG_ but not
+over expressed in _BRC_ compared to _NEG_ but not
 enriched in the comparison between _ALL_ and _NEG_.
 
-Simmilarly an __yl__ pattern indicates a dow-regulation of the block 
+Similarly an __yl__ pattern indicates a down-regulation of the block 
 in the _BRC vs. NEG_ comparison but not in the _ALL vs. NEG_ one.
 
 The plot below displays one of such __yl__ classified KEGGs.
@@ -404,21 +405,19 @@ plotMdGsa (rindex, block = annot[[YH]], main = res.md[YH, "KEGG"])
 -->
 
 
+<!--
+
 Gene Set analysis of miRNA expression Data
 ================================================================================
 
-va
+To Do
+
+-->
+
 
 Session Info
 ================================================================================
 
-```{r}
-sessionInfo()
-```
-
-
-
-
-```{r, results = "asis"}
-toLatex(sessionInfo())
+```{r, echo = FALSE, results = "asis"}
+toLatex (sessionInfo())
 ```

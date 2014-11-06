@@ -5,6 +5,7 @@ Version: 0.3.7
 Date: 2013-09-26
 Author: David Montaner <dmontaner@cipf.es>
 Maintainer: David Montaner <dmontaner@cipf.es>
+URL: https://github.com/dmontaner/mdgsa, http://www.dmontaner.com
 Description: Functions to preform a Gene Set Analysis in several genomic
     dimensions. Including methods for miRNAs.
 License: GPL

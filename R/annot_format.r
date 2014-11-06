@@ -30,10 +30,8 @@
 ##' names of the list are Gene Set ids.
 ##' 
 ##' @examples
-##' data (breast)
-##' res <- uvGsa (ranking[,1], annot)
-##' cbind (res, uvPat (res))
-##' 
+##' mat <- cbind (c("gen1", "gen2", "gen3"), c("Block1", "Block1", "Block2"))
+##' annotMat2list (mat)
 ##' @export
 annotMat2list <- function (mat) {
   
@@ -84,9 +82,8 @@ annotMat2list <- function (mat) {
 ##' the second column contains the Gene Set or functional block ids.
 ##' 
 ##' @examples
-##' data (breast)
-##' res <- uvGsa (ranking[,1], annot)
-##' cbind (res, uvPat (res))
+##' lis <- list (Block1 = c("gen1", "gen2"), Block2 = c("gen3"))
+##' annotList2mat (lis)
 ##' 
 ##' @export
 annotList2mat <- function (lis, tag = "listPos") {
@@ -120,6 +117,7 @@ annotList2mat <- function (lis, tag = "listPos") {
 }
 
 
+
 ################################################################################
 
 
@@ -143,9 +141,8 @@ annotList2mat <- function (lis, tag = "listPos") {
 ##' @return An inverted list. 
 ##' 
 ##' @examples
-##' data (breast)
-##' res <- uvGsa (ranking[,1], annot)
-##' cbind (res, uvPat (res))
+##' lis <- list (Block1 = c("gen1", "gen2"), Block2 = c("gen1", "gen3"))
+##' revList (lis)
 ##' 
 ##' @export
 revList <- function (lis, tag = "listPos") {

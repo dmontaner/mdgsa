@@ -33,11 +33,6 @@
 ##'   \item{0:}{indicates that the gene set not related to the ranking statistic (no enrichment).}
 ##' }
 ##' 
-##' @examples
-##' data (breast)
-##' res <- uvGsa (ranking[,1], annot)
-##' cbind (res, uvPat (res))
-##' 
 ##' @export
 uvPat <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor") {
   res <- sign (gsaout[,statistic]) * as.numeric (gsaout[,pvalue] < cutoff)

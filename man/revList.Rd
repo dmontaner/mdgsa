@@ -17,9 +17,8 @@ An inverted list.
 Inverts a list: names to elements / elements to names
 }
 \examples{
-data (breast)
-res <- uvGsa (ranking[,1], annot)
-cbind (res, uvPat (res))
+lis <- list (Block1 = c("gen1", "gen2"), Block2 = c("gen1", "gen3"))
+revList (lis)
 }
 \author{
 David Montaner \email{dmontaner@cipf.es}

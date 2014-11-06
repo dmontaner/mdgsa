@@ -25,9 +25,8 @@ it is a character vector containing the gene ids annotated under the function.
 The names of the list are the annotation ids.
 }
 \examples{
-data (breast)
-res <- uvGsa (ranking[,1], annot)
-cbind (res, uvPat (res))
+lis <- list (Block1 = c("gen1", "gen2"), Block2 = c("gen3"))
+annotList2mat (lis)
 }
 \author{
 David Montaner \email{dmontaner@cipf.es}

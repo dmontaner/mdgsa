@@ -1,6 +1,7 @@
 ## ----, include = FALSE---------------------------------------------------
-#opts_chunk$set (fig.align = "center") ## use this just with HTML documents
+library (knitr) ## this is needed when R CMD build
 opts_chunk$set (message = FALSE)
+#opts_chunk$set (fig.align = "center") ## use this just with HTML documents
 
 ## ------------------------------------------------------------------------
 library (ALL)
@@ -84,7 +85,7 @@ rindex <- indexTransform (rindex)
 rindex[1:3,]
 
 ## ------------------------------------------------------------------------
-plot (rindex)
+plot (rindex, pch = ".")
 
 ## ----mdGsa---------------------------------------------------------------
 res.md <- mdGsa (rindex, annot)
@@ -107,7 +108,7 @@ plotMdGsa (rindex, block = annot[[Q3]], main = res.md[Q3, "KEGG"])
 
 ## ------------------------------------------------------------------------
 BI <- rownames (res.md)[res.md$pat == "b13"]
-plotMdGsa (rindex, block = annot[[BI]], main = getKEGGnames (BI))
+plotMdGsa (rindex, block = annot[[BI]], main = res.md[BI, "KEGG"])
 
 ## ------------------------------------------------------------------------
 rownames (res.md)[res.md$pat == "yl"]
@@ -124,9 +125,6 @@ rownames (res.md)[res.md$pat == "yh"]
 YH <- "05332"
 plotMdGsa (rindex, block = annot[[YH]], main = res.md[YH, "KEGG"])
 
-## ------------------------------------------------------------------------
-sessionInfo()
-
-## ----, results = "asis"--------------------------------------------------
-toLatex(sessionInfo())
+## ----, echo = FALSE, results = "asis"------------------------------------
+toLatex (sessionInfo())
 

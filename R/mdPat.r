@@ -28,13 +28,8 @@
 ##' 
 ##' @return A character vector indicating the pattern associated to each Gene Set.
 ##' 
-##' @references \href{fhttp://www.plosone.org/article/info\%3Adoi\%2F10.1371\%2Fjournal.pone.0010348}{Montaner et al. 2010 "Multidimensional Gene Set Analysis of Genomic Data." PLoS ONE.}
-##' 
-##' @examples
-##' data (breast)
-##' res <- mdGsa (ranking, annot)
-##' cbind (res, mdPat (res))
-##' 
+##' @references Montaner et al. (2010) "Multidimensional Gene Set Analysis of Genomic Data." PLoS ONE.
+##'                    
 ##' @export
 mdPat <- function (gsaout, cutoff = 0.05, pvalue = "padj") {
   

@@ -6,15 +6,15 @@ output:
   pdf_document:
     toc: yes
     highlight: default
-    fig_width: 5
-    fig_height: 5
+    fig_width: 4
+    fig_height: 4
   html_document:
     toc: yes
     theme: cerulean
     fig_width: 5
     fig_height: 5
 vignette: >
-  %\VignetteIndexEntry{mdgsa}
+  %\VignetteIndexEntry{mdgsa_vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
@@ -24,6 +24,7 @@ vignette: >
 <!-- OPTIONS ------------------------------------------------------------------>
 
 ```{r, include = FALSE}
+library (knitr) ## this is needed when R CMD build
 opts_chunk$set (message = FALSE)
 #opts_chunk$set (fig.align = "center") ## use this just with HTML documents
 ```
@@ -75,7 +76,7 @@ Citation
 Further description of the `mdgsa` methods may be found at:
 
 > _Multidimensional gene set analysis of genomic data._  
-> David Montaner and Joaquín Dopazo.  
+> David Montaner and Joaquin Dopazo.  
 > [PLoS One. 2010 Apr 27;5(4):e10348. doi: 10.1371/journal.pone.0010348.][montaner2010]
 
 
@@ -293,7 +294,7 @@ rindex[1:3,]
 Now we can explore the bi-dimensional distribution of this ranking indexes
 
 ```{r}
-plot (rindex)
+plot (rindex, pch = ".")
 ```
 
 and search for gene sets enrichment patterns in both _dimensions_
@@ -364,7 +365,7 @@ and that it may be just detected in the _multidimensional_ analysis.
 
 ```{r}
 BI <- rownames (res.md)[res.md$pat == "b13"]
-plotMdGsa (rindex, block = annot[[BI]], main = getKEGGnames (BI))
+plotMdGsa (rindex, block = annot[[BI]], main = res.md[BI, "KEGG"])
 ```
 
 \  
@@ -404,10 +405,15 @@ plotMdGsa (rindex, block = annot[[YH]], main = res.md[YH, "KEGG"])
 -->
 
 
+<!--
+
 Gene Set analysis of miRNA expression Data
 ================================================================================
 
 To Do
+
+-->
+
 
 Session Info
 ================================================================================
