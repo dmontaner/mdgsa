@@ -1,0 +1,19 @@
+citHeader ("To cite the mdgsa library in publications please use:")
+
+citEntry (entry = "Article",
+          title = "Multidimensional Gene Set Analysis of Genomic Data", 
+          author = personList (as.person ("David Montaner"),
+                               as.person ("Joaquin Dopazo")),
+          journal = "PLoS One",
+          year = "2010",
+          doi = "10.1371/journal.pone.0010348",
+          volume = "5",
+          number = "4",
+          pages = "e10348",
+          url = "http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0010348",
+          textVersion =
+              paste ("Multidimensional gene set analysis of genomic data.", 
+                     "Montaner D, Dopazo J.", 
+                     "PLoS One. 2010 Apr 27;5(4):e10348. doi: 10.1371/journal.pone.0010348.",
+                     "PMID: 20436964 PMCID: PMC2860497")
+          )
