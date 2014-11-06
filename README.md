@@ -27,6 +27,12 @@ library (devtools)
 install_github ("dmontaner/mdgsa")
 ```
 
+Documentation
+--------------
+
+Vignette 
+- [PDF format](https://github.com/dmontaner/mdgsa/blob/master/inst/doc/mdgsa_vignette.pdf?raw=true)
+- [MD format](https://github.com/dmontaner/mdgsa/blob/master/inst/doc/mdgsa_vignette.md) (readable in GitHub)
 
 <!-- References -->
 [montaner2010]:http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0010348 "mdgsa Paper"
