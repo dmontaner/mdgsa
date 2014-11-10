@@ -339,7 +339,7 @@ res.uv <- uvGsa (rindex, annot)
 ## 100, 200, 
 ## time in seconds:
 ##    user  system elapsed 
-##  11.368   0.004  11.366
+##  11.313   0.000  11.306
 ```
 
 The output of the `uvGsa` function is a data frame
@@ -540,7 +540,7 @@ res.md <- mdGsa (rindex, annot)
 ## 100, 200, 
 ## time in seconds:
 ##    user  system elapsed 
-##  12.734   0.000  12.731
+##  13.343   0.000  13.337
 ```
 
 As in the _univariate_ analysis,
@@ -763,12 +763,46 @@ A detailed  description of each of the patterns can be found in [Montaner and Do
 The function `mdPat` in the `mdgsa` package is devised to help the user classifying bi-dimensional GSA results in such patterns.
 
 
-
-
-
 Session Info
 ================================================================================
 
+
+```r
+sessionInfo()
+```
+
+```
+## R version 3.1.2 (2014-10-31)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=es_ES.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=es_ES.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=es_ES.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=es_ES.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats4    parallel  stats     graphics  grDevices utils     datasets 
+## [8] methods   base     
+## 
+## other attached packages:
+##  [1] mdgsa_0.99.0         hgu95av2.db_3.0.0    org.Hs.eg.db_3.0.0  
+##  [4] RSQLite_1.0.0        DBI_0.3.1            AnnotationDbi_1.28.1
+##  [7] GenomeInfoDb_1.2.2   IRanges_2.0.0        S4Vectors_0.4.0     
+## [10] limma_3.22.1         ALL_1.7.1            Biobase_2.26.0      
+## [13] BiocGenerics_0.12.0  markdown_0.7.4       devtools_1.6.1      
+## [16] knitr_1.7           
+## 
+## loaded via a namespace (and not attached):
+##  [1] cluster_1.15.3  digest_0.6.4    evaluate_0.5.5  formatR_1.0    
+##  [5] GO.db_3.0.0     grid_3.1.2      htmltools_0.2.6 KEGG.db_3.0.0  
+##  [9] lattice_0.20-29 Matrix_1.1-4    rmarkdown_0.3.3 stringr_0.6.2  
+## [13] tools_3.1.2     yaml_2.1.13
+```
+
+<!-- 
 \begin{itemize}\raggedright
   \item R version 3.1.2 (2014-10-31), \verb|x86_64-pc-linux-gnu|
   \item Locale: \verb|LC_CTYPE=en_US.UTF-8|, \verb|LC_NUMERIC=C|, \verb|LC_TIME=es_ES.UTF-8|, \verb|LC_COLLATE=en_US.UTF-8|, \verb|LC_MONETARY=es_ES.UTF-8|, \verb|LC_MESSAGES=en_US.UTF-8|, \verb|LC_PAPER=es_ES.UTF-8|, \verb|LC_NAME=C|, \verb|LC_ADDRESS=C|, \verb|LC_TELEPHONE=C|, \verb|LC_MEASUREMENT=es_ES.UTF-8|, \verb|LC_IDENTIFICATION=C|
@@ -781,8 +815,9 @@ Session Info
     mdgsa~0.99.0, org.Hs.eg.db~3.0.0, RSQLite~1.0.0,
     S4Vectors~0.4.0
   \item Loaded via a namespace (and not attached): cluster~1.15.3,
-    compiler~3.1.2, digest~0.6.4, evaluate~0.5.5, formatR~1.0,
-    GO.db~3.0.0, grid~3.1.2, htmltools~0.2.6, KEGG.db~3.0.0,
-    lattice~0.20-29, Matrix~1.1-4, rmarkdown~0.3.3, stringr~0.6.2,
-    tools~3.1.2, yaml~2.1.13
+    digest~0.6.4, evaluate~0.5.5, formatR~1.0, GO.db~3.0.0,
+    grid~3.1.2, htmltools~0.2.6, KEGG.db~3.0.0, lattice~0.20-29,
+    Matrix~1.1-4, rmarkdown~0.3.3, stringr~0.6.2, tools~3.1.2,
+    yaml~2.1.13
 \end{itemize}
+-->

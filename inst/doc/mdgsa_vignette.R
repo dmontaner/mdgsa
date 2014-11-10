@@ -125,6 +125,9 @@ rownames (res.md)[res.md$pat == "yh"]
 YH <- "05332"
 plotMdGsa (rindex, block = annot[[YH]], main = res.md[YH, "KEGG"])
 
+## ------------------------------------------------------------------------
+sessionInfo()
+
 ## ----, echo = FALSE, results = "asis"------------------------------------
 toLatex (sessionInfo())
 

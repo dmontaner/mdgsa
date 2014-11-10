@@ -457,12 +457,15 @@ A detailed  description of each of the patterns can be found in [Montaner and Do
 The function `mdPat` in the `mdgsa` package is devised to help the user classifying bi-dimensional GSA results in such patterns.
 
 
-
-
-
 Session Info
 ================================================================================
 
+```{r}
+sessionInfo()
+```
+
+<!-- 
 ```{r, echo = FALSE, results = "asis"}
 toLatex (sessionInfo())
 ```
+-->
