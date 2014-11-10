@@ -1,7 +1,7 @@
 ---
 title: "mdgsa Library"
 author: "[David Montaner](http://www.dmontaner.com)"
-date: "(2014-11-06)  \\vspace{5mm}\\hrule"
+date: "(2014-11-10)  \\vspace{5mm}\\hrule"
 output:
   pdf_document:
     toc: yes
@@ -45,7 +45,7 @@ Introduction
 ================================================================================
 
 The `mdgsa` library implements the _gene set analysis_ methodology developed in
-[Montaner and Dopazo 2010][montaner2010].
+[Montaner and Dopazo (2010)][montaner2010].
 It presents a flexible framework for analyzing the enrichment of _gene sets_ along a given _ranking_ of genes.
 The novelty is that,
 not just one _ranking index_ but two,
@@ -173,8 +173,9 @@ fit$p.value[1:3,]
 ```
 
 These gene level information may be now interpreted in terms of _gene sets_.
-For this example we will carry out a _gene set analysis_ using the functional blocks described in [KEGG]. 
-We can take such annotation from the [hgu95av2.db] library as follows.
+For this example we will carry out a _gene set analysis_ using the functional blocks described in [KEGG],
+but any other functional data base such as the [Gene Ontology][go] or even a customized one may be analyzed using `mdgsa`.
+We can get the [KEGG] annotation from the [hgu95av2.db] library as follows.
 
 
 ```r
@@ -338,7 +339,7 @@ res.uv <- uvGsa (rindex, annot)
 ## 100, 200, 
 ## time in seconds:
 ##    user  system elapsed 
-##  11.334   0.004  11.360
+##  11.368   0.004  11.366
 ```
 
 The output of the `uvGsa` function is a data frame
@@ -461,8 +462,6 @@ res[,c("pat", "KEGG")]
 ```
 
 
-
-
 Multivariate Gene Set Analysis
 --------------------------------------------------------------------------------
 
@@ -541,7 +540,7 @@ res.md <- mdGsa (rindex, annot)
 ## 100, 200, 
 ## time in seconds:
 ##    user  system elapsed 
-##  13.116   0.000  13.143
+##  12.734   0.000  12.731
 ```
 
 As in the _univariate_ analysis,
@@ -563,7 +562,7 @@ res.md[1:3,]
 ## 00030     0.01887660 0.9536525              1      0.3226767      1
 ```
 
-The column of the row contain _log odds ratios_ and p-values for each of the analyzed _dimensions_ and also for their _intercept_.
+The column of the row contain _log odds ratios_ and p-values for each of the analyzed _dimensions_ and also for their _interaction_ effect.
 The function `mdPat` helps clarifying the bi-dimensional pattern of enrichment. 
 
 
@@ -616,7 +615,7 @@ The blue one represents a _confidence region_ for all the genes in the study.
 The red one shows the same _confidence region_ but just for those genes within the gene set.
 We can see how the distribution of the genes in KEGG _03030_ is displaced towards the third quadrant of the plot.
 This indicates us that "DNA replication" is a _pathway_ jointly down regulated in both
-_ALL_ and _NEG_ when compared to the controls in the _NEG_ group.
+_ALL_ and _BCR_ when compared to the controls in the _NEG_ group.
 
 \  
 
@@ -670,7 +669,17 @@ plotMdGsa (rindex, block = annot[[YL]], main = res.md[YL, "KEGG"])
 
 ![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26-1.png) 
 
-<!-- SOME MORE EXAMPLES
+\  
+
+
+All possible multidimensional enrichment __patterns__ are listed in the [Appendix](#appendix1).
+
+
+
+
+
+
+<!-- SOME MORE EXAMPLES --------------------------------------------------------
 
 
 ```r
@@ -721,6 +730,42 @@ To Do
 -->
 
 
+Appendix
+================================================================================
+
+1.- Multidimensional Functional Classification {#appendix1}
+--------------------------------------------------------------------------------
+
+All possible functional block classifications in the bi-dimensional gene set analysis are:
+
+- __q1i__: block displaced toward quadrant __1__ (0 < X & 0 < Y) with interaction.
+- __q2i__: block displaced toward quadrant __2__ (0 > X & 0 < Y) with interaction.
+- __q3i__: block displaced toward quadrant __3__ (0 > X & 0 > Y) with interaction.
+- __q4i__: block displaced toward quadrant __4__ (0 < X & 0 > Y) with interaction.
+
+- __q1f__: block displaced toward quadrant __1__, no interaction. 
+- __q2f__: block displaced toward quadrant __2__, no interaction. 
+- __q3f__: block displaced toward quadrant __3__, no interaction. 
+- __q4f__: block displaced toward quadrant __4__, no interaction. 
+
+- __xh__: block shifted to __positive X__ values.
+- __xl__: block shifted to __negative X__ values. 
+- __yh__: block shifted to __positive Y__ values.
+- __yl__: block shifted to __negative Y__ values.
+
+- __b13__: bimodal block. Half of the genes displaced towards quadrant __1__ and the other half towards quadrant __3__.
+- __b24__: bimodal block. Half of the genes displaced towards quadrant __2__ and the other half towards quadrant __4__.
+
+- __NS__: __non significant__ block.
+
+A detailed  description of each of the patterns can be found in [Montaner and Dopazo (2010)][montaner2010].
+
+The function `mdPat` in the `mdgsa` package is devised to help the user classifying bi-dimensional GSA results in such patterns.
+
+
+
+
+
 Session Info
 ================================================================================
 
@@ -733,10 +778,11 @@ Session Info
     Biobase~2.26.0, BiocGenerics~0.12.0, DBI~0.3.1,
     devtools~1.6.1, GenomeInfoDb~1.2.2, hgu95av2.db~3.0.0,
     IRanges~2.0.0, knitr~1.7, limma~3.22.1, markdown~0.7.4,
-    mdgsa~0.3.7, org.Hs.eg.db~3.0.0, RSQLite~1.0.0,
+    mdgsa~0.99.0, org.Hs.eg.db~3.0.0, RSQLite~1.0.0,
     S4Vectors~0.4.0
   \item Loaded via a namespace (and not attached): cluster~1.15.3,
-    compiler~3.1.2, evaluate~0.5.5, formatR~1.0, GO.db~3.0.0,
-    grid~3.1.2, KEGG.db~3.0.0, lattice~0.20-29, Matrix~1.1-4,
-    stringr~0.6.2, tools~3.1.2
+    compiler~3.1.2, digest~0.6.4, evaluate~0.5.5, formatR~1.0,
+    GO.db~3.0.0, grid~3.1.2, htmltools~0.2.6, KEGG.db~3.0.0,
+    lattice~0.20-29, Matrix~1.1-4, rmarkdown~0.3.3, stringr~0.6.2,
+    tools~3.1.2, yaml~2.1.13
 \end{itemize}

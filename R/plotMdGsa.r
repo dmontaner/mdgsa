@@ -49,9 +49,9 @@
 ##' @export
 
 plotMdGsa <- function (index, block, cr = 0.95,
-                       pch = 20, pch.block = 20, lwd = 2, 
+                       pch = ".", pch.block = 20, lwd = 2, 
                        col.all = "blue", col.block = "red",
-                       project = TRUE, col.proj = "green",
+                       project = FALSE, col.proj = "green",
                        diagonals = FALSE, col.diag = "grey",
                        ...) {
   

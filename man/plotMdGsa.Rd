@@ -3,8 +3,8 @@
 \alias{plotMdGsa}
 \title{Plot Multi-Dimensional Gene Set}
 \usage{
-plotMdGsa(index, block, cr = 0.95, pch = 20, pch.block = 20, lwd = 2,
-  col.all = "blue", col.block = "red", project = TRUE,
+plotMdGsa(index, block, cr = 0.95, pch = ".", pch.block = 20, lwd = 2,
+  col.all = "blue", col.block = "red", project = FALSE,
   col.proj = "green", diagonals = FALSE, col.diag = "grey", ...)
 }
 \arguments{

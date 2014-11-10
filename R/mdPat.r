@@ -21,6 +21,25 @@
 ##' Sign of the three 'lor' and p-values are used to classify functional blocks.
 ##' The classification is done in the two dimensional space previously analyzed
 ##' by mdGsa.
+##'
+##' All possible functional block classifications in the bi-dimensional gene set analysis are:
+##' \itemize{
+##'   \item q1i: block displaced toward quadrant \bold{1} (0 < X & 0 < Y) with interaction.
+##'   \item q2i: block displaced toward quadrant \bold{2} (0 > X & 0 < Y) with interaction.
+##'   \item q3i: block displaced toward quadrant \bold{3} (0 > X & 0 > Y) with interaction.
+##'   \item q4i: block displaced toward quadrant \bold{4} (0 < X & 0 > Y) with interaction.
+##'   \item q1f: block displaced toward quadrant \bold{1}, no interaction. 
+##'   \item q2f: block displaced toward quadrant \bold{2}, no interaction. 
+##'   \item q3f: block displaced toward quadrant \bold{3}, no interaction. 
+##'   \item q4f: block displaced toward quadrant \bold{4}, no interaction. 
+##'   \item xh: block shifted to \bold{positive X} values.
+##'   \item xl: block shifted to \bold{negative X} values. 
+##'   \item yh: block shifted to \bold{positive Y} values.
+##'   \item yl: block shifted to \bold{negative Y} values.
+##'   \item b13: bimodal block. Half of the genes displaced towards quadrant \bold{1} and the other half towards quadrant \bold{3}.
+##'   \item b24: bimodal block. Half of the genes displaced towards quadrant \bold{2} and the other half towards quadrant \bold{4}.
+##'   \item NS: \bold{non significant} block.
+##' }
 ##' 
 ##' @param gsaout data.frame; output from mdGsa.
 ##' @param cutoff p-value cutoff for considering significant a Gene Set.
@@ -29,7 +48,7 @@
 ##' @return A character vector indicating the pattern associated to each Gene Set.
 ##' 
 ##' @references Montaner et al. (2010) "Multidimensional Gene Set Analysis of Genomic Data." PLoS ONE.
-##'                    
+##' 
 ##' @export
 mdPat <- function (gsaout, cutoff = 0.05, pvalue = "padj") {
   
