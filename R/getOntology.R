@@ -37,7 +37,7 @@
 getOntology <- function (x, verbose = TRUE) {
     
   if (is.data.frame (x) | is.matrix (x)) {
-    if (verbose) cat ("\n", "Using rownames of x", "\n", fill = TRUE)
+    if (verbose) message ("Using rownames of x")
     x <- rownames (x)
   }
   

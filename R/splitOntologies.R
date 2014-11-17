@@ -66,11 +66,11 @@ splitOntologies <- function (annot, na.rm = TRUE, verbose = TRUE) {
   res[["mf"]] <- annot[es.mf]
   
   if (sum (es.na) > 0) {
-    cat ("Some GO ids where not found, ", fill = FALSE)
+    message ("Some GO ids where not found, ")
     if (na.rm) {
-      cat ("they will be excluded from the list", fill = TRUE)
+      message ("they will be excluded from the list")
     } else {
-      cat ("they are included in the fourth element of the output list.", fill = TRUE)
+      message ("they are included in the fourth element of the output list.")
       res[["missing"]] <- annot[es.na]
     }
   }

@@ -81,9 +81,9 @@ transferIndex <- function (index, targets, method = "sum", verbose = TRUE, trans
   mirnas.just.targets <- setdiff (mirnas.in.targets, mirnas.in.index)
   
   if (verbose) {
-    cat ("  ", length (mirnas), "miRNAs with annotated targets", fill = TRUE)
-    cat ("  ", length (mirnas.just.index), "miRNAs without targets", fill = TRUE)
-    cat ("  ", length (mirnas.just.targets), "miRNAs with targets but not in the ranking index", fill = TRUE)
+    message ("  ", length (mirnas), "miRNAs with annotated targets")
+    message ("  ", length (mirnas.just.index), "miRNAs without targets")
+    message ("  ", length (mirnas.just.targets), "miRNAs with targets but not in the ranking index")
   }
 
   

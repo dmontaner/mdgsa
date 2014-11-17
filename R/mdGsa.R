@@ -97,7 +97,7 @@ mdGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
   ##set counter
   counter <- 0
   if (verbose) {
-    cat ("Analyzed blocks:", fill = TRUE)
+    message ("Analyzed blocks:")
   }
 
   ##dimension of index
@@ -126,10 +126,10 @@ mdGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
     if (verbose) {
       counter <- counter + 1
       if (counter %% verbosity == 0) {
-        cat (counter, ", ", sep = "")
+        message (counter, ", ", appendLF = FALSE)
       }
       if (counter %% (10*verbosity) == 0) {
-        cat ("\n")
+        message ("\n")
       }
     }
   }
@@ -140,7 +140,7 @@ mdGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
   ##Time
   t1 <- proc.time ()
   if (verbose) {
-    cat ("\n", "time in seconds:", sep = "", fill = TRUE)
+    message ("time in seconds:")
     print (t1-t0)
   }
   

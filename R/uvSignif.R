@@ -47,7 +47,7 @@ uvSignif <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor",
             gsaout <- gsaout[orden,]
         }
     } else {
-        cat ("gsaout must be a data.frame created by uvGsa", fill = TRUE)
+        message ("gsaout must be a data.frame created by uvGsa")
     }
     ## RETURN
     gsaout

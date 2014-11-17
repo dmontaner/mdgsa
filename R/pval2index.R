@@ -90,7 +90,7 @@ pval2index <- function (pval, sign, names = NULL, log = TRUE, offset, verbose = 
   }
 
   if (missing (sign)) {
-    cat ("\n", "sign is missing. All signs will be considered as positive", "\n", fill = TRUE)
+    message ("sign is missing. All signs will be considered as positive")
     sign <- rep (1, times = length (pval))
   }
 
@@ -106,7 +106,7 @@ pval2index <- function (pval, sign, names = NULL, log = TRUE, offset, verbose = 
   
   sign.cero <- sign == 0
   if (any (sign.cero, na.rm = TRUE) & verbose) {
-    cat ("\n", "Some sign statistics are zero; zero values will be returned.", "\n", fill = TRUE)
+    message ("Some sign statistics are zero; zero values will be returned.")
   }
   
   if (log) {
