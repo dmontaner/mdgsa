@@ -26,3 +26,4 @@ Suggests:
     ALL,
     hgu95av2.db
 VignetteBuilder: knitr
+biocViews: GeneSetEnrichment, Annotation, Pathways, GO
