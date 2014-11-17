@@ -64,105 +64,105 @@
 
 annotFilter <- function (annot, index, minBlockSize = 10, maxBlockSize = 500, verbose = TRUE) {
   
-  ##BLOCK IDs
-  blocks <- names (annot)
-  
-  if (is.null (blocks))  {
-    message ("Warning: The annotation list has no names.")
-    message ("List position will be used instead.")
-    names (annot) <- paste ("block", 1:length (annot), sep = "_")
+    ##BLOCK IDs
     blocks <- names (annot)
-  }
-  
-  pos <- which (is.na (blocks))
-  if (length (pos) > 0) {
-    message ("Warning: Some names are missing for the blocks in the annot list.")
-    message ("List positions will be used instead.")
-    names (annot)[pos] <- paste ("block", pos, sep = "_")
-    blocks <- names (annot)
-  }
-  
-  if (any (duplicated (blocks))) {
-    message ("Warning: Some names are duplicated for the blocks in the annot list.")
-  }
-  
-  ## ###########################################################################
-
-  ##Duplicated genes
-  annot.aux <- lapply (annot, unique)
-  if (any (sapply (annot, length) != sapply (annot.aux, length))) {
-    message ("Warning: Some blocks in the annot list have duplicated genes.")
-    message ("Duplicated will be removed.")
-  }
-  annot <- annot.aux
-  
-  ##genes that are NA or ""
-  annot.aux <- lapply (annot, setdiff, y = c(NA, ""))
-  if (any (sapply (annot, length) != sapply (annot.aux, length))) {
-    message ('Warning: Some blocks in the annot gene IDs which are missing or "".')
-    message ("Those will be removed.")
-  }
-  annot <- annot.aux
-  
-  ## ###########################################################################
-  
-  if (!missing (index)) {
     
-    if (is.matrix (index) | is.data.frame (index)) {
-      gen.universe <- rownames (index)
-    } else {
-      if (is.character (index)) {
-        gen.universe <- index       ##see whether it is convenient this usage of the index variable; may be we should create a gene universe third variable
-      } else {
-        gen.universe <- names (index) ##assuming that 'index' is a vector
-      }
+    if (is.null (blocks))  {
+        message ("Warning: The annotation list has no names.")
+        message ("List position will be used instead.")
+        names (annot) <- paste ("block", 1:length (annot), sep = "_")
+        blocks <- names (annot)
     }
     
-    if (is.null (gen.universe)) {
-      stop ("Names where not found in index.")
+    pos <- which (is.na (blocks))
+    if (length (pos) > 0) {
+        message ("Warning: Some names are missing for the blocks in the annot list.")
+        message ("List positions will be used instead.")
+        names (annot)[pos] <- paste ("block", pos, sep = "_")
+        blocks <- names (annot)
     }
     
-    ## #########################################################################
-    
-    ##duplicated or missing IDs in the Gene Universe
-    if (any (is.na (gen.universe)))      message ('Warning: Some genes or feature names form the ranking index have an NA value.')
-    if (any (gen.universe == ""))        message ('Warning: Some genes or feature names form the ranking index have an "" value.')
-    if (any (duplicated (gen.universe))) message ('Warning: Some genes or feature names from the ranking index have duplicated IDs.')
-    
-    gen.universe <- setdiff (unique (gen.universe), c(NA, ""))
-    
-    ## #########################################################################
-   
-    ##Just IDs in the Gene Universe
-    genes <- unique (unlist (annot))
-    genes.aux <- genes %in% gen.universe
-    
-    if (any (!genes.aux)) {
-      message ("Warning: There are genes in the annotation list which are not part of the gene universe defended by the ranking index;")
-      message ("they will be eliminated form the annotation.")
-      
-      annot.aux <- lapply (annot, intersect, y = gen.universe)  ##Here 'gene.universe' is already unique and has no NA or "" values.
-      annot <- annot.aux
+    if (any (duplicated (blocks))) {
+        message ("Warning: Some names are duplicated for the blocks in the annot list.")
     }
     
-    ## #########################################################################
+    ## ###########################################################################
     
-    ##some stats
-    message ("\n",
-         paste (round (100 * sum (gen.universe %in% genes) / length (gen.universe), 2),
-                "% of the genes in the index are annotated in the list.", sep = ""),
-         sep = "",
-         fill = TRUE)
+    ##Duplicated genes
+    annot.aux <- lapply (annot, unique)
+    if (any (sapply (annot, length) != sapply (annot.aux, length))) {
+        message ("Warning: Some blocks in the annot list have duplicated genes.")
+        message ("Duplicated will be removed.")
+    }
+    annot <- annot.aux
     
-  } ##END if missing (index)
+    ##genes that are NA or ""
+    annot.aux <- lapply (annot, setdiff, y = c(NA, ""))
+    if (any (sapply (annot, length) != sapply (annot.aux, length))) {
+        message ('Warning: Some blocks in the annot gene IDs which are missing or "".')
+        message ("Those will be removed.")
+    }
+    annot <- annot.aux
+    
+    ## ###########################################################################
   
-  
-  ##FILTER by size
-  annot <- annot.size.filter (annot = annot, minBlockSize = minBlockSize, maxBlockSize = maxBlockSize, verbose = verbose)
-
-  ##OUT
-  ##invisible (annot)
-  annot
+    if (!missing (index)) {
+        
+        if (is.matrix (index) | is.data.frame (index)) {
+            gen.universe <- rownames (index)
+        } else {
+            if (is.character (index)) {
+                gen.universe <- index       ##see whether it is convenient this usage of the index variable; may be we should create a gene universe third variable
+            } else {
+                gen.universe <- names (index) ##assuming that 'index' is a vector
+            }
+        }
+        
+        if (is.null (gen.universe)) {
+            stop ("Names where not found in index.")
+        }
+        
+        ## #########################################################################
+        
+        ##duplicated or missing IDs in the Gene Universe
+        if (any (is.na (gen.universe)))      message ('Warning: Some genes or feature names form the ranking index have an NA value.')
+        if (any (gen.universe == ""))        message ('Warning: Some genes or feature names form the ranking index have an "" value.')
+        if (any (duplicated (gen.universe))) message ('Warning: Some genes or feature names from the ranking index have duplicated IDs.')
+        
+        gen.universe <- setdiff (unique (gen.universe), c(NA, ""))
+        
+        ## #########################################################################
+        
+        ##Just IDs in the Gene Universe
+        genes <- unique (unlist (annot))
+        genes.aux <- genes %in% gen.universe
+        
+        if (any (!genes.aux)) {
+            message ("Warning: There are genes in the annotation list which are not part of the gene universe defended by the ranking index;")
+            message ("they will be eliminated form the annotation.")
+            
+            annot.aux <- lapply (annot, intersect, y = gen.universe)  ##Here 'gene.universe' is already unique and has no NA or "" values.
+            annot <- annot.aux
+        }
+        
+        ## #########################################################################
+        
+        ##some stats
+        message ("\n",
+                 paste (round (100 * sum (gen.universe %in% genes) / length (gen.universe), 2),
+                        "% of the genes in the index are annotated in the list.", sep = ""),
+                 sep = "",
+                 fill = TRUE)
+        
+    } ##END if missing (index)
+    
+    
+    ##FILTER by size
+    annot <- annot.size.filter (annot = annot, minBlockSize = minBlockSize, maxBlockSize = maxBlockSize, verbose = verbose)
+    
+    ##OUT
+    ##invisible (annot)
+    annot
 }
 
 ################################################################################
@@ -193,26 +193,26 @@ annotFilter <- function (annot, index, minBlockSize = 10, maxBlockSize = 500, ve
 ##
 ## @export
 annot.size.filter <- function (annot, minBlockSize, maxBlockSize, verbose = TRUE) {
-
-  if (minBlockSize < 1) {
-    warning ("minBlockSize < 1; Generally is not meaningful to allow for empty blocks")
-  }
+    
+    if (minBlockSize < 1) {
+        warning ("minBlockSize < 1; Generally is not meaningful to allow for empty blocks")
+    }
+    
+    block.size <- sapply (annot, length)
+    
+    is.small <- block.size < minBlockSize
+    is.big   <- block.size > maxBlockSize
   
-  block.size <- sapply (annot, length)
+    touse <- !is.big & !is.small 
+    annot <- annot[touse]
 
-  is.small <- block.size < minBlockSize
-  is.big   <- block.size > maxBlockSize
-  
-  touse <- !is.big & !is.small 
-  annot <- annot[touse]
-
-  if (verbose) {
-    message ("Filtering annotation by size:")
-    message (paste ("  ", sum (is.small), "small blocks removed."))
-    message (paste ("  ", sum (is.big),   "big blocks removed."))
-    message (paste ("  ", sum (touse),    "blocks remain in the annotation."))
-  }
-
-  ###OUT
-  annot
+    if (verbose) {
+        message ("Filtering annotation by size:")
+        message (paste ("  ", sum (is.small), "small blocks removed."))
+        message (paste ("  ", sum (is.big),   "big blocks removed."))
+        message (paste ("  ", sum (touse),    "blocks remain in the annotation."))
+    }
+    
+    ##OUT
+    annot
 }

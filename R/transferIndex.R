@@ -48,76 +48,76 @@
 ##' @export
 transferIndex <- function (index, targets, method = "sum", verbose = TRUE, transferMatrix = FALSE) {
   
-  ## CHECK
-  if (!method %in% c("sum", "average")) {
-    stop (paste ('method should be: "sum" or "averaged"'))
-  }
-  
-  ## INPUT FORMATTING
-  if (is.list (targets)) {
-    genes <- sort (unique (unlist (targets)))
-    mirnas.in.targets <- names (targets)
-  } else {
-    stop ("'targets' has to be a list.")
-  }  
-  
-  if (is.data.frame (index)) {
-    index <- as.matrix (index)
-  }
-  if (is.matrix (index)) {
-    mirnas.in.index <- rownames (index)
-    index <- index[,1]                  ## use just the first column
-  }
-  if (is.vector (index)) {
-    mirnas.in.index <- names (index)
-  }
-  if (is.null (mirnas.in.index)) {
-    stop ("no IDs found. Check names or rownames in 'index'")
-  }
-  
-  ## miRNA universe
-  mirnas <- intersect (mirnas.in.index, mirnas.in.targets)
-  mirnas.just.index <- setdiff (mirnas.in.index, mirnas.in.targets)
-  mirnas.just.targets <- setdiff (mirnas.in.targets, mirnas.in.index)
-  
-  if (verbose) {
-    message ("  ", length (mirnas), "miRNAs with annotated targets")
-    message ("  ", length (mirnas.just.index), "miRNAs without targets")
-    message ("  ", length (mirnas.just.targets), "miRNAs with targets but not in the ranking index")
-  }
-
-  
-  ## ###########################################################################
-  ## TRANSFER:  size and speed should be fine for 20.000 genes and 5.000 miRNAs
-  ## ###########################################################################
-
-  ## Matrix
-  mat <- Matrix (0, nrow = length (genes), ncol = length (mirnas))
-  rownames (mat) <- genes
-  colnames (mat) <- mirnas
-  ##
-  for (mi in mirnas) {
-    mat[,mi] <- genes %in% targets[[mi]] 
-  }
-  
-  ## transfer the index to each gene
-  mat <- t(t (mat) * index[mirnas])
-  
-  ## collapse genes
-  if (method == "sum") {
-    tindex <- rowSums (mat)
-    names (tindex) <- rownames (mat) ## rowSums method for Matrix does not keep the names as the default method does.
-  }
-  if (method == "average") {
-    tindex <- rowMeans (mat)
-    names (tindex) <- rownames (mat)
-  }
-
-
-  ## RETURN
-  if (transferMatrix) {
-    mat
-  } else {
-    tindex
-  }
+    ## CHECK
+    if (!method %in% c("sum", "average")) {
+        stop (paste ('method should be: "sum" or "averaged"'))
+    }
+    
+    ## INPUT FORMATTING
+    if (is.list (targets)) {
+        genes <- sort (unique (unlist (targets)))
+        mirnas.in.targets <- names (targets)
+    } else {
+        stop ("'targets' has to be a list.")
+    }  
+    
+    if (is.data.frame (index)) {
+        index <- as.matrix (index)
+    }
+    if (is.matrix (index)) {
+        mirnas.in.index <- rownames (index)
+        index <- index[,1]                  ## use just the first column
+    }
+    if (is.vector (index)) {
+        mirnas.in.index <- names (index)
+    }
+    if (is.null (mirnas.in.index)) {
+        stop ("no IDs found. Check names or rownames in 'index'")
+    }
+    
+    ## miRNA universe
+    mirnas <- intersect (mirnas.in.index, mirnas.in.targets)
+    mirnas.just.index <- setdiff (mirnas.in.index, mirnas.in.targets)
+    mirnas.just.targets <- setdiff (mirnas.in.targets, mirnas.in.index)
+    
+    if (verbose) {
+        message ("  ", length (mirnas), "miRNAs with annotated targets")
+        message ("  ", length (mirnas.just.index), "miRNAs without targets")
+        message ("  ", length (mirnas.just.targets), "miRNAs with targets but not in the ranking index")
+    }
+    
+    
+    ## ###########################################################################
+    ## TRANSFER:  size and speed should be fine for 20.000 genes and 5.000 miRNAs
+    ## ###########################################################################
+    
+    ## Matrix
+    mat <- Matrix (0, nrow = length (genes), ncol = length (mirnas))
+    rownames (mat) <- genes
+    colnames (mat) <- mirnas
+    ##
+    for (mi in mirnas) {
+        mat[,mi] <- genes %in% targets[[mi]] 
+    }
+    
+    ## transfer the index to each gene
+    mat <- t(t (mat) * index[mirnas])
+    
+    ## collapse genes
+    if (method == "sum") {
+        tindex <- rowSums (mat)
+        names (tindex) <- rownames (mat) ## rowSums method for Matrix does not keep the names as the default method does.
+    }
+    if (method == "average") {
+        tindex <- rowMeans (mat)
+        names (tindex) <- rownames (mat)
+    }
+    
+    
+    ## RETURN
+    if (transferMatrix) {
+        mat
+    } else {
+        tindex
+    }
 }

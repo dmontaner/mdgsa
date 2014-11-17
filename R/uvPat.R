@@ -35,7 +35,7 @@
 ##' 
 ##' @export
 uvPat <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor") {
-  res <- sign (gsaout[,statistic]) * as.numeric (gsaout[,pvalue] < cutoff)
-  names (res) <- rownames (gsaout)
-  res
+    res <- sign (gsaout[,statistic]) * as.numeric (gsaout[,pvalue] < cutoff)
+    names (res) <- rownames (gsaout)
+    res
 }

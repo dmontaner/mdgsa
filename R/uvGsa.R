@@ -51,109 +51,107 @@
 uvGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(),
                    verbose = TRUE, verbosity = 100, fulltable = FALSE, ...) {
 
-  
-  ## INPUT FORMATTING ##########################################################
-  
-  ##GENE IDS
-  if (is.data.frame (index)) {
-    index <- as.matrix (index)
-  }
-  if (is.matrix (index)) {
-    genes <- rownames (index)
-    rownames (index) <- NULL
-  }
-  if (is.vector (index)) {
-    genes <- names (index)
-    names (index) <- NULL  ##somehow quicker ???
-  }
-  if (is.null (genes)) {
-    stop ("no geneIds found. Check names or rownames in 'index'")
-  }
-  
-  ##BLOCK IDS
-  blocks <- names (annot)
-  if (is.null (blocks)) {
-    stop ("unnamed 'annot'")
-  }
-
-  
-  ## INTERNALS #################################################################
-  
-  ##results matrix
-  res <- matrix (NA, nrow = length (blocks), ncol = 6)
-  rownames (res) <- blocks
-  colnames (res) <- c("N", "lor", "sd", "t", "pval", "conv") # "error"
-
-  ##store time
-  t0 <- proc.time ()
-  
-  ##set counter
-  counter <- 0
-  if (verbose) {
-    message ("Analyzed blocks:")
-  }
-
-  
-  ## ALGORITHM #################################################################
-  
-  X <- cbind (rep (1, times = length (genes)), index) ##index may be a matrix or a vector
-  colnames (X) <- NULL
-  for (bl in blocks) {
-    B <- as.numeric (genes %in% annot[[bl]])
-    res.glm <- glm.fit (x = X, y = B, family = family, ...)
-    res.sum <- summary.glm (res.glm)
-    res[bl,] <- c (sum (B), res.sum$coefficients[2,], res.glm$converged)
-    ##
+    
+    ## INPUT FORMATTING ##########################################################
+    
+    ##GENE IDS
+    if (is.data.frame (index)) {
+        index <- as.matrix (index)
+    }
+    if (is.matrix (index)) {
+        genes <- rownames (index)
+        rownames (index) <- NULL
+    }
+    if (is.vector (index)) {
+        genes <- names (index)
+        names (index) <- NULL  ##somehow quicker ???
+    }
+    if (is.null (genes)) {
+        stop ("no geneIds found. Check names or rownames in 'index'")
+    }
+    
+    ##BLOCK IDS
+    blocks <- names (annot)
+    if (is.null (blocks)) {
+        stop ("unnamed 'annot'")
+    }
+    
+    
+    ## INTERNALS #################################################################
+    
+    ##results matrix
+    res <- matrix (NA, nrow = length (blocks), ncol = 6)
+    rownames (res) <- blocks
+    colnames (res) <- c("N", "lor", "sd", "t", "pval", "conv") # "error"
+    
+    ##store time
+    t0 <- proc.time ()
+    
+    ##set counter
+    counter <- 0
     if (verbose) {
-      counter <- counter + 1
-      if (counter %% verbosity == 0) {
-        message (counter, ", ", appendLF = FALSE)
-      }
-      if (counter %% (10*verbosity) == 0) {
-        message ("\n")
-      }
+        message ("Analyzed blocks:")
     }
-  }
-  ## ###########################################################################
-
+    
   
-  ##Time
-  t1 <- proc.time ()
-  if (verbose) {
-    message ("time in seconds:")
-    print (t1-t0)
-  }
-  
-  ##Convergence
-  if (verbose) {
-    if (any (res[,"conv"] == 0)) {
-      warning (paste ("The analysis did not converge for some blocks.",
-                      "You may re-run uvGsa using 'fulltable = TRUE' to find them.",
-                      sep = "\n"))
+    ## ALGORITHM #################################################################
+    
+    X <- cbind (rep (1, times = length (genes)), index) ##index may be a matrix or a vector
+    colnames (X) <- NULL
+    for (bl in blocks) {
+        B <- as.numeric (genes %in% annot[[bl]])
+        res.glm <- glm.fit (x = X, y = B, family = family, ...)
+        res.sum <- summary.glm (res.glm)
+        res[bl,] <- c (sum (B), res.sum$coefficients[2,], res.glm$converged)
+        ##
+        if (verbose) {
+            counter <- counter + 1
+            if (counter %% verbosity == 0) {
+                message (counter, ", ", appendLF = FALSE)
+            }
+            if (counter %% (10*verbosity) == 0) {
+                message ("\n")
+            }
+        }
     }
-  }
+    ## ###########################################################################
+    
+    
+    ##Time
+    t1 <- proc.time ()
+    if (verbose) {
+        message ("time in seconds:")
+        print (t1-t0)
+    }
+    
+    ##Convergence
+    if (verbose) {
+        if (any (res[,"conv"] == 0)) {
+            warning (paste ("The analysis did not converge for some blocks.",
+                            "You may re-run uvGsa using 'fulltable = TRUE' to find them.",
+                            sep = "\n"))
+        }
+    }
+    
+  
+    ## p-value ADJUSTMENT #######################################################
+    
+    res <- cbind (res, padj = p.adjust (res[,"pval"], method = p.adjust.method))
 
-  
-  ## p-value ADJUSTMENT #######################################################
-  
-  res <- cbind (res, padj = p.adjust (res[,"pval"], method = p.adjust.method))
+    
+    ##OUTPUT ####################################################################
 
+    ##reorder columns
+    res <- res[,c("N", "lor", "pval", "padj", "sd", "t", "conv")] # "error"
+    
+    ##remove some columns
+    if (!fulltable) {
+        res <- res[,c("N", "lor", "pval", "padj")]
+    }
   
-  ##OUTPUT ####################################################################
+    ##format data.frame
+    res <- as.data.frame (res)
 
-  ##reorder columns
-  res <- res[,c("N", "lor", "pval", "padj", "sd", "t", "conv")] # "error"
-  
-  ##remove some columns
-  if (!fulltable) {
-    res <- res[,c("N", "lor", "pval", "padj")]
-  }
-  
-  ##format data.frame
-  res <- as.data.frame (res)
-
-  ##return
-  res
+    ##return
+    res
 }
-
-

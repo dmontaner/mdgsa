@@ -85,39 +85,39 @@
 ##' @export
 pval2index <- function (pval, sign, names = NULL, log = TRUE, offset, verbose = TRUE) {
     
-  if (missing (pval)) {
-    stop ("pval is missing with no default")
-  }
-
-  if (missing (sign)) {
-    message ("sign is missing. All signs will be considered as positive")
-    sign <- rep (1, times = length (pval))
-  }
-
-  ## zero p-values and log transformation
-  pval.cero <- pval == 0
-  if (any (pval.cero, na.rm = TRUE) & log) {
-    if (missing (offset)) {
-      touse <- !(pval.cero | is.na (pval))    #note: (NA | TRUE) returns TRUE
-      offset <- min (pval[touse])
+    if (missing (pval)) {
+        stop ("pval is missing with no default")
     }
-    pval[which (pval.cero)] <- offset
-  }
-  
-  sign.cero <- sign == 0
-  if (any (sign.cero, na.rm = TRUE) & verbose) {
-    message ("Some sign statistics are zero; zero values will be returned.")
-  }
-  
-  if (log) {
-    res <- (-1) * log (pval) * sign (sign)
-  } else {
-    res <- (1 - pval) * sign (sign)
-  }
-
-  if (!is.null (names)) {
-    names (res) <- names
-  }
-  
-  res
+    
+    if (missing (sign)) {
+        message ("sign is missing. All signs will be considered as positive")
+        sign <- rep (1, times = length (pval))
+    }
+    
+    ## zero p-values and log transformation
+    pval.cero <- pval == 0
+    if (any (pval.cero, na.rm = TRUE) & log) {
+        if (missing (offset)) {
+            touse <- !(pval.cero | is.na (pval))    #note: (NA | TRUE) returns TRUE
+            offset <- min (pval[touse])
+        }
+        pval[which (pval.cero)] <- offset
+    }
+    
+    sign.cero <- sign == 0
+    if (any (sign.cero, na.rm = TRUE) & verbose) {
+        message ("Some sign statistics are zero; zero values will be returned.")
+    }
+    
+    if (log) {
+        res <- (-1) * log (pval) * sign (sign)
+    } else {
+        res <- (1 - pval) * sign (sign)
+    }
+    
+    if (!is.null (names)) {
+        names (res) <- names
+    }
+    
+    res
 }

@@ -37,32 +37,32 @@
 
 getGOnames <- function (x, verbose = TRUE) {
     
-  if (is.data.frame (x) | is.matrix (x)) {
-    if (verbose) message ("Using row names of the input matrix.")
-    x <- rownames (x)
-  }
-  
-  if (verbose) {
-    message ("Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.9.0
-  }
-  
-  ##go id to ontology
-  micon <- GO_dbconn ()
-  tabla <- dbReadTable (micon, "go_term")
-  tabla <- tabla[,c("go_id", "term")]
-  tabla <- tabla[tabla$go_id != "all",]
-  
-  id2name <- tabla[,"term"]
-  names (id2name) <- tabla[,"go_id"]
-  
-  ##my go ids
-  res <- id2name[x]
-  
-  if (any (is.na (res))) {
-    warning (sum (is.na (res)), " GOids where not found; missing names generated.")
-  }
-  
-  res
+    if (is.data.frame (x) | is.matrix (x)) {
+        if (verbose) message ("Using row names of the input matrix.")
+        x <- rownames (x)
+    }
+    
+    if (verbose) {
+        message ("Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.9.0
+    }
+    
+    ##go id to ontology
+    micon <- GO_dbconn ()
+    tabla <- dbReadTable (micon, "go_term")
+    tabla <- tabla[,c("go_id", "term")]
+    tabla <- tabla[tabla$go_id != "all",]
+    
+    id2name <- tabla[,"term"]
+    names (id2name) <- tabla[,"go_id"]
+    
+    ##my go ids
+    res <- id2name[x]
+    
+    if (any (is.na (res))) {
+        warning (sum (is.na (res)), " GOids where not found; missing names generated.")
+    }
+    
+    res
 }
 
 
@@ -104,30 +104,30 @@ getGOnames <- function (x, verbose = TRUE) {
 
 getKEGGnames <- function (x, verbose = TRUE) {
 
-  if (is.data.frame (x) | is.matrix (x)) {
-    if (verbose) message ("Using row names of the input matrix.")
-    x <- rownames (x)
-  }
+    if (is.data.frame (x) | is.matrix (x)) {
+        if (verbose) message ("Using row names of the input matrix.")
+        x <- rownames (x)
+    }
     
-  if (verbose) {
-    message ("Using KEGG.db version: ", packageDescription ("KEGG.db", fields = "Version")) #2.9.0
-  }
+    if (verbose) {
+        message ("Using KEGG.db version: ", packageDescription ("KEGG.db", fields = "Version")) #2.9.0
+    }
 
-  ##kegg id to kegg name
-  micon <- KEGG_dbconn ()
-  tabla <- dbReadTable (micon, "pathway2name")
-  ##tabla <- tabla[,c("path_id", "path_name")]
-  ##anything to filter out?
-  
-  id2name <- tabla[,"path_name"]
-  names (id2name) <- tabla[,"path_id"]
-  
-  ##my kegg ids
-  res <- id2name[x]
-  
-  if (any (is.na (res))) {
-    warning (sum (is.na (res)), " KEEGids where not found; missing names generated.")
-  }
-  
-  res
+    ##kegg id to kegg name
+    micon <- KEGG_dbconn ()
+    tabla <- dbReadTable (micon, "pathway2name")
+    ##tabla <- tabla[,c("path_id", "path_name")]
+    ##anything to filter out?
+    
+    id2name <- tabla[,"path_name"]
+    names (id2name) <- tabla[,"path_id"]
+    
+    ##my kegg ids
+    res <- id2name[x]
+    
+    if (any (is.na (res))) {
+        warning (sum (is.na (res)), " KEEGids where not found; missing names generated.")
+    }
+    
+    res
 }

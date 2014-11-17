@@ -34,46 +34,46 @@
 ##' @export
 
 splitOntologies <- function (annot, na.rm = TRUE, verbose = TRUE) {
-
-  if (verbose) {
-    message ("\n", "Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.3.5
-  }
-
-  ##go id to ontology
-  micon <- GO_dbconn ()
-  tabla <- dbReadTable (micon, "go_term")
-  tabla <- tabla[,c("go_id", "ontology")]
-  tabla <- tabla[tabla$go_id != "all",]
-  
-  go2ontology <- tabla[,"ontology"]
-  names (go2ontology) <- tabla[,"go_id"]
-
-  ##my go ids
-  misgos <- names (annot)
-  ##
-  ontologia <- go2ontology[misgos]
-  ontologia[is.na (ontologia)] <- "missing"
-  table (ontologia, exclude = NULL)
-  
-  es.bp <- ontologia == "BP"
-  es.cc <- ontologia == "CC"
-  es.mf <- ontologia == "MF"
-  es.na <- ontologia == "missing"
-  
-  res <- list ()
-  res[["bp"]] <- annot[es.bp]
-  res[["cc"]] <- annot[es.cc]
-  res[["mf"]] <- annot[es.mf]
-  
-  if (sum (es.na) > 0) {
-    message ("Some GO ids where not found, ")
-    if (na.rm) {
-      message ("they will be excluded from the list")
-    } else {
-      message ("they are included in the fourth element of the output list.")
-      res[["missing"]] <- annot[es.na]
+    
+    if (verbose) {
+        message ("\n", "Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.3.5
     }
-  }
-
-  res
+    
+    ##go id to ontology
+    micon <- GO_dbconn ()
+    tabla <- dbReadTable (micon, "go_term")
+    tabla <- tabla[,c("go_id", "ontology")]
+    tabla <- tabla[tabla$go_id != "all",]
+    
+    go2ontology <- tabla[,"ontology"]
+    names (go2ontology) <- tabla[,"go_id"]
+    
+    ##my go ids
+    misgos <- names (annot)
+    ##
+    ontologia <- go2ontology[misgos]
+    ontologia[is.na (ontologia)] <- "missing"
+    table (ontologia, exclude = NULL)
+    
+    es.bp <- ontologia == "BP"
+    es.cc <- ontologia == "CC"
+    es.mf <- ontologia == "MF"
+    es.na <- ontologia == "missing"
+    
+    res <- list ()
+    res[["bp"]] <- annot[es.bp]
+    res[["cc"]] <- annot[es.cc]
+    res[["mf"]] <- annot[es.mf]
+    
+    if (sum (es.na) > 0) {
+        message ("Some GO ids where not found, ")
+        if (na.rm) {
+            message ("they will be excluded from the list")
+        } else {
+            message ("they are included in the fourth element of the output list.")
+            res[["missing"]] <- annot[es.na]
+        }
+    }
+    
+    res
 }

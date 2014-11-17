@@ -34,20 +34,20 @@
 ##' annotMat2list (mat)
 ##' @export
 annotMat2list <- function (mat) {
+    
+    mat <- as.matrix (mat) ## for data.frames
+    dimnames (mat) <- NULL
+    mat <- unique (mat)
+    
+    out <- split (x = mat[,1], f = mat[,2], drop = TRUE, sep = "")
   
-  mat <- as.matrix (mat) ## for data.frames
-  dimnames (mat) <- NULL
-  mat <- unique (mat)
-  
-  out <- split (x = mat[,1], f = mat[,2], drop = TRUE, sep = "")
-  
-  ## blocks <- unique (mat[,2])
-  ## out <- list ()
-  ## for (bk in blocks) {
-  ##   out[[bk]] <- mat[mat[,2] == bk, 1]
-  ## }
-  
-  out
+    ## blocks <- unique (mat[,2])
+    ## out <- list ()
+    ## for (bk in blocks) {
+    ##   out[[bk]] <- mat[mat[,2] == bk, 1]
+    ## }
+    
+    out
 }
 
 
@@ -88,32 +88,32 @@ annotMat2list <- function (mat) {
 ##' @export
 annotList2mat <- function (lis, tag = "listPos") {
   
-  ## names (lis): may be NULL or contain NA
-  ## tag: for missing list names tagging
-
-  ## list   NAMES  go to column 2
-  ## list ELEMENTS go to column 1 
-  
-  nombres <- names (lis)
-  ##
-  if (is.null (nombres)) {
-    nombres <- paste (tag, 1:length (lis), sep = "")
-  } else {
-    esna <- is.na (nombres)
-    nombres[esna] <- paste (tag, which (esna), sep = "")
-  }    
-
-  longitudes <- sapply (lis, length)
-
-  v.nombres <- rep (nombres, times = longitudes)
-  v.element <- unlist (lis)
-
-  if (length (v.nombres) != length (v.element)) stop ("Matrix could not be reconstructed. Revise the structure of the input list.")
-
-  salida <- cbind (v.element, v.nombres) ##consistent with annotMat2list
-  ##
-  dimnames (salida) <- NULL
-  salida
+    ## names (lis): may be NULL or contain NA
+    ## tag: for missing list names tagging
+    
+    ## list   NAMES  go to column 2
+    ## list ELEMENTS go to column 1 
+    
+    nombres <- names (lis)
+    ##
+    if (is.null (nombres)) {
+        nombres <- paste (tag, 1:length (lis), sep = "")
+    } else {
+        esna <- is.na (nombres)
+        nombres[esna] <- paste (tag, which (esna), sep = "")
+    }    
+    
+    longitudes <- sapply (lis, length)
+    
+    v.nombres <- rep (nombres, times = longitudes)
+    v.element <- unlist (lis)
+    
+    if (length (v.nombres) != length (v.element)) stop ("Matrix could not be reconstructed. Revise the structure of the input list.")
+    
+    salida <- cbind (v.element, v.nombres) ##consistent with annotMat2list
+    ##
+    dimnames (salida) <- NULL
+    salida
 }
 
 
@@ -146,10 +146,10 @@ annotList2mat <- function (lis, tag = "listPos") {
 ##' 
 ##' @export
 revList <- function (lis, tag = "listPos") {
-  
-  annmat <- annotList2mat (lis)
-  annmat <- annmat[,2:1]
-  
-  salida <- annotMat2list (annmat)
-  salida
+    
+    annmat <- annotList2mat (lis)
+    annmat <- annmat[,2:1]
+    
+    salida <- annotMat2list (annmat)
+    salida
 }

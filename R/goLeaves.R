@@ -50,34 +50,34 @@ goLeaves <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor",
     }
     
     ancestros <- c (as.list (GOBPANCESTOR), as.list (GOMFANCESTOR), as.list (GOCCANCESTOR))  
-  
+    
     ## ###########################################################################
-
+    
     ## real gsaout
     if (is.data.frame (gsaout) | is.matrix (gsaout)) {
-  
+        
         pat <- uvPat (gsaout, cutoff = cutoff, pvalue = pvalue, statistic = statistic)
-  
+        
         touse <- pat %in% c (-1, 1)
         gsaout <- gsaout[touse, , drop = FALSE]
         pat <- pat[touse]
-  
+        
         is.up <- pat == 1
         is.do <- pat ==-1
-  
+        
         gos.up <- rownames (gsaout)[is.up]
         gos.do <- rownames (gsaout)[is.do]
-  
+        
         anc.up <- unique (unlist (ancestros[gos.up]))
         anc.do <- unique (unlist (ancestros[gos.do]))
-
+        
         leaves.up <- setdiff (gos.up, anc.up)
         leaves.do <- setdiff (gos.do, anc.do)
-
+        
         leaves <- c(leaves.up, leaves.do)
         touse <- rownames (gsaout) %in% leaves
         gsaout <- gsaout[touse, , drop = FALSE]
-
+        
         ##sort
         if (sort) {
             myindex <- pval2index (pval = gsaout[,pvalue], sign = gsaout[,statistic], log = TRUE, verbose = verbose)
@@ -85,7 +85,7 @@ goLeaves <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor",
             gsaout <- gsaout[orden,]
         }
     }
-
+    
     ## ###########################################################################
 
     ## character verctor of GO ids
@@ -94,7 +94,7 @@ goLeaves <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor",
         leaves <- setdiff (gsaout, anc)
         gsaout <- leaves
     }
-  
+    
     ## RETURN
     gsaout
 }
