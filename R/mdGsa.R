@@ -197,6 +197,6 @@ mdGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
   res <- as.data.frame (res)
 
   ##return
-  return (res)
+  res
 }
 

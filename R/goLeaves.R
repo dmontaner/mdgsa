@@ -96,5 +96,5 @@ goLeaves <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor",
     }
   
     ## RETURN
-    return (gsaout)
+    gsaout
 }

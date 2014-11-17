@@ -47,7 +47,7 @@ annotMat2list <- function (mat) {
   ##   out[[bk]] <- mat[mat[,2] == bk, 1]
   ## }
   
-  return (out)
+  out
 }
 
 
@@ -108,12 +108,12 @@ annotList2mat <- function (lis, tag = "listPos") {
   v.nombres <- rep (nombres, times = longitudes)
   v.element <- unlist (lis)
 
-  if (length (v.nombres) != length (v.element)) stop ("problem")
+  if (length (v.nombres) != length (v.element)) stop ("Matrix could not be reconstructed. Revise the structure of the input list.")
 
   salida <- cbind (v.element, v.nombres) ##consistent with annotMat2list
   ##
   dimnames (salida) <- NULL
-  return (salida)
+  salida
 }
 
 
@@ -151,5 +151,5 @@ revList <- function (lis, tag = "listPos") {
   annmat <- annmat[,2:1]
   
   salida <- annotMat2list (annmat)
-  return (salida)
+  salida
 }

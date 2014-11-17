@@ -75,5 +75,5 @@ splitOntologies <- function (annot, na.rm = TRUE, verbose = TRUE) {
     }
   }
 
-  return (res)
+  res
 }

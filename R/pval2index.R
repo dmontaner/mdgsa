@@ -119,5 +119,5 @@ pval2index <- function (pval, sign, names = NULL, log = TRUE, offset, verbose = 
     names (res) <- names
   }
   
-  return (res)
+  res
 }

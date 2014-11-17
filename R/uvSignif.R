@@ -50,5 +50,5 @@ uvSignif <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor",
         cat ("gsaout must be a data.frame created by uvGsa", fill = TRUE)
     }
     ## RETURN
-    return (gsaout)
+    gsaout
 }

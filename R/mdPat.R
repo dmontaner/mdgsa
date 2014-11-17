@@ -115,5 +115,5 @@ mdPat <- function (gsaout, cutoff = 0.05, pvalue = "padj") {
   res[is.na (res)] <- "NR"  #CHECK THIS
   
   ##return
-  return (res)
+  res
 }

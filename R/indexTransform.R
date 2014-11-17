@@ -8,7 +8,7 @@ index.standardize <- function (index) {
   m <- mean (index, na.rm = TRUE)
   s <- sd   (index, na.rm = TRUE)
   index <- (index - m) / s
-  return (index)
+  index
 }
 
 index.normalize <- function (index) {
@@ -20,7 +20,7 @@ index.normalize <- function (index) {
   if (!is.null (names (index))){
     names (res) <- names (index)
   }
-  return (res)
+  res
 }
 
 ################################################################################
@@ -91,5 +91,5 @@ indexTransform <- function (index, method = "normalize") {
   ## }
   
   ##return
-  return (index)
+  index
 }

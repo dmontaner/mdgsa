@@ -52,7 +52,7 @@ propagateGO <- function (annot, verbose = FALSE) {
     annot <- annotMat2list (annot)
   }
 
-  return (annot)
+  annot
 }
 
 
@@ -136,5 +136,5 @@ propagateGO.matrix <- function (annotation, verbose = TRUE) {
 
   colnames (annotation) <- columnas
   
-  return (annotation)
+  annotation
 }

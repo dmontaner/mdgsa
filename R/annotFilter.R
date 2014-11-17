@@ -162,7 +162,7 @@ annotFilter <- function (annot, index, minBlockSize = 10, maxBlockSize = 500, ve
 
   ##OUT
   ##invisible (annot)
-  return (annot)
+  annot
 }
 
 ################################################################################
@@ -216,5 +216,5 @@ annot.size.filter <- function (annot, minBlockSize, maxBlockSize, verbose = TRUE
   }
 
   ###OUT
-  return (annot)
+  annot
 }
