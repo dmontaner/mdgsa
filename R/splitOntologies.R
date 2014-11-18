@@ -31,6 +31,17 @@
 ##' @import DBI
 ##' @import GO.db
 ##'
+##' @examples
+##'
+##' getGOnames (c ("GO:0006915", "GO:0016020", "GO:0008152", "GO:0015288"))
+##'
+##' annot <- list ("GO:0006915" = c ("g1"),
+##'                "GO:0016020" = c ("g2", "g3"),
+##'                "GO:0008152" = c ("g1", "g2", "g3"),
+##'                "GO:0015288" = c ("g4", "g5"))
+##' annot
+##' splitOntologies (annot)
+##' 
 ##' @export
 
 splitOntologies <- function (annot, na.rm = TRUE, verbose = TRUE) {

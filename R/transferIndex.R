@@ -44,8 +44,31 @@
 ##' @return A ranking index transferred to the IDs in the elements of the list \code{targets}.
 ##'
 ##' @import Matrix
+##'
+##' @examples
+##'
+##' ## miRNA to gene list (targets)
+##' targets <- list (mirna1 = "g1", mirna2 = c("g1", "g2"), mirna3 = "g3")
+##' 
+##' ## original index
+##' index <- rnorm (5)
+##' names (index) <- paste0 ("mirna", 1:5)
+##' 
+##' ##transfered index
+##' tindex <- transferIndex (index, targets)
+##' 
+##' ##transformed (normalized) index
+##' rindex <- indexTransform (tindex)
+##' 
+##' ##NOTICE in this case:
+##' index["mirna1"] + index["mirna2"] == tindex["g1"]
+##' 
+##' \dontrun{
+##' res <- uvgsa (rindex, annot)
+##' }
 ##' 
 ##' @export
+
 transferIndex <- function (index, targets, method = "sum", verbose = TRUE, transferMatrix = FALSE) {
   
     ## CHECK

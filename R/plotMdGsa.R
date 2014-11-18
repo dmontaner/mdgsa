@@ -39,12 +39,16 @@
 ##' @param \dots arguments to be passed to plot
 ##' 
 ##' @return A plot.
-##' 
-## @examples
-##' 
+##'
 ## @import cluster
 ##' @importFrom cluster ellipsoidPoints
 ##' 
+##' @examples
+##' 
+##' \dontrun{
+##' res <- mdGsa (rindexMat, annotList)
+##' plotMdGsa (rindexMat, block = annotList[["GO:0006915"]])
+##' }
 ##' 
 ##' @export
 

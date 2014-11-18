@@ -47,6 +47,12 @@ blue ellipse shows the confidence region for all genes.
 Red axis show the "center" of the distribution of the genes in the Gene Set;
 red ellipse shows the confidence region for genes in the Gene Set.
 }
+\examples{
+\dontrun{
+res <- mdGsa (rindexMat, annotList)
+plotMdGsa (rindexMat, block = annotList[["GO:0006915"]])
+}
+}
 \author{
 David Montaner \email{dmontaner@cipf.es}
 }

@@ -24,7 +24,7 @@
 ##' Uses the library GO.db to find the 'ancestors' of each GO term.
 ##' Those ancestors are discarded form the \code{uvGsa} results.
 ##'
-##' Alternativeliy, the function may also take a character vector of GO ids
+##' Alternatively, the function may also take a character vector of GO ids
 ##' in the \code{gsaout} parameter.
 ##' In such case the function returns also a character vector of GO ids,
 ##' containing just the GO terms being "leaves" of the original set.
@@ -41,6 +41,16 @@
 ##' @importFrom AnnotationDbi as.list
 ##' @import GO.db
 ##'
+##' @examples
+##'
+##' getGOnames (c ("GO:0006259", "GO:0006915", "GO:0043280"))
+##' goLeaves   (c ("GO:0006259", "GO:0006915", "GO:0043280"))
+##' 
+##' \dontrun{
+##' res <- uvGsa (rindex, goAnnotList)
+##' goLeaves (res)
+##' }
+##' 
 ##' @export
 
 goLeaves <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor", verbose = TRUE, sort = TRUE) {

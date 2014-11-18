@@ -55,6 +55,11 @@ Default p-value correction is "BY".
 In the output data.frame there are three parameters of each type: 'lor', 'pval', \dots
 one for each of the two genomic conditions analyzed and the third one for the interaction between them.
 }
+\examples{
+\dontrun{
+res <- mdGsa (rindexMat, annotList)
+}
+}
 \author{
 David Montaner \email{dmontaner@cipf.es}
 }

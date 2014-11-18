@@ -53,6 +53,12 @@
 ##' Apart from the 'N' coefficient, all other indices appear in triplicate:
 ##' one coefficient for each genomic condition and a third one for the interaction.
 ##' 
+##' @examples
+##' 
+##' \dontrun{
+##' res <- mdGsa (rindexMat, annotList)
+##' }
+##' 
 ##' @export
 mdGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(),
                    verbose = TRUE, verbosity = 100, fulltable = FALSE, useColnames = TRUE, ...) {

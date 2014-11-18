@@ -42,6 +42,13 @@ All possible functional block classifications in the bi-dimensional gene set ana
   \item NS: \bold{non significant} block.
 }
 }
+\examples{
+\dontrun{
+res <- mdGsa (rindexMat, annotList)
+res[,"pat"] <- mdPat (res)
+table (res[,"pat"])
+}
+}
 \author{
 David Montaner \email{dmontaner@cipf.es}
 }

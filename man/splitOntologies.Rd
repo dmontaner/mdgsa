@@ -24,6 +24,16 @@ Uses the information form the library GO.db.
 If some id could not be associated to any ontology, they are returned in an unknown ontology
 named "missing".
 }
+\examples{
+getGOnames (c ("GO:0006915", "GO:0016020", "GO:0008152", "GO:0015288"))
+
+annot <- list ("GO:0006915" = c ("g1"),
+               "GO:0016020" = c ("g2", "g3"),
+               "GO:0008152" = c ("g1", "g2", "g3"),
+               "GO:0015288" = c ("g4", "g5"))
+annot
+splitOntologies (annot)
+}
 \author{
 David Montaner \email{dmontaner@cipf.es}
 }

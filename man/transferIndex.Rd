@@ -42,6 +42,27 @@ with the names in the \code{index}. The elements of the list are character vecto
 In the miRNA example, each element of \code{targets} will contain the genes regulated by a miRNA,
 and the miRNA IDs will appear in the names of the \code{targets} list as well as in the ranking index.
 }
+\examples{
+## miRNA to gene list (targets)
+targets <- list (mirna1 = "g1", mirna2 = c("g1", "g2"), mirna3 = "g3")
+
+## original index
+index <- rnorm (5)
+names (index) <- paste0 ("mirna", 1:5)
+
+##transfered index
+tindex <- transferIndex (index, targets)
+
+##transformed (normalized) index
+rindex <- indexTransform (tindex)
+
+##NOTICE in this case:
+index["mirna1"] + index["mirna2"] == tindex["g1"]
+
+\dontrun{
+res <- uvgsa (rindex, annot)
+}
+}
 \author{
 David Montaner \email{dmontaner@cipf.es}
 }

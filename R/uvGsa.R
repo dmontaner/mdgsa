@@ -46,6 +46,12 @@
 ##'   \item{\code{sd}:}{standard deviations associated to each log Odds Ratio.}
 ##'   \item{\code{t}:}{t statistic associated to each log Odds Ratio.}
 ##' }
+##'
+##' @examples
+##' 
+##' \dontrun{
+##' res <- uvGsa (rindex, annotList)
+##' }
 ##' 
 ##' @export
 uvGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(),

@@ -32,8 +32,17 @@
 ##'   \item{-1:}{indicates that the gene set is significantly associated to low values of the ranking statistic.}
 ##'   \item{0:}{indicates that the gene set not related to the ranking statistic (no enrichment).}
 ##' }
+##'
+##' @examples
+##' 
+##' \dontrun{
+##' res <- uvGsa (rindex, annotList)
+##' res[,"pat"] <- uvPat (res)
+##' table (res[,"pat"])
+##' }
 ##' 
 ##' @export
+
 uvPat <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor") {
     res <- sign (gsaout[,statistic]) * as.numeric (gsaout[,pvalue] < cutoff)
     names (res) <- rownames (gsaout)

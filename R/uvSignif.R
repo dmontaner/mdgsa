@@ -27,6 +27,12 @@
 ##' @param verbose verbose
 ##' 
 ##' @return The input data.frame but keeping just the 'significant' functional blocks.
+##'
+##' @examples
+##' \dontrun{
+##' res <- uvGsa (rindex, annotList)
+##' uvSignif (res)
+##' }
 ##' 
 ##' @export
 

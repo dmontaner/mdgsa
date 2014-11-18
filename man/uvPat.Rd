@@ -29,6 +29,13 @@ Classifies significant patterns form a Uni-Variate Gene Set Analysis.
 Sign of the 'lor' and p-value are used to define functional blocks as
 up-regulated, down-regulated or not enriched.
 }
+\examples{
+\dontrun{
+res <- uvGsa (rindex, annotList)
+res[,"pat"] <- uvPat (res)
+table (res[,"pat"])
+}
+}
 \author{
 David Montaner \email{dmontaner@cipf.es}
 }

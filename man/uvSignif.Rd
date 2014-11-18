@@ -29,6 +29,12 @@ enriched blocks are kept.
 \details{
 Works as \code{\link{goLeaves}} but without removing redundant terms.
 }
+\examples{
+\dontrun{
+res <- uvGsa (rindex, annotList)
+uvSignif (res)
+}
+}
 \author{
 David Montaner \email{dmontaner@cipf.es}
 }

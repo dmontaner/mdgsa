@@ -46,6 +46,11 @@ The remaining columns are used as covariates to correct for within the analysis.
 
 Default p-value correction is "BY".
 }
+\examples{
+\dontrun{
+res <- uvGsa (rindex, annotList)
+}
+}
 \author{
 David Montaner \email{dmontaner@cipf.es}
 }
