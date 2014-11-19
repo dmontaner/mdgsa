@@ -10,12 +10,15 @@ uvPat(gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor")
 
 \item{cutoff}{p-value cutoff for considering significant a Gene Set.}
 
-\item{pvalue}{p-value column to be used. Default is named "padj" as in uvGsa output.}
+\item{pvalue}{p-value column to be used.
+Default is named "padj" as in uvGsa output.}
 
-\item{statistic}{name of the column containing the log odds ratio from the uvGsa analysis.}
+\item{statistic}{name of the column containing the log odds ratio
+from the uvGsa analysis.}
 }
 \value{
-A numeric vector (values: -1, 0, 1) indicating relationship between the Gene Set and the ranking variable:
+A numeric vector (values: -1, 0, 1) indicating relationship
+between the Gene Set and the ranking variable:
 \describe{
   \item{1:}{indicates that the gene set is significantly associated to high values of the ranking statistic.}
   \item{-1:}{indicates that the gene set is significantly associated to low values of the ranking statistic.}

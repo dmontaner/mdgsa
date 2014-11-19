@@ -19,7 +19,8 @@ Finds the GO name form GO id.
 \details{
 Uses the library GO.db.
 
-\code{x} may be a \code{data.frame}. In such case, GO ids are expected in its row names.
+\code{x} may be a \code{data.frame}.
+In such case, GO ids are expected in its row names.
 }
 \examples{
 getGOnames (c("GO:0000018", "GO:0000038", "BAD_GO"))
@@ -28,7 +29,9 @@ getGOnames (c("GO:0000018", "GO:0000038", "BAD_GO"))
 David Montaner \email{dmontaner@cipf.es}
 }
 \seealso{
-\code{\link{propagateGO}}, \code{\link{goLeaves}}, \code{\link{splitOntologies}}, \code{\link{getKEGGnames}}, \code{\link{getOntology}}
+\code{\link{propagateGO}}, \code{\link{goLeaves}},
+\code{\link{splitOntologies}}, \code{\link{getKEGGnames}},
+\code{\link{getOntology}}
 }
 \keyword{GO}
 \keyword{names}

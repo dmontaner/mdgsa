@@ -19,7 +19,8 @@ Finds the ontology of a term from its id.
 \details{
 Uses the library GO.db.
 
-\code{x} may be a \code{data.frame}. In such case, GO ids are expected in its row names.
+\code{x} may be a \code{data.frame}.
+In such case, GO ids are expected in its row names.
 }
 \examples{
 getOntology (c("GO:0000018", "GO:0005788", "BAD_GO"))
@@ -28,7 +29,9 @@ getOntology (c("GO:0000018", "GO:0005788", "BAD_GO"))
 David Montaner \email{dmontaner@cipf.es}
 }
 \seealso{
-\code{\link{getGOnames}}, \code{\link{propagateGO}}, \code{\link{goLeaves}}, \code{\link{splitOntologies}}, \code{\link{getKEGGnames}}
+\code{\link{getGOnames}}, \code{\link{propagateGO}},
+\code{\link{goLeaves}}, \code{\link{splitOntologies}},
+\code{\link{getKEGGnames}}
 }
 \keyword{GO}
 \keyword{names}

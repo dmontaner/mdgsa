@@ -30,16 +30,18 @@ Filters out functional blocks too 'big' or too 'small'.
 When it is not provided, the annotation lists is just filtered out
 by the sizes of the blocks of genes defined in the list.
 
-If a ranking index is provided its names are assumed to be the universe of genes under study.
-The genes in the annotation list are compared against those of the ranking index
-and the ones not belonging to the universe are removed out form the annotation
-in order to compute the size of each functional block.
-Then the list is filtered by sizes; too big and too small blocks are removed.
+If a ranking index is provided its names are assumed to be the universe
+of genes under study.
+The genes in the annotation list are compared against those of the ranking
+index and the ones not belonging to the universe are removed out form the
+annotation in order to compute the size of each functional block.
+Then the list is filtered by sizes; too big and too small blocks are
+removed.
 
 No transformation is done over the ranking index or its names (gene IDs).
 
-\code{index} may just be a character vector containing the names of the genes in the universe,
-that is, the names or rownames of the ranking index.
+\code{index} may just be a character vector containing the names of the
+genes in the universe, that is, the names or rownames of the ranking index.
 }
 \examples{
 rindex <- 1:10

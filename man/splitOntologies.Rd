@@ -14,15 +14,17 @@ splitOntologies(annot, na.rm = TRUE, verbose = TRUE)
 }
 \value{
 A list with tree components, one for each ontology.
-A fourth component is included is some term could not be allocated to any of the three GO ontologies.
+A fourth component is included is some term could not be allocated to
+any of the three GO ontologies.
 }
 \description{
-Splits an annotation list of GO terms according to the ontology to which each term belongs to.
+Splits an annotation list of GO terms according to the ontology
+to which each term belongs to.
 }
 \details{
 Uses the information form the library GO.db.
-If some id could not be associated to any ontology, they are returned in an unknown ontology
-named "missing".
+If some id could not be associated to any ontology,
+they are returned in an unknown ontology named "missing".
 }
 \examples{
 getGOnames (c ("GO:0006915", "GO:0016020", "GO:0008152", "GO:0015288"))

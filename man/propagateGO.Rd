@@ -14,7 +14,8 @@ propagateGO(annot, verbose = FALSE)
 A annotation matrix or list with the propagated annotation.
 }
 \description{
-Genes annotated under a GO term inherit the annotation for all its ancestors.
+Genes annotated under a GO term inherit the annotation from
+all its ancestors.
 }
 \details{
 Uses the library GO.db.
@@ -30,6 +31,9 @@ propagateGO (li)
 }
 \author{
 David Montaner \email{dmontaner@cipf.es}
+}
+\seealso{
+\code{\link{annotMat2list}}, \code{\link{annotFilter}}
 }
 \keyword{GO}
 \keyword{gene}

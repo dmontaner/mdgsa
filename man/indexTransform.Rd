@@ -14,12 +14,14 @@ indexTransform(index, method = "normalize")
 A transformed index. Its class will be that of the the input object.
 }
 \description{
-The function performs a transformation of the ranking index so that its distribution
-is suitable as independent variable of the logistic regression model.
+The function performs a transformation of the ranking index so that
+its distribution is suitable as independent variable of the
+logistic regression model.
 }
 \details{
 Works for vector, matrices and data.frames.
-In the case of matrices the function transforms each column separately from the other ones.
+In the case of matrices the function transforms each column separately
+from the other ones.
 
 Two methods are currently implemented:
 \describe{
@@ -35,6 +37,10 @@ plot (myIndex, myTransformedIndex)
 }
 \author{
 David Montaner \email{dmontaner@cipf.es}
+}
+\seealso{
+\code{\link{transferIndex}}, \code{\link{uvGsa}},
+\code{\link{mdPat}}
 }
 \keyword{index}
 \keyword{ranking}

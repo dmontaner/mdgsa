@@ -12,12 +12,13 @@
 ## @aliases 
 ##' 
 ##' @keywords propagate GO gene ontology
-## @seealso \code{\link{uvGsa}}, \code{mdPat}, annotMat2list, revList, annotFilter
+##' @seealso \code{\link{annotMat2list}}, \code{\link{annotFilter}}
 ##'
 ##' @title Propagate Gene Ontology annotation.
 ##' 
 ##' @description
-##' Genes annotated under a GO term inherit the annotation for all its ancestors.
+##' Genes annotated under a GO term inherit the annotation from
+##' all its ancestors.
 ##' 
 ##' @details
 ##' Uses the library GO.db.
@@ -70,7 +71,8 @@ propagateGO <- function (annot, verbose = FALSE) {
 ## @title Propagate Gene Ontology annotations for annotation matrices.
 ## 
 ## @description
-## Genes annotated under a GO term inherit the annotation for all its ancestors.
+## Genes annotated under a GO term inherit the annotation from
+## all its ancestors.
 ## 
 ## @details
 ## Uses the library GO.db.
@@ -85,7 +87,10 @@ propagateGO <- function (annot, verbose = FALSE) {
 ## @export
 propagateGO.matrix <- function (annotation, verbose = TRUE) {
 
-    if (verbose) message ("Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.3.5
+    if (verbose) {
+        message ("Using GO.db version: ",
+                 packageDescription ("GO.db", fields = "Version")) #2.3.5
+    }
     
     t0 <- proc.time ()
     
@@ -94,13 +99,16 @@ propagateGO.matrix <- function (annotation, verbose = TRUE) {
     dimnames (annotation) <- NULL
     
     ##duplicados <- duplicated (annotation)
-    duplicados <- duplicated (paste (annotation[,1], annotation[,2])) # much faster
+    ## Much faster:
+    duplicados <- duplicated (paste (annotation[,1], annotation[,2]))
     
     annotation <- annotation[!duplicados,]
     t1 <- proc.time ()
     if (verbose) message (c ("   duplicated 1 :", round ((t1 - t0)[1:3], 2)))
     
-    ancestros <- c (as.list (GOBPANCESTOR), as.list (GOMFANCESTOR), as.list (GOCCANCESTOR))
+    ancestros <- c (as.list (GOBPANCESTOR),
+                    as.list (GOMFANCESTOR),
+                    as.list (GOCCANCESTOR))
     t2 <- proc.time ()
     if (verbose) message (c ("  get ancestors :", round ((t2 - t1)[1:3], 2)))
     
@@ -112,7 +120,9 @@ propagateGO.matrix <- function (annotation, verbose = TRUE) {
     t4 <- proc.time ()
     if (verbose) message (c ("compute lengths :", round ((t4 - t3)[1:3], 2)))
     
-    heredados <- cbind (rep (annotation[,1], times = longitudes), unlist (ancestros.ordenados))
+    heredados <- cbind (rep (annotation[,1], times = longitudes),
+                        unlist (ancestros.ordenados))
+
     rownames (heredados) <- NULL
     t5 <- proc.time ()
     if (verbose) message (c (" unlist & cbind :", round ((t5 - t4)[1:3], 2)))
@@ -127,7 +137,9 @@ propagateGO.matrix <- function (annotation, verbose = TRUE) {
     if (verbose) message (c ("     remove all :", round ((t7 - t6)[1:3], 2)))
     
     ##duplicados <- duplicated (annotation)
-    duplicados <- duplicated (paste (annotation[,1], annotation[,2])) # much faster
+    ## Much faster:
+    duplicados <- duplicated (paste (annotation[,1], annotation[,2]))
+
     annotation <- annotation[!duplicados,]
     t8 <- proc.time ()
     if (verbose) message (c ("   duplicated 2 :", round ((t8 - t7)[1:3], 2)))

@@ -13,7 +13,8 @@
 ##' @aliases multidimensionalGsa multivariateGsa 
 ##' 
 ##' @keywords multidimensional multivariate GSA gene set
-##' @seealso \code{\link{uvGsa}}, \code{\link{mdPat}}, \code{glm.fit}, \code{p.adjust}
+##' @seealso \code{\link{uvGsa}}, \code{\link{mdPat}}, \code{glm.fit},
+##' \code{p.adjust}
 ##'
 ##' @title Multi-Dimensional Gene Set Analysis.
 ##' 
@@ -21,24 +22,33 @@
 ##' Performs a Multi-Variate Gene Set Analysis for two genomic measurements.
 ##' 
 ##' @details
-##' 'index' must be a numerical \code{matrix} or \code{data.frame} with at least two columns.
-##' If there are more than three columns, the ranking indexes are taken form the two first one.
-##' The remaining columns are used as covariates to correct for within the analysis.
+##' 'index' must be a numerical matrix or data.frame with at least two columns.
+##' 
+##' If there are more than three columns,
+##' the ranking indexes are taken form the two first one.
+##' The remaining columns are used as covariates to correct for
+##' within the analysis.
 ##'
 ##' Default p-value correction is "BY".
 ##'
-##' In the output data.frame there are three parameters of each type: 'lor', 'pval', \dots
-##' one for each of the two genomic conditions analyzed and the third one for the interaction between them.
+##' In the output data.frame there are three parameters of each type:
+##' 'lor', 'pval', \dots
+##' one for each of the two genomic conditions analyzed and the third one
+##' for the interaction between them.
 ##' 
 ##' @param index ranking index, generally a two column matrix.
 ##' @param annot an annotation list.
 ##' @param p.adjust.method p-value adjustment method for multiple testing.
 ##' @param family see \code{glm}.
-##' @param fulltable if TRUE, 'sd', 't' and 'convergence' indicator from the glm fit are included in the output.
+##' @param fulltable if TRUE, 'sd', 't' and 'convergence' indicator
+##' from the glm fit are included in the output.
 ##' @param verbose verbose.
-##' @param verbosity integer indicating which iterations should be indicated if verbose = TRUE.
-##' @param useColnames if TRUE the names of the two first columns of the matrix 'index' are used in the results data.frame.
-##' @param \dots further arguments to be pasted to \code{glm.fit}, for instance 'weights'.
+##' @param verbosity integer indicating which iterations should be indicated
+##' when verbose = TRUE.
+##' @param useColnames if TRUE the names of the two first columns of the
+##' matrix 'index' are used in the results data.frame.
+##' @param \dots further arguments to be pasted to \code{glm.fit},
+##' for instance 'weights'.
 ##' 
 ##' @return A \code{data.frame} with a row for each Gene Set or block.
 ##' Columns are:
@@ -51,7 +61,8 @@
 ##'   \item{\code{t}:}{t statistic associated to each log Odds Ratio.}
 ##' }
 ##' Apart from the 'N' coefficient, all other indices appear in triplicate:
-##' one coefficient for each genomic condition and a third one for the interaction.
+##' one coefficient for each genomic condition and a third one for the
+##' interaction.
 ##' 
 ##' @examples
 ##' 
@@ -60,11 +71,13 @@
 ##' }
 ##' 
 ##' @export
-mdGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(),
-                   verbose = TRUE, verbosity = 100, fulltable = FALSE, useColnames = TRUE, ...) {
+mdGsa <- function (index, annot, p.adjust.method = "BY",
+                   family = quasibinomial(),
+                   verbose = TRUE, verbosity = 100,
+                   fulltable = FALSE, useColnames = TRUE, ...) {
 
   
-    ## INPUT FORMATTING ##########################################################
+    ## INPUT FORMATTING ########################################################
     
     ##GENE IDS
     if (is.data.frame (index)) {
@@ -85,7 +98,7 @@ mdGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
     }
     
     
-    ## INTERNALS #################################################################
+    ## INTERNALS ###############################################################
     
     ##results matrix
     res <- matrix (NA, nrow = length (blocks), ncol = 12+2)
@@ -113,9 +126,10 @@ mdGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
     }
 
   
-    ## ALGORITHM #################################################################
+    ## ALGORITHM ###############################################################
   
-    X <- cbind (rep (1, times = length (genes)), index[,1:2], index[,1] * index[,2])
+    X <- cbind (rep (1, times = length (genes)),
+                index[,1:2], index[,1] * index[,2])
     
     if (index.col.N > 2) {
         X <- cbind (X, index[,3:index.col.N])  ##covariate correction
@@ -139,7 +153,7 @@ mdGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
             }
         }
     }
-    ## ###########################################################################
+    ## #########################################################################
   
 
   
@@ -168,7 +182,7 @@ mdGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
                   'padj.I' = p.adjust (res[,"pval.I"], method = p.adjust.method))
   
 
-    ##OUTPUT ####################################################################
+    ##OUTPUT ###################################################################
     
     ##reorder columns
     orden <- c ("N",

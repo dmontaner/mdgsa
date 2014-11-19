@@ -14,19 +14,21 @@
 ##' @title Split an annotation list of GO terms by ontologies.
 ##'
 ##' @description
-##' Splits an annotation list of GO terms according to the ontology to which each term belongs to.
+##' Splits an annotation list of GO terms according to the ontology
+##' to which each term belongs to.
 ##' 
 ##' @details
 ##' Uses the information form the library GO.db.
-##' If some id could not be associated to any ontology, they are returned in an unknown ontology
-##' named "missing".
+##' If some id could not be associated to any ontology,
+##' they are returned in an unknown ontology named "missing".
 ##'
 ##' @param annot annotation list.
 ##' @param na.rm if TRUE 'unknown' terms are excluded.
 ##' @param verbose verbose
 ##' 
 ##' @return A list with tree components, one for each ontology.
-##' A fourth component is included is some term could not be allocated to any of the three GO ontologies.
+##' A fourth component is included is some term could not be allocated to
+##' any of the three GO ontologies.
 ##' 
 ##' @import DBI
 ##' @import GO.db
@@ -47,7 +49,8 @@
 splitOntologies <- function (annot, na.rm = TRUE, verbose = TRUE) {
     
     if (verbose) {
-        message ("\n", "Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.3.5
+        message ("Using GO.db version: ",
+                 packageDescription ("GO.db", fields = "Version")) #2.3.5
     }
     
     ##go id to ontology

@@ -22,7 +22,8 @@
 ##' The classification is done in the two dimensional space previously analyzed
 ##' by mdGsa.
 ##'
-##' All possible functional block classifications in the bi-dimensional gene set analysis are:
+##' All possible functional block classifications in the bi-dimensional
+##' gene set analysis are:
 ##' \itemize{
 ##'   \item q1i: block displaced toward quadrant \bold{1} (0 < X & 0 < Y) with interaction.
 ##'   \item q2i: block displaced toward quadrant \bold{2} (0 > X & 0 < Y) with interaction.
@@ -43,11 +44,16 @@
 ##' 
 ##' @param gsaout data.frame; output from mdGsa.
 ##' @param cutoff p-value cutoff for considering significant a Gene Set.
-##' @param pvalue p-value column to be used. Default is named "padj" as in mdGsa output.
+##' @param pvalue p-value column to be used. Default is named "padj" as in
+##' mdGsa output.
 ##' 
-##' @return A character vector indicating the pattern associated to each Gene Set.
+##' @return A character vector indicating the pattern associated to each
+##' Gene Set.
 ##' 
-##' @references Montaner et al. (2010) "Multidimensional Gene Set Analysis of Genomic Data." PLoS ONE.
+##' @references
+##' Montaner et al. (2010)
+##' "Multidimensional Gene Set Analysis of Genomic Data."
+##' PLoS ONE.
 ##'
 ##' @examples
 ##' 

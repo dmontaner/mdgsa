@@ -16,15 +16,17 @@
 ##' 
 ##' @description
 ##' Converts an annotation matrix to an annotation list.
-##' The annotation matrix should have 2 columns, the first one with the gene ids;
-##' the second one with the annotation ids.
+##' The annotation matrix should have 2 columns, the first one with the
+##' gene ids; the second one with the annotation ids.
 ##' 
 ##' @details
 ##' Each element of the annotation list represents a functional block;
-##' it is a character vector containing the gene ids annotated under the function.
+##' it is a character vector containing the gene ids annotated under the
+##' function.
 ##' The names of the list are the annotation ids.
 ##'
-##' @param mat annotation matrix; gene IDs in the first column; block IDs in the second column.
+##' @param mat annotation matrix; gene IDs in the first column;
+##' block IDs in the second column.
 ##' 
 ##' @return An annotation list: elements of the list are vectors of genes;
 ##' names of the list are Gene Set ids.
@@ -67,18 +69,21 @@ annotMat2list <- function (mat) {
 ##'
 ##' @description
 ##' Converts an annotation list to an annotation matrix.
-##' The annotation matrix should have 2 columns, the first one with the gene ids;
+##' The annotation matrix should have 2 columns, the first one with the
+##' gene ids;
 ##' the second one with the annotation ids.
 ##' 
 ##' @details
 ##' Each element of the annotation list represents a functional block;
-##' it is a character vector containing the gene ids annotated under the function.
+##' it is a character vector containing the gene ids annotated under
+##' the function.
 ##' The names of the list are the annotation ids.
 ##' 
 ##' @param lis annotation list.
 ##' @param tag substitutes missing list names if any.
 ##' 
-##' @return An annotation matrix: the first column contains the gene or feature ids,
+##' @return An annotation matrix: the first column contains the gene or
+##' feature ids,
 ##' the second column contains the Gene Set or functional block ids.
 ##' 
 ##' @examples
@@ -108,7 +113,8 @@ annotList2mat <- function (lis, tag = "listPos") {
     v.nombres <- rep (nombres, times = longitudes)
     v.element <- unlist (lis)
     
-    if (length (v.nombres) != length (v.element)) stop ("Matrix could not be reconstructed. Revise the structure of the input list.")
+    if (length (v.nombres) != length (v.element))
+        stop ("Matrix could not be reconstructed. Revise the structure of the input list.")
     
     salida <- cbind (v.element, v.nombres) ##consistent with annotMat2list
     ##
@@ -128,7 +134,8 @@ annotList2mat <- function (lis, tag = "listPos") {
 ## @aliases 
 ##' 
 ##' @keywords revert annotation list
-##' @seealso \code{\link{annotMat2list}}, \code{\link{revList}} annotMat2list, annotList2mat
+##' @seealso \code{\link{annotMat2list}}, \code{\link{revList}}
+##' annotMat2list, annotList2mat
 ##'
 ##' @title Revert an annotation list.
 ##'

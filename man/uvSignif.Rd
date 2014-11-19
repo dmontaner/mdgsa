@@ -11,19 +11,24 @@ uvSignif(gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor",
 
 \item{cutoff}{p-value cutoff for considering significant a Gene Set.}
 
-\item{pvalue}{p-value column to be used. Default is named "padj" as in uvGsa output.}
+\item{pvalue}{p-value column to be used.
+Default is named "padj" as in uvGsa output.}
 
-\item{statistic}{name of the column containing the log odds ratio from the uvGsa analysis.}
+\item{statistic}{name of the column containing the log odds ratio
+from the uvGsa analysis.}
 
 \item{verbose}{verbose}
 
-\item{sort}{if TRUE the output data.frame is ordered according to significance.}
+\item{sort}{if TRUE the output data.frame is ordered according to
+significance.}
 }
 \value{
-The input data.frame but keeping just the 'significant' functional blocks.
+The input data.frame but keeping just the
+'significant' functional blocks.
 }
 \description{
-Filters the rows in the data.frame returned by \code{\link{uvGsa}} so that only the
+Filters the rows in the data.frame returned by \code{\link{uvGsa}}
+so that only the
 enriched blocks are kept.
 }
 \details{
@@ -39,7 +44,8 @@ uvSignif (res)
 David Montaner \email{dmontaner@cipf.es}
 }
 \seealso{
-\code{\link{uvGsa}}, \code{\link{uvPat}}, \code{\link{propagateGO}}, \code{\link{pval2index}}, \code{\link{goLeaves}}
+\code{\link{uvGsa}}, \code{\link{uvPat}},
+\code{\link{propagateGO}}, \code{\link{pval2index}}, \code{\link{goLeaves}}
 }
 \keyword{enriched}
 \keyword{significant}

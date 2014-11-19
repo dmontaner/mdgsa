@@ -23,10 +23,13 @@
 ##' 
 ##' @param gsaout data.frame; output from uvGsa.
 ##' @param cutoff p-value cutoff for considering significant a Gene Set.
-##' @param pvalue p-value column to be used. Default is named "padj" as in uvGsa output.
-##' @param statistic name of the column containing the log odds ratio from the uvGsa analysis.
+##' @param pvalue p-value column to be used.
+##' Default is named "padj" as in uvGsa output.
+##' @param statistic name of the column containing the log odds ratio
+##' from the uvGsa analysis.
 ##' 
-##' @return A numeric vector (values: -1, 0, 1) indicating relationship between the Gene Set and the ranking variable:
+##' @return A numeric vector (values: -1, 0, 1) indicating relationship
+##' between the Gene Set and the ranking variable:
 ##' \describe{
 ##'   \item{1:}{indicates that the gene set is significantly associated to high values of the ranking statistic.}
 ##'   \item{-1:}{indicates that the gene set is significantly associated to low values of the ranking statistic.}

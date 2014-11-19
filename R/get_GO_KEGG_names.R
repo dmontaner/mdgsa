@@ -10,7 +10,9 @@
 ## @aliases 
 ##' 
 ##' @keywords GO ontology names
-##' @seealso \code{\link{propagateGO}}, \code{\link{goLeaves}}, \code{\link{splitOntologies}}, \code{\link{getKEGGnames}}, \code{\link{getOntology}}
+##' @seealso \code{\link{propagateGO}}, \code{\link{goLeaves}},
+##' \code{\link{splitOntologies}}, \code{\link{getKEGGnames}},
+##' \code{\link{getOntology}}
 ##' 
 ##' @title Get Gene Ontology names
 ##'
@@ -20,7 +22,8 @@
 ##' @details
 ##' Uses the library GO.db.
 ##'
-##' \code{x} may be a \code{data.frame}. In such case, GO ids are expected in its row names.
+##' \code{x} may be a \code{data.frame}.
+##' In such case, GO ids are expected in its row names.
 ##' 
 ##' @param x a character vector of GO ids.
 ##' @param verbose verbose.
@@ -43,7 +46,8 @@ getGOnames <- function (x, verbose = TRUE) {
     }
     
     if (verbose) {
-        message ("Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.9.0
+        message ("Using GO.db version: ",
+                 packageDescription ("GO.db", fields = "Version")) #2.9.0
     }
     
     ##go id to ontology
@@ -59,7 +63,8 @@ getGOnames <- function (x, verbose = TRUE) {
     res <- id2name[x]
     
     if (any (is.na (res))) {
-        warning (sum (is.na (res)), " GOids where not found; missing names generated.")
+        warning (sum (is.na (res)),
+                 " GOids where not found; missing names generated.")
     }
     
     res
@@ -87,7 +92,8 @@ getGOnames <- function (x, verbose = TRUE) {
 ##' @details
 ##' Uses the library KEGG.db.
 ##'
-##' \code{x} may be a \code{data.frame}. In such case, GO ids are expected in its row names.
+##' \code{x} may be a \code{data.frame}.
+##' In such case, GO ids are expected in its row names.
 ##' 
 ##' @param x a character vector of KEGG ids.
 ##' @param verbose verbose.
@@ -110,7 +116,8 @@ getKEGGnames <- function (x, verbose = TRUE) {
     }
     
     if (verbose) {
-        message ("Using KEGG.db version: ", packageDescription ("KEGG.db", fields = "Version")) #2.9.0
+        message ("Using KEGG.db version: ",
+                 packageDescription ("KEGG.db", fields = "Version")) #2.9.0
     }
 
     ##kegg id to kegg name
@@ -126,7 +133,8 @@ getKEGGnames <- function (x, verbose = TRUE) {
     res <- id2name[x]
     
     if (any (is.na (res))) {
-        warning (sum (is.na (res)), " KEEGids where not found; missing names generated.")
+        warning (sum (is.na (res)),
+                 " KEEGids where not found; missing names generated.")
     }
     
     res

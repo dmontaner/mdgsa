@@ -18,11 +18,14 @@ uvGsa(index, annot, p.adjust.method = "BY", family = quasibinomial(),
 
 \item{verbose}{verbose.}
 
-\item{verbosity}{integer indicating which iterations should be indicated if verbose = TRUE.}
+\item{verbosity}{integer indicating which iterations should be indicated
+if verbose = TRUE.}
 
-\item{fulltable}{if TRUE, 'sd', 't' and 'convergence' indicator from the glm fit are included in the output.}
+\item{fulltable}{if TRUE, 'sd', 't' and 'convergence'
+indicator from the glm fit are included in the output.}
 
-\item{\dots}{further arguments to be pasted to \code{glm.fit}, for instance 'weights'.}
+\item{\dots}{further arguments to be pasted to \code{glm.fit},
+for instance 'weights'.}
 }
 \value{
 A \code{data.frame} with a row for each Gene Set or block.
@@ -41,8 +44,10 @@ Performs a Uni-Variate Gene Set Analysis using a logistic regression model.
 }
 \details{
 'index' may also be a numerical \code{matrix} or \code{data.frame}.
-If such a matrix has more than one column, the ranking index is taken form the first one.
-The remaining columns are used as covariates to correct for within the analysis.
+If such a matrix has more than one column,
+the ranking index is taken form the first one.
+The remaining columns are used as covariates to correct for
+within the analysis.
 
 Default p-value correction is "BY".
 }
@@ -55,7 +60,8 @@ res <- uvGsa (rindex, annotList)
 David Montaner \email{dmontaner@cipf.es}
 }
 \seealso{
-\code{\link{mdGsa}}, \code{\link{uvPat}}, \code{glm.fit}, \code{p.adjust}
+\code{\link{mdGsa}}, \code{\link{uvPat}},
+\code{glm.fit}, \code{p.adjust}
 }
 \keyword{GSA}
 \keyword{gene}

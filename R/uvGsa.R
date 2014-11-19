@@ -13,7 +13,8 @@
 ##' @aliases univariateGsa
 ##' 
 ##' @keywords univariate GSA gene set
-##' @seealso \code{\link{mdGsa}}, \code{\link{uvPat}}, \code{glm.fit}, \code{p.adjust}
+##' @seealso \code{\link{mdGsa}}, \code{\link{uvPat}},
+##' \code{glm.fit}, \code{p.adjust}
 ##'
 ##' @title Uni-Variate Gene Set Analysis.
 ##' 
@@ -22,8 +23,10 @@
 ##' 
 ##' @details
 ##' 'index' may also be a numerical \code{matrix} or \code{data.frame}.
-##' If such a matrix has more than one column, the ranking index is taken form the first one.
-##' The remaining columns are used as covariates to correct for within the analysis.
+##' If such a matrix has more than one column,
+##' the ranking index is taken form the first one.
+##' The remaining columns are used as covariates to correct for
+##' within the analysis.
 ##' 
 ##' Default p-value correction is "BY".
 ##' 
@@ -31,10 +34,13 @@
 ##' @param annot an annotation list.
 ##' @param p.adjust.method p-value adjustment method for multiple testing.
 ##' @param family see \code{glm.fit}.
-##' @param fulltable if TRUE, 'sd', 't' and 'convergence' indicator from the glm fit are included in the output.
+##' @param fulltable if TRUE, 'sd', 't' and 'convergence'
+##' indicator from the glm fit are included in the output.
 ##' @param verbose verbose.
-##' @param verbosity integer indicating which iterations should be indicated if verbose = TRUE.
-##' @param \dots further arguments to be pasted to \code{glm.fit}, for instance 'weights'.
+##' @param verbosity integer indicating which iterations should be indicated
+##' if verbose = TRUE.
+##' @param \dots further arguments to be pasted to \code{glm.fit},
+##' for instance 'weights'.
 ##' 
 ##' @return A \code{data.frame} with a row for each Gene Set or block.
 ##' Columns are:
@@ -54,11 +60,12 @@
 ##' }
 ##' 
 ##' @export
-uvGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(),
+uvGsa <- function (index, annot, p.adjust.method = "BY",
+                   family = quasibinomial(),
                    verbose = TRUE, verbosity = 100, fulltable = FALSE, ...) {
 
     
-    ## INPUT FORMATTING ##########################################################
+    ## INPUT FORMATTING ########################################################
     
     ##GENE IDS
     if (is.data.frame (index)) {
@@ -83,7 +90,7 @@ uvGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
     }
     
     
-    ## INTERNALS #################################################################
+    ## INTERNALS ###############################################################
     
     ##results matrix
     res <- matrix (NA, nrow = length (blocks), ncol = 6)
@@ -100,9 +107,10 @@ uvGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
     }
     
   
-    ## ALGORITHM #################################################################
-    
-    X <- cbind (rep (1, times = length (genes)), index) ##index may be a matrix or a vector
+    ## ALGORITHM ###############################################################
+
+    ##index may be a matrix or a vector
+    X <- cbind (rep (1, times = length (genes)), index)
     colnames (X) <- NULL
     for (bl in blocks) {
         B <- as.numeric (genes %in% annot[[bl]])
@@ -120,7 +128,7 @@ uvGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
             }
         }
     }
-    ## ###########################################################################
+    ## #########################################################################
     
     
     ##Time
@@ -140,12 +148,12 @@ uvGsa <- function (index, annot, p.adjust.method = "BY", family = quasibinomial(
     }
     
   
-    ## p-value ADJUSTMENT #######################################################
+    ## p-value ADJUSTMENT ######################################################
     
     res <- cbind (res, padj = p.adjust (res[,"pval"], method = p.adjust.method))
 
     
-    ##OUTPUT ####################################################################
+    ##OUTPUT ###################################################################
 
     ##reorder columns
     res <- res[,c("N", "lor", "pval", "padj", "sd", "t", "conv")] # "error"

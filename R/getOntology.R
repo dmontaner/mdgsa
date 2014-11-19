@@ -9,7 +9,9 @@
 ## @aliases 
 ##' 
 ##' @keywords GO ontology names
-##' @seealso \code{\link{getGOnames}}, \code{\link{propagateGO}}, \code{\link{goLeaves}}, \code{\link{splitOntologies}}, \code{\link{getKEGGnames}}
+##' @seealso \code{\link{getGOnames}}, \code{\link{propagateGO}},
+##' \code{\link{goLeaves}}, \code{\link{splitOntologies}},
+##' \code{\link{getKEGGnames}}
 ##' 
 ##' @title Get GO term Ontology 
 ##'
@@ -19,7 +21,8 @@
 ##' @details
 ##' Uses the library GO.db.
 ##'
-##' \code{x} may be a \code{data.frame}. In such case, GO ids are expected in its row names.
+##' \code{x} may be a \code{data.frame}.
+##' In such case, GO ids are expected in its row names.
 ##' 
 ##' @param x a character vector of GO ids.
 ##' @param verbose verbose.
@@ -42,7 +45,8 @@ getOntology <- function (x, verbose = TRUE) {
     }
     
     if (verbose) {
-        message ("\n", "Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.9.0
+        message ("\n", "Using GO.db version: ",
+                 packageDescription ("GO.db", fields = "Version")) #2.9.0
     }
     
     ##go id to ontology
@@ -58,7 +62,8 @@ getOntology <- function (x, verbose = TRUE) {
     res <- if2ontology[x]
     
     if (any (is.na (res))) {
-        warning (sum (is.na (res)), " GOids where not found; missing ontologies generated.")
+        warning (sum (is.na (res)),
+                 " GOids where not found; missing ontologies generated.")
     }
     
     res

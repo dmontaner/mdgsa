@@ -19,7 +19,8 @@ Finds the KEGG name form KEGG id.
 \details{
 Uses the library KEGG.db.
 
-\code{x} may be a \code{data.frame}. In such case, GO ids are expected in its row names.
+\code{x} may be a \code{data.frame}.
+In such case, GO ids are expected in its row names.
 }
 \examples{
 getKEGGnames (c("00010", "00020", "BAD_KEGG"))

@@ -19,13 +19,18 @@ pval2index(pval, sign, names = NULL, log = TRUE, offset, verbose = TRUE)
 \item{verbose}{verbose}
 }
 \value{
-A transformed index. A vector or matrix, depending on the input parameters.
+A transformed index.
+A vector or matrix, depending on the input parameters.
 }
 \description{
-After a genomic test, p-values are numerical indexes which account for certain biological characteristic.
-By definition p-values are bounded between zero and one, but this may not be suitable as an index.
-Moreover, p-values are always derived form a statistic which sign may be important.
-The function helps transforming the p-value and its associated statistic into a ranking index.
+After a genomic test, p-values are numerical indexes which account for
+certain biological characteristic.
+By definition p-values are bounded between zero and one,
+but this may not be suitable as an index.
+Moreover, p-values are always derived form a statistic which sign may be
+important.
+The function helps transforming the p-value and its associated statistic
+into a ranking index.
 }
 \details{
 The default transformation is (-1) * log (pval) * sign (sign).
@@ -35,14 +40,17 @@ If \code{sign} is missing all p-values are associated wit a positive sign.
 
 Missing values are allowed and return NA values.
 
-An \code{offset} may be provided to replace p-values equal to zero when \code{log = TRUE}.
+An \code{offset} may be provided to replace p-values equal to zero
+when \code{log = TRUE}.
 In such way \strong{infinite} values are not generated.
 If the \code{offset} parameter is not provided,
 the minimum p-value other than zero is used for the replacement.
-You can explicitly specify \code{offset = 0} if you want \code{Inf} values to be returned.
+You can explicitly specify \code{offset = 0} if you want \code{Inf}
+values to be returned.
 
-By default the names of the output vector (or row names in a matrix) are those
-of \code{pval} or \code{sign}. If \code{names} is provided, then it is used instead.
+By default the names of the output vector (or row names in a matrix)
+are those of \code{pval} or \code{sign}.
+If \code{names} is provided, then it is used instead.
 }
 \examples{
 my.statistic <- rnorm (1000)

@@ -50,14 +50,16 @@ Introduction
 
 The `mdgsa` library implements the _gene set analysis_ methodology developed in
 [Montaner and Dopazo (2010)][montaner2010].
-It presents a flexible framework for analyzing the enrichment of _gene sets_ along a given _ranking_ of genes.
+It presents a flexible framework for analyzing the enrichment of _gene sets_
+along a given _ranking_ of genes.
 The novelty is that,
 not just one _ranking index_ but two,
 may be analyzed and jointly explored 
 in a __multidimensional gene set analysis__.
 
 As classical _GSEA_,
-our approach allows for the functional profiling of isolated genomic characteristics; 
+our approach allows for the functional profiling of
+isolated genomic characteristics; 
 differential gene expression,
 copy number analyses,
 or variant to disease associations
@@ -88,7 +90,8 @@ Functional Profiling of Gene Expression Data
 
 In this tutorial we use the data in the 
 [Acute Lymphocytic Leukemia expression dataset][all] package of [Bioconductor]. 
-First we will use the [limma] library to compute a differential gene expression analysis.
+First we will use the [limma] library to compute a differential gene expression
+analysis.
 Then we will use the functions `uvGsa` and `mdGsa` in the `mdgsa` package
 to perform uni-dimensional and bi-dimensional gene set analyses respectively.
 The functional interpretation will be done in terms of [KEGG] Pathways.
@@ -124,7 +127,8 @@ fit <- contrasts.fit (fit, cont.mat)
 fit <- eBayes (fit)
 ```
 
-From this analysis we get _test statistics_ and _p-values_ for each of the two contrasts
+From this analysis we get _test statistics_ and _p-values_ for each of the
+two contrasts
 
 ```{r}
 fit$t[1:3,]
@@ -132,8 +136,10 @@ fit$p.value[1:3,]
 ```
 
 These gene level information may be now interpreted in terms of _gene sets_.
-For this example we will carry out a _gene set analysis_ using the functional blocks described in [KEGG],
-but any other functional data base such as the [Gene Ontology][go] or even a customized one may be analyzed using `mdgsa`.
+For this example we will carry out a _gene set analysis_ using the
+functional blocks described in [KEGG],
+but any other functional data base such as the [Gene Ontology][go] or
+even a customized one may be analyzed using `mdgsa`.
 We can get the [KEGG] annotation from the [hgu95av2.db] library as follows.
 
 ```{r}
@@ -164,7 +170,8 @@ We load the `mdgsa` library.
 library (mdgsa)
 ```
 
-The first step in the procedure is to combine p-values and test statistics in a single ranking value. 
+The first step in the procedure is to combine p-values and test statistics
+in a single ranking value. 
 
 ```{r}
 rindex <- pval2index (pval = fit$p.value[,"BCR - NEG"], sign = fit$t[,"BCR - NEG"])
@@ -179,7 +186,8 @@ that is, the information of whether the gene is over or underexpressed.
 plot (fit$t[,"BCR - NEG"], rindex)
 ```
 
-but the evidence of the differential expression is taken directly from the p-value
+but the evidence of the differential expression is taken directly
+from the p-value
 
 ```{r}
 plot (fit$p.value[,"BCR - NEG"], rindex)
@@ -206,7 +214,8 @@ _gene universe_ described by the _ranking index_
 and the _annotation_ are concordant.
 The function `annotFilter`
 encompasses the annotation list to the names in the ranking index;
-it is also used to exclude functional blocks too small to be considered gene sets,
+it is also used to exclude functional blocks too small to be considered
+gene sets,
 or too big to be specific of any biological process of interest.
 
 ```{r}
@@ -231,13 +240,20 @@ The `uvGsa` function fits a _logistic regression model_
 relating, the probability of genes belonging to the gene set,
 with the value of the ranking statistic.
 
-Significant and __positive__ _log odds ratio_ (`lor`) indicate that the gene set is enriched in those genes with __high values__ of the ranking statistic.
-In our example this means that genes up regulated in _BCR_ compared to _NEG_ are more likely to belong to the functional block.
-We could also say that the block of genes shows a significant degree of over expression _BCR_ compared to _NEG_.
+Significant and __positive__ _log odds ratio_ (`lor`) indicate that
+the gene set is enriched in those genes with __high values__ of the
+ranking statistic.
+In our example this means that genes up regulated in _BCR_ compared to
+_NEG_ are more likely to belong to the functional block.
+We could also say that the block of genes shows a significant degree
+of over expression _BCR_ compared to _NEG_.
 
-On the other hand, when a gene set has a __negative__  _log odds ratio_ we can say that the genes in the set are more likely to be associated to __low values__,
+On the other hand, when a gene set has a __negative__  _log odds ratio_
+we can say that the genes in the set are more likely to be associated to
+__low values__,
 negative in our case, of the ranking statistics.
-In our case this means that the gene set is down regulated in _BCR_ compared to _NEG_.
+In our case this means that the gene set is down regulated in _BCR_
+compared to _NEG_.
 
 The function `uvPat` helps you classifying the analyzed gene sets
 
@@ -250,14 +266,17 @@ Positive values (1)  correspond to significant and positive _log odds ratios_.
 Negative values (-1) correspond to significant and negative _log odds ratios_.
 Zeros correspond to non enriched blocks.
 
-As in this example we are analyzing [KEGG] pathways we can use the function `getKEGGnames`
-to find out the "name" of the pathways^[Similar function `getGOnames` is available to be used with [Gene Ontology][go] terms.].
+As in this example we are analyzing [KEGG] pathways
+we can use the function `getKEGGnames`
+to find out the "name" of the
+pathways^[Similar function `getGOnames` is available to be used with [Gene Ontology][go] terms.].
 
 ```{r, results = "hide"}
 res.uv[,"KEGG"] <- getKEGGnames (res.uv)
 ```
 
-Finally, the function `uvSignif` may help us displaying just the enriched blocks.
+Finally, the function `uvSignif` may help us displaying
+just the enriched blocks.
 
 ```{r}
 res <- uvSignif (res.uv)
@@ -271,7 +290,8 @@ Multivariate Gene Set Analysis
 But with the `mdgsa` library we can analyze not just one
 but two ranking statistics at a time. 
 
-In our example we were interested not in just one differential expression contrast but in two: 
+In our example we were interested
+not in just one differential expression contrast but in two: 
 ALL vs. NEG and BCR vs. NEG.
 We used `limma` to fit this two contrasts (see previous sections)
 and computed gene statistics and p-values for for each of them.
@@ -281,7 +301,8 @@ fit$t[1:3,]
 fit$p.value[1:3,]
 ```
 
-We can combine this two matrices in a single one containing a _ranking statistic_ for each contrast,
+We can combine this two matrices in a single one
+containing a _ranking statistic_ for each contrast,
 just as we did in the _univariate_ example.
 
 ```{r}
@@ -327,8 +348,10 @@ res.md[,"KEGG"] <- getKEGGnames (res.md)
 res.md[1:3,]
 ```
 
-Thus we could for instance explore the KEGG classified as having a with a __q3f__ pattern.
-The __q3f__ classification means that the genes of this gene set are located in the
+Thus we could for instance explore the KEGG classified as having a with a
+__q3f__ pattern.
+The __q3f__ classification means that the genes of this gene set
+are located in the
 __third quadrant__ of the _bivariate ranking index_ representation.
 
 The `plotMdGsa` function help us understanding such pattern.
@@ -344,9 +367,12 @@ They show, in both dimensions of our ranking,
 values significantly more negatives that the remaining genes in the study.
 This same pattern may be appreciated in the ellipses drawn in the figure.
 The blue one represents a _confidence region_ for all the genes in the study.
-The red one shows the same _confidence region_ but just for those genes within the gene set.
-We can see how the distribution of the genes in KEGG _`r Q3`_ is displaced towards the third quadrant of the plot.
-This indicates us that "`r res.md[Q3, "KEGG"]`" is a _pathway_ jointly down regulated in both
+The red one shows the same _confidence region_ but just for those genes within
+the gene set.
+We can see how the distribution of the genes in KEGG _`r Q3`_ is displaced
+towards the third quadrant of the plot.
+This indicates us that "`r res.md[Q3, "KEGG"]`" is a _pathway_
+jointly down regulated in both
 _ALL_ and _BCR_ when compared to the controls in the _NEG_ group.
 
 \  
@@ -372,7 +398,8 @@ plotMdGsa (rindex, block = annot[[BI]], main = res.md[BI, "KEGG"])
 
 As third example we could display some KEGG enriched in one dimension
 but not in the other.
-The __yh__ pattern indicates gene set over-representation just in the _Y_ axis but not in the horizontal axis.
+The __yh__ pattern indicates gene set over-representation
+just in the _Y_ axis but not in the horizontal axis.
 In our case, KEGG pathways with at __yh__ pattern are those
 over expressed in _BRC_ compared to _NEG_ but not
 enriched in the comparison between _ALL_ and _NEG_.
@@ -391,7 +418,8 @@ plotMdGsa (rindex, block = annot[[YL]], main = res.md[YL, "KEGG"])
 \  
 
 
-All possible multidimensional enrichment __patterns__ are listed in the [Appendix](#appendix1).
+All possible multidimensional enrichment __patterns__ are listed
+in the [Appendix](#appendix1).
 
 
 
@@ -452,9 +480,11 @@ All possible functional block classifications in the bi-dimensional gene set ana
 
 - __NS__: __non significant__ block.
 
-A detailed  description of each of the patterns can be found in [Montaner and Dopazo (2010)][montaner2010].
+A detailed  description of each of the patterns can be found in
+[Montaner and Dopazo (2010)][montaner2010].
 
-The function `mdPat` in the `mdgsa` package is devised to help the user classifying bi-dimensional GSA results in such patterns.
+The function `mdPat` in the `mdgsa` package is devised to help the user
+classifying bi-dimensional GSA results in such patterns.
 
 
 Session Info

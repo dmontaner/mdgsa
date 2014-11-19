@@ -24,7 +24,8 @@ revList (lis)
 David Montaner \email{dmontaner@cipf.es}
 }
 \seealso{
-\code{\link{annotMat2list}}, \code{\link{revList}} annotMat2list, annotList2mat
+\code{\link{annotMat2list}}, \code{\link{revList}}
+annotMat2list, annotList2mat
 }
 \keyword{annotation}
 \keyword{list}

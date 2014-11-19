@@ -10,7 +10,8 @@
 ## @aliases 
 ##' 
 ##' @keywords multidimensional multivariate GSA plot
-##' @seealso \code{\link{mdGsa}}, \code{\link{mdPat}}, \code{\link{mdPat}}, \code{ellipsoidPoints}
+##' @seealso \code{\link{mdGsa}}, \code{\link{mdPat}}, \code{\link{mdPat}},
+##' \code{ellipsoidPoints}
 ##'
 ##' @title Plot Multi-Dimensional Gene Set
 ##' 
@@ -18,21 +19,27 @@
 ##' Plots confidence region for a Gene Set in a two dimensional space.
 ##' 
 ##' @details
-##' Black dots show all genes in the dataset. Red stars show the genes in the Gene Set.
+##' Black dots show all genes in the dataset.
+##' Red stars show the genes in the Gene Set.
 ##' Blue axis show the "center" of the distribution of all genes;
 ##' blue ellipse shows the confidence region for all genes.
 ##' Red axis show the "center" of the distribution of the genes in the Gene Set;
 ##' red ellipse shows the confidence region for genes in the Gene Set.
 ##' 
-##' @param index matrix or data frame with the two columns of ranking statistics.
-##' @param block matrix or data frame with \strong{gene} ids in the first column and \strong{gene set} ids in the second column.
+##' @param index matrix or data frame with the two columns of ranking
+##' statistics.
+##' @param block matrix or data frame with \strong{gene} ids in the first column
+##' and \strong{gene set} ids in the second column.
 ##' @param cr level of the confidence region.
 ##' @param pch plotting character for all genes.
-##' @param pch.block plotting character for the genes in the gene set or functional block.
+##' @param pch.block plotting character for the genes in the gene set or
+##' functional block.
 ##' @param lwd line width. Used when drawing ellipses and other lines. 
 ##' @param col.all color used to represent all genes.
-##' @param col.block color used to represent the genes in the gene set being plotted.
-##' @param project if TRUE projection over the axis are displayed for the genes of the gene set.
+##' @param col.block color used to represent the genes in the gene set
+##' being plotted.
+##' @param project if TRUE projection over the axis are displayed for the
+##' genes of the gene set.
 ##' @param col.proj color used to plot the projection.
 ##' @param diagonals if TRUE diagonals are plotted.
 ##' @param col.diag color used to plot the diagonals.
@@ -62,16 +69,21 @@ plotMdGsa <- function (index, block, cr = 0.95,
     genes <- rownames (index)
     
     ##all genes
-    plot (index[,1], index[,2], xlab = colnames (index)[1], ylab = colnames (index)[2], pch = pch, lwd = lwd, ...)
+    plot (index[,1], index[,2],
+          xlab = colnames (index)[1],
+          ylab = colnames (index)[2],
+          pch = pch, lwd = lwd, ...)
     
     ##genes in the Gene Set
-    points (index[block, 1], index[block, 2], col = col.block, pch = pch.block, lwd = lwd, ...)
+    points (index[block, 1], index[block, 2],
+            col = col.block, pch = pch.block, lwd = lwd, ...)
   
     ##ellipses; needs the library (cluster)
     C.ls <- cov      (index[block,])
     m.ls <- colMeans (index[block,])
     d2 <- qchisq(cr, df = 2)
-    lines (ellipsoidPoints(C.ls, d2, loc = m.ls), col = col.block, lwd = lwd, ...)
+    lines (ellipsoidPoints(C.ls, d2, loc = m.ls),
+           col = col.block, lwd = lwd, ...)
     abline (v = m.ls[1], h = m.ls[2], col = col.block, lwd = lwd, ...)
     ##
     C.ls <- cov (index)
@@ -82,8 +94,11 @@ plotMdGsa <- function (index, block, cr = 0.95,
     
     ##projections
     if (project) {
-        points (index[block, 1], rep (m.ls[2], times = length (block)), col = col.proj, pch = "|", lwd = lwd, ...)
-        points (rep (m.ls[1], times = length (block)), index[block, 2], col = col.proj, pch = "_", lwd = lwd, ...)
+        points (index[block, 1],
+                rep (m.ls[2], times = length (block)),
+                col = col.proj, pch = "|", lwd = lwd, ...)
+        points (rep (m.ls[1], times = length (block)), index[block, 2],
+                col = col.proj, pch = "_", lwd = lwd, ...)
     }
     
     ##diagonals

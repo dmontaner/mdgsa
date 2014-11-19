@@ -10,10 +10,12 @@ mdPat(gsaout, cutoff = 0.05, pvalue = "padj")
 
 \item{cutoff}{p-value cutoff for considering significant a Gene Set.}
 
-\item{pvalue}{p-value column to be used. Default is named "padj" as in mdGsa output.}
+\item{pvalue}{p-value column to be used. Default is named "padj" as in
+mdGsa output.}
 }
 \value{
-A character vector indicating the pattern associated to each Gene Set.
+A character vector indicating the pattern associated to each
+Gene Set.
 }
 \description{
 Classifies significant patterns form a Multi-Variate Gene Set Analysis.
@@ -23,7 +25,8 @@ Sign of the three 'lor' and p-values are used to classify functional blocks.
 The classification is done in the two dimensional space previously analyzed
 by mdGsa.
 
-All possible functional block classifications in the bi-dimensional gene set analysis are:
+All possible functional block classifications in the bi-dimensional
+gene set analysis are:
 \itemize{
   \item q1i: block displaced toward quadrant \bold{1} (0 < X & 0 < Y) with interaction.
   \item q2i: block displaced toward quadrant \bold{2} (0 > X & 0 < Y) with interaction.
@@ -53,7 +56,9 @@ table (res[,"pat"])
 David Montaner \email{dmontaner@cipf.es}
 }
 \references{
-Montaner et al. (2010) "Multidimensional Gene Set Analysis of Genomic Data." PLoS ONE.
+Montaner et al. (2010)
+"Multidimensional Gene Set Analysis of Genomic Data."
+PLoS ONE.
 }
 \seealso{
 \code{\link{mdGsa}}, \code{\link{uvPat}}

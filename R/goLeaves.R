@@ -12,7 +12,8 @@
 ## @aliases 
 ##' 
 ##' @keywords leaves child go terms
-##' @seealso \code{\link{uvGsa}}, \code{\link{uvPat}}, \code{\link{propagateGO}}, \code{\link{pval2index}}
+##' @seealso \code{\link{uvGsa}}, \code{\link{uvPat}},
+##' \code{\link{propagateGO}}, \code{\link{pval2index}}
 ##'
 ##' @title Keep just leaf nodes from the Gene Ontology DAG.
 ##'
@@ -31,12 +32,16 @@
 ##' 
 ##' @param gsaout data.frame; output from uvGsa.
 ##' @param cutoff p-value cutoff for considering significant a Gene Set.
-##' @param pvalue p-value column to be used. Default is named "padj" as in uvGsa output.
-##' @param statistic name of the column containing the log odds ratio from the uvGsa analysis.
-##' @param sort if TRUE the output data.frame is ordered according to significance.
+##' @param pvalue p-value column to be used.
+##' Default is named "padj" as in uvGsa output.
+##' @param statistic name of the column containing the log odds ratio
+##' from the uvGsa analysis.
+##' @param sort if TRUE the output data.frame is ordered according to
+##' significance.
 ##' @param verbose verbose
 ##' 
-##' @return The input data.frame but keeping just the 'significant' and 'non redundant' GO terms.
+##' @return The input data.frame but keeping just the 'significant' and
+##' 'non redundant' GO terms.
 ##' 
 ##' @importFrom AnnotationDbi as.list
 ##' @import GO.db
@@ -53,20 +58,25 @@
 ##' 
 ##' @export
 
-goLeaves <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor", verbose = TRUE, sort = TRUE) {
+goLeaves <- function (gsaout, cutoff = 0.05, pvalue = "padj",
+                      statistic = "lor", verbose = TRUE, sort = TRUE) {
     
     if (verbose) {
-        message ("Using GO.db version: ", packageDescription ("GO.db", fields = "Version")) #2.3.5
+        message ("Using GO.db version: ",
+                 packageDescription ("GO.db", fields = "Version")) #2.3.5
     }
     
-    ancestros <- c (as.list (GOBPANCESTOR), as.list (GOMFANCESTOR), as.list (GOCCANCESTOR))  
+    ancestros <- c (as.list (GOBPANCESTOR),
+                    as.list (GOMFANCESTOR),
+                    as.list (GOCCANCESTOR))  
     
-    ## ###########################################################################
+    ## #########################################################################
     
     ## real gsaout
     if (is.data.frame (gsaout) | is.matrix (gsaout)) {
         
-        pat <- uvPat (gsaout, cutoff = cutoff, pvalue = pvalue, statistic = statistic)
+        pat <- uvPat (gsaout, cutoff = cutoff, pvalue = pvalue,
+                      statistic = statistic)
         
         touse <- pat %in% c (-1, 1)
         gsaout <- gsaout[touse, , drop = FALSE]
@@ -90,13 +100,15 @@ goLeaves <- function (gsaout, cutoff = 0.05, pvalue = "padj", statistic = "lor",
         
         ##sort
         if (sort) {
-            myindex <- pval2index (pval = gsaout[,pvalue], sign = gsaout[,statistic], log = TRUE, verbose = verbose)
+            myindex <- pval2index (pval = gsaout[,pvalue],
+                                   sign = gsaout[,statistic],
+                                   log = TRUE, verbose = verbose)
             orden <- order (myindex, decreasing = TRUE)
             gsaout <- gsaout[orden,]
         }
     }
     
-    ## ###########################################################################
+    ## #########################################################################
 
     ## character verctor of GO ids
     if (is.character (gsaout)) {
