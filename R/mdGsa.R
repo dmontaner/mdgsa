@@ -167,19 +167,19 @@ mdGsa <- function (index, annot, p.adjust.method = "BY",
     ##Convergence
     if (verbose) {
         if (any (res[,"conv"] == 0)) {
-            warning (paste ("The analysis did not converge for some blocks.",
-                            "You may re-run mdGsa using 'fulltable = TRUE' to find them.",
-                            sep = "\n"))
+            tex <- "The analysis did not converge for some blocks.
+                    You may re-run mdGsa using 'fulltable = TRUE' to find them."
+            message (gsub ("  +", "", tex))
         }
     }
     
-  
+    
   ## p-value ADJUSTMENT #######################################################
 
     res <- cbind (res,
-                  'padj.X' = p.adjust (res[,"pval.X"], method = p.adjust.method),
-                  'padj.Y' = p.adjust (res[,"pval.Y"], method = p.adjust.method),
-                  'padj.I' = p.adjust (res[,"pval.I"], method = p.adjust.method))
+                 'padj.X' = p.adjust (res[,"pval.X"], method = p.adjust.method),
+                 'padj.Y' = p.adjust (res[,"pval.Y"], method = p.adjust.method),
+                 'padj.I' = p.adjust (res[,"pval.I"], method = p.adjust.method))
   
 
     ##OUTPUT ###################################################################
@@ -216,6 +216,6 @@ mdGsa <- function (index, annot, p.adjust.method = "BY",
     ##format data.frame
     res <- as.data.frame (res)
     
-    ##return
+    ## OUTPUT
     res
 }

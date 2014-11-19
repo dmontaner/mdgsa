@@ -127,6 +127,7 @@ pval2index <- function (pval, sign, names = NULL, log = TRUE,
     if (!is.null (names)) {
         names (res) <- names
     }
-    
+
+    ## OUTPUT
     res
 }

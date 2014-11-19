@@ -140,14 +140,14 @@ uvGsa <- function (index, annot, p.adjust.method = "BY",
     
     ##Convergence
     if (verbose) {
-        if (any (res[,"conv"] == 0)) {
-            warning (paste ("The analysis did not converge for some blocks.",
-                            "You may re-run uvGsa using 'fulltable = TRUE' to find them.",
-                            sep = "\n"))
+        if (any (res[,"conv"] == 0) & !fulltable) {
+            tex <- "The analysis did not converge for some blocks.
+                    You may re-run uvGsa using 'fulltable = TRUE' to find them."
+            warning (gsub ("  +", "", tex))
         }
     }
     
-  
+    
     ## p-value ADJUSTMENT ######################################################
     
     res <- cbind (res, padj = p.adjust (res[,"pval"], method = p.adjust.method))
@@ -166,6 +166,6 @@ uvGsa <- function (index, annot, p.adjust.method = "BY",
     ##format data.frame
     res <- as.data.frame (res)
 
-    ##return
+    ## OUTPUT
     res
 }

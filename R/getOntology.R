@@ -65,6 +65,7 @@ getOntology <- function (x, verbose = TRUE) {
         warning (sum (is.na (res)),
                  " GOids where not found; missing ontologies generated.")
     }
-    
+
+    ## OUTPUT
     res
 }

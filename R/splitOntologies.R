@@ -84,10 +84,11 @@ splitOntologies <- function (annot, na.rm = TRUE, verbose = TRUE) {
         if (na.rm) {
             message ("they will be excluded from the list")
         } else {
-            message ("they are included in the fourth element of the output list.")
+            message ("they will go to the fourth element of the output list.")
             res[["missing"]] <- annot[es.na]
         }
     }
-    
+
+    ## OUTPUT
     res
 }

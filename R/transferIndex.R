@@ -158,7 +158,7 @@ transferIndex <- function (index, targets, method = "sum",
     }
     
     
-    ## RETURN
+    ## OUTPUT
     if (transferMatrix) {
         mat
     } else {

@@ -65,6 +65,7 @@ uvSignif <- function (gsaout, cutoff = 0.05, pvalue = "padj",
     } else {
         message ("gsaout must be a data.frame created by uvGsa")
     }
-    ## RETURN
+    
+    ## OUTPUT
     gsaout
 }

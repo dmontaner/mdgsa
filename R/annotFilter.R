@@ -71,22 +71,27 @@ annotFilter <- function (annot, index, minBlockSize = 10, maxBlockSize = 500,
     blocks <- names (annot)
     
     if (is.null (blocks))  {
-        message ("Warning: The annotation list has no names.")
-        message ("List position will be used instead.")
+        tex <- "Warning: The annotation list has no names.
+                List position will be used instead."
+        message (gsub ("  +", "", tex))
+        
         names (annot) <- paste ("block", 1:length (annot), sep = "_")
         blocks <- names (annot)
     }
     
     pos <- which (is.na (blocks))
     if (length (pos) > 0) {
-        message ("Warning: Some names are missing for the blocks in the annot list.")
-        message ("List positions will be used instead.")
+        tex<-"Warning: Some names are missing for the blocks in the annot list.
+              List position will be used instead."
+        message (gsub ("  +", "", tex))
+
         names (annot)[pos] <- paste ("block", pos, sep = "_")
         blocks <- names (annot)
     }
     
     if (any (duplicated (blocks))) {
-        message ("Warning: Some names are duplicated for the blocks in the annot list.")
+        tex<-"Warning: Some names are duplicated for the blocks in annot."
+        message (tex)
     }
     
     ## #########################################################################
@@ -94,16 +99,18 @@ annotFilter <- function (annot, index, minBlockSize = 10, maxBlockSize = 500,
     ##Duplicated genes
     annot.aux <- lapply (annot, unique)
     if (any (sapply (annot, length) != sapply (annot.aux, length))) {
-        message ("Warning: Some blocks in the annot list have duplicated genes.")
-        message ("Duplicated will be removed.")
+        tex <- "Warning: Some blocks in the annot list have duplicated genes.
+                Duplicated will be removed."
+        message (gsub ("  +", "", tex))
     }
     annot <- annot.aux
     
     ##genes that are NA or ""
     annot.aux <- lapply (annot, setdiff, y = c(NA, ""))
     if (any (sapply (annot, length) != sapply (annot.aux, length))) {
-        message ('Warning: Some blocks in the annot gene IDs which are missing or "".')
-        message ("Those will be removed.")
+        tex <- 'Warning: Some blocks in the annot gene IDs are missing or "".
+                Those will be removed.'
+        message (gsub ("  +", "", tex))
     }
     annot <- annot.aux
     
@@ -128,10 +135,21 @@ annotFilter <- function (annot, index, minBlockSize = 10, maxBlockSize = 500,
         ## #####################################################################
         
         ##duplicated or missing IDs in the Gene Universe
-        if (any (is.na (gen.universe)))      message ('Warning: Some genes or feature names form the ranking index have an NA value.')
-        if (any (gen.universe == ""))        message ('Warning: Some genes or feature names form the ranking index have an "" value.')
-        if (any (duplicated (gen.universe))) message ('Warning: Some genes or feature names from the ranking index have duplicated IDs.')
-        
+        if (any (is.na (gen.universe))) {
+            message (
+                'Warning: Some feature names in the ranking index are NA.'
+            )
+        }
+        if (any (gen.universe == "")) {
+            message (
+                'Warning: Some feature names in the ranking index are "".'
+            )
+        }
+        if (any (duplicated (gen.universe))) {
+            message (
+                'Warning: Feature names in the ranking index are duplicated.'
+            )
+        }
         gen.universe <- setdiff (unique (gen.universe), c(NA, ""))
         
         ## #####################################################################
@@ -141,9 +159,11 @@ annotFilter <- function (annot, index, minBlockSize = 10, maxBlockSize = 500,
         genes.aux <- genes %in% gen.universe
         
         if (any (!genes.aux)) {
-            message ("Warning: There are genes in the annotation list which are not part of the gene universe defended by the ranking index;")
-            message ("they will be eliminated form the annotation.")
-
+            tex<-"Warning: There are genes in the annotation list which are not
+                  part of the gene universe defined by the ranking index;
+                  they will be eliminated form the annotation."
+            message (gsub ("  +", "", tex))
+            
             ##Here 'gene.universe' is already unique and has no NA or "" values.
             annot.aux <- lapply (annot, intersect, y = gen.universe)  
             annot <- annot.aux
@@ -152,12 +172,10 @@ annotFilter <- function (annot, index, minBlockSize = 10, maxBlockSize = 500,
         ## #####################################################################
         
         ##some stats
-        message ("\n",
-                 paste (round (100 * sum (gen.universe %in% genes) / length (gen.universe), 2),
-                        "% of the genes in the index are annotated in the list.", sep = ""),
-                 sep = "",
-                 fill = TRUE)
-        
+        red <- round (100*sum (gen.universe %in% genes)/length (gen.universe),2)
+        tex <- paste0 (red, 
+                       "% of the genes in the index are annotated in the list.")
+        message (tex)
     } ##END if missing (index)
     
     
@@ -197,10 +215,13 @@ annotFilter <- function (annot, index, minBlockSize = 10, maxBlockSize = 500,
 ## @return An annotation list filtered by size.
 ##
 ## @export
-annot.size.filter <- function (annot, minBlockSize, maxBlockSize, verbose = TRUE) {
+annot.size.filter <- function (annot, minBlockSize, maxBlockSize,
+                               verbose = TRUE) {
     
     if (minBlockSize < 1) {
-        warning ("minBlockSize < 1; Generally is not meaningful to allow for empty blocks")
+        tex <- "minBlockSize < 1;
+               Generally it is not meaningful to allow for empty blocks"
+        warning (gsub ("  +", "", tex))
     }
     
     block.size <- sapply (annot, length)
@@ -215,9 +236,9 @@ annot.size.filter <- function (annot, minBlockSize, maxBlockSize, verbose = TRUE
         message ("Filtering annotation by size:")
         message (paste ("  ", sum (is.small), "small blocks removed."))
         message (paste ("  ", sum (is.big),   "big blocks removed."))
-        message (paste ("  ", sum (touse),    "blocks remain in the annotation."))
+        message (paste ("  ", sum (touse),  "blocks remain in the annotation."))
     }
     
-    ##OUT
+    ## OUTPUT
     annot
 }

@@ -66,7 +66,8 @@ getGOnames <- function (x, verbose = TRUE) {
         warning (sum (is.na (res)),
                  " GOids where not found; missing names generated.")
     }
-    
+
+    ## OUTPUT
     res
 }
 
@@ -136,6 +137,7 @@ getKEGGnames <- function (x, verbose = TRUE) {
         warning (sum (is.na (res)),
                  " KEEGids where not found; missing names generated.")
     }
-    
+
+    ## OUTPUT
     res
 }

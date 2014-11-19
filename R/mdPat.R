@@ -104,7 +104,9 @@ mdPat <- function (gsaout, cutoff = 0.05, pvalue = "padj") {
     
     ##COLUMNS
     lors <- sub ("lor", "", grep ("lor.", colnames (gsaout), value = TRUE))
-    pvals <- sub (pvalue, "", grep (paste (pvalue, ".", sep = ""), colnames (gsaout), value = TRUE))
+    pvals <- sub (pvalue, "",
+                  grep (paste (pvalue, ".", sep = ""),
+                        colnames (gsaout), value = TRUE))
     
     tags <- intersect (lors, pvals)
     
@@ -128,6 +130,6 @@ mdPat <- function (gsaout, cutoff = 0.05, pvalue = "padj") {
     ##non relevant patterns
     res[is.na (res)] <- "NR"  #CHECK THIS
     
-    ##return
+    ## OUTPUT
     res
 }

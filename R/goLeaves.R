@@ -117,6 +117,6 @@ goLeaves <- function (gsaout, cutoff = 0.05, pvalue = "padj",
         gsaout <- leaves
     }
     
-    ## RETURN
+    ## OUTPUT
     gsaout
 }

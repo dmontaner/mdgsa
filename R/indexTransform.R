@@ -95,6 +95,6 @@ indexTransform <- function (index, method = "normalize") {
     ##   no change
     ## }
     
-    ##return
+    ## OUTPUT
     index
 }
