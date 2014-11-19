@@ -3,6 +3,9 @@ library (knitr) ## this is needed when R CMD build
 opts_chunk$set (message = FALSE)
 #opts_chunk$set (fig.align = "center") ## use this just with HTML documents
 
+## ----, echo = FALSE------------------------------------------------------
+#BiocStyle::latex()
+
 ## ------------------------------------------------------------------------
 library (ALL)
 data (ALL)

@@ -52,9 +52,15 @@ within the analysis.
 Default p-value correction is "BY".
 }
 \examples{
-\dontrun{
+rindex <- rnorm (1000)
+names (rindex) <- paste0 ("gen", 1:1000)
+
+annotList <- list (geneSet1 = sample (names (rindex), size = 10),
+                   geneSet2 = sample (names (rindex), size = 15),
+                   geneSet3 = sample (names (rindex), size = 20))
+
 res <- uvGsa (rindex, annotList)
-}
+res
 }
 \author{
 David Montaner \email{dmontaner@cipf.es}

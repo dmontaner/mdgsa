@@ -54,7 +54,7 @@ getGOnames <- function (x, verbose = TRUE) {
     micon <- GO_dbconn ()
     tabla <- dbReadTable (micon, "go_term")
     tabla <- tabla[,c("go_id", "term")]
-    tabla <- tabla[tabla$go_id != "all",]
+    ##tabla <- tabla[tabla$go_id != "all",]
     
     id2name <- tabla[,"term"]
     names (id2name) <- tabla[,"go_id"]

@@ -53,7 +53,7 @@ getOntology <- function (x, verbose = TRUE) {
     micon <- GO_dbconn ()
     tabla <- dbReadTable (micon, "go_term")
     tabla <- tabla[,c("go_id", "ontology")]
-    tabla <- tabla[tabla$ontology != "universal",]
+    ##tabla <- tabla[tabla$ontology != "universal",]
     
     if2ontology <- tabla[,"ontology"]
     names (if2ontology) <- tabla[,"go_id"]

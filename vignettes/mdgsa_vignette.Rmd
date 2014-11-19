@@ -29,6 +29,10 @@ opts_chunk$set (message = FALSE)
 #opts_chunk$set (fig.align = "center") ## use this just with HTML documents
 ```
 
+```{r, echo = FALSE}
+#BiocStyle::latex()
+```
+
 <!-- LINKS -------------------------------------------------------------------->
 
 [montaner2010]:http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0010348 "mdgsa Paper"

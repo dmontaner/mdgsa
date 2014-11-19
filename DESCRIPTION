@@ -24,6 +24,8 @@ Suggests:
     knitr,
     limma,
     ALL,
-    hgu95av2.db
+    hgu95av2.db,
+    RUnit,
+    BiocGenerics
 VignetteBuilder: knitr
 biocViews: GeneSetEnrichment, Annotation, Pathways, GO

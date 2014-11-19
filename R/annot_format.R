@@ -113,8 +113,11 @@ annotList2mat <- function (lis, tag = "listPos") {
     v.nombres <- rep (nombres, times = longitudes)
     v.element <- unlist (lis)
     
-    if (length (v.nombres) != length (v.element))
-        stop ("Matrix could not be reconstructed. Revise the structure of the input list.")
+    if (length (v.nombres) != length (v.element)) {
+        tex <- "Matrix could not be reconstructed.
+                Revise the structure of the input list."
+        stop (gsub ("  +", "", tex))
+    }
     
     salida <- cbind (v.element, v.nombres) ##consistent with annotMat2list
     ##

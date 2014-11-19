@@ -66,9 +66,16 @@ one for each of the two genomic conditions analyzed and the third one
 for the interaction between them.
 }
 \examples{
-\dontrun{
+rindexMat <- matrix (rnorm (2000), ncol = 2)
+colnames (rindexMat) <- c ("genomicVar1", "genomicVar2")
+rownames (rindexMat) <- paste0 ("gen", 1:1000)
+
+annotList <- list (geneSet1 = sample (rownames (rindexMat), size = 10),
+                   geneSet2 = sample (rownames (rindexMat), size = 15),
+                   geneSet3 = sample (rownames (rindexMat), size = 20))
+
 res <- mdGsa (rindexMat, annotList)
-}
+res
 }
 \author{
 David Montaner \email{dmontaner@cipf.es}
