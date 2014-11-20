@@ -35,6 +35,12 @@
 ##' 'lor', 'pval', \dots
 ##' one for each of the two genomic conditions analyzed and the third one
 ##' for the interaction between them.
+##'
+##' If available, names of the fist two columns of the index matrix
+##' are used in the output data.frame.
+##' Changing the order of these two first columns will change the report
+##' order, but will not change the interpretation of the results.
+##' See Montaner et al. (2010) for further details on the algorithm.
 ##' 
 ##' @param index ranking index, generally a two column matrix.
 ##' @param annot an annotation list.
@@ -63,6 +69,11 @@
 ##' Apart from the 'N' coefficient, all other indices appear in triplicate:
 ##' one coefficient for each genomic condition and a third one for the
 ##' interaction.
+##'
+##' @references
+##' Montaner et al. (2010)
+##' "Multidimensional Gene Set Analysis of Genomic Data."
+##' PLoS ONE.
 ##' 
 ##' @examples
 ##' rindexMat <- matrix (rnorm (2000), ncol = 2)
@@ -133,10 +144,19 @@ mdGsa <- function (index, annot, p.adjust.method = "BY",
 
   
     ## ALGORITHM ###############################################################
-  
+
+    ## Design matrix:
+    ## We use the two first columns of the matrix (as provided by the user)
+    ## and include an interaction effect.
+    ## Thus, computations are equivalent to glm (Y ~ index[,1] * index[,2])
     X <- cbind (rep (1, times = length (genes)),
                 index[,1:2], index[,1] * index[,2])
-    
+
+    ## If extra columns are provided (more than two)
+    ## they are understood as co-factors to control for in the model.
+    ## Those co-factors are included in the design matrix.
+    ## Hence, computations are equivalent to
+    ## glm (Y ~ index[,1] * index[,2] + cofactor 1 + cofactor 2 ...
     if (index.col.N > 2) {
         X <- cbind (X, index[,3:index.col.N])  ##covariate correction
     }
