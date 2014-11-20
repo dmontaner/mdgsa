@@ -60,7 +60,7 @@ list as well as in the ranking index.
 }
 \examples{
 ## miRNA to gene list (targets)
-targets <- list (mirna1 = "g1", mirna2 = c("g1", "g2"), mirna3 = "g3")
+targets <- list (mirna1 = "g1", mirna2 = c ("g1", "g2"), mirna3 = "g3")
 
 ## original index
 index <- rnorm (5)

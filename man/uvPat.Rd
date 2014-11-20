@@ -33,11 +33,14 @@ Sign of the 'lor' and p-value are used to define functional blocks as
 up-regulated, down-regulated or not enriched.
 }
 \examples{
-\dontrun{
-res <- uvGsa (rindex, annotList)
-res[,"pat"] <- uvPat (res)
-table (res[,"pat"])
-}
+uvGsa.res <- as.data.frame (list (N    = c (10, 20, 30, 40),
+                                  lor  = c (1.45, -0.32, 1.89, -1.66),
+                                  pval = c (0.001, 0.002, 0.05, 0.06)))
+uvGsa.res[,"padj"] <- p.adjust (c (0.001, 0.002, 0.05, 0.06), "BY")
+uvGsa.res
+
+uvGsa.res[,"pat"] <- uvPat (uvGsa.res)
+uvGsa.res
 }
 \author{
 David Montaner \email{dmontaner@cipf.es}
