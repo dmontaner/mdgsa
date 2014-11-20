@@ -41,7 +41,7 @@ removed.
 No transformation is done over the ranking index or its names (gene IDs).
 
 \code{index} may just be a character vector containing the names of the
-genes in the universe, that is, the names or rownames of the ranking index.
+genes in the universe, that is, the names or row names of the ranking index.
 }
 \examples{
 rindex <- 1:10

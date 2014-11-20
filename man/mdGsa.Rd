@@ -64,6 +64,12 @@ In the output data.frame there are three parameters of each type:
 'lor', 'pval', \dots
 one for each of the two genomic conditions analyzed and the third one
 for the interaction between them.
+
+If available, names of the fist two columns of the index matrix
+are used in the output data.frame.
+Changing the order of these two first columns will change the report
+order, but will not change the interpretation of the results.
+See Montaner et al. (2010) for further details on the algorithm.
 }
 \examples{
 rindexMat <- matrix (rnorm (2000), ncol = 2)
@@ -79,6 +85,11 @@ res
 }
 \author{
 David Montaner \email{dmontaner@cipf.es}
+}
+\references{
+Montaner et al. (2010)
+"Multidimensional Gene Set Analysis of Genomic Data."
+PLoS ONE.
 }
 \seealso{
 \code{\link{uvGsa}}, \code{\link{mdPat}}, \code{glm.fit},

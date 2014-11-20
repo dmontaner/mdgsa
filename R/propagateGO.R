@@ -96,13 +96,13 @@ propagateGO.matrix <- function (annotation, verbose = TRUE) {
     annotation <- as.matrix (annotation)
     dimnames (annotation) <- NULL
 
-    ##Removing duplicated annnotations 1
+    ##Removing duplicated annotations 1
     ##duplicados <- duplicated (annotation)
     ## Much faster:
     duplicados <- duplicated (paste (annotation[,1], annotation[,2]))
     annotation <- annotation[!duplicados,]
     
-    ##Geting ancestor GO terms
+    ##Getting ancestor GO terms
     ancestros <- c (as.list (GOBPANCESTOR),
                     as.list (GOMFANCESTOR),
                     as.list (GOCCANCESTOR))
@@ -117,11 +117,11 @@ propagateGO.matrix <- function (annotation, verbose = TRUE) {
     ## Matrix format
     annotation <- rbind (annotation, heredados)
     
-    ## Remoove "all" term
+    ## Remove "all" term
     noees.all <- annotation[,2] != "all"
     annotation <- annotation[noees.all,]
 
-    ##Removing duplicated annnotations 1
+    ##Removing duplicated annotations 1
     ##duplicados <- duplicated (annotation)
     ## Much faster:
     duplicados <- duplicated (paste (annotation[,1], annotation[,2]))

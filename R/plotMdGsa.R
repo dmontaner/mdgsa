@@ -63,7 +63,7 @@ plotMdGsa <- function (index, block, cr = 0.95,
                        pch = ".", pch.block = 20, lwd = 2, 
                        col.all = "blue", col.block = "red",
                        project = FALSE, col.proj = "green",
-                       diagonals = FALSE, col.diag = "grey",
+                       diagonals = FALSE, col.diag = "gray",
                        ...) {
     
     genes <- rownames (index)

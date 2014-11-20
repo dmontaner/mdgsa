@@ -4,7 +4,7 @@ opts_chunk$set (message = FALSE)
 #opts_chunk$set (fig.align = "center") ## use this just with HTML documents
 
 ## ----, echo = FALSE------------------------------------------------------
-#BiocStyle::latex()
+#BiocStyle::latex() ##not working
 
 ## ------------------------------------------------------------------------
 library (ALL)

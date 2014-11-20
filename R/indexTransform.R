@@ -1,9 +1,6 @@
 ##indexTransform.r
 ##2013-03-25 dmontaner@cipf.es
 
-## To Do:
-##  index.tdist ???
-
 index.standardize <- function (index) {
     m <- mean (index, na.rm = TRUE)
     s <- sd   (index, na.rm = TRUE)

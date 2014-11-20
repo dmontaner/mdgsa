@@ -35,7 +35,7 @@
 ##' No transformation is done over the ranking index or its names (gene IDs).
 ##'
 ##' \code{index} may just be a character vector containing the names of the
-##' genes in the universe, that is, the names or rownames of the ranking index.
+##' genes in the universe, that is, the names or row names of the ranking index.
 ##' 
 ##' @param annot an annotation list.
 ##' @param index ranking index. Vector, matrix or data.frame
@@ -122,9 +122,9 @@ annotFilter <- function (annot, index, minBlockSize = 10, maxBlockSize = 500,
             gen.universe <- rownames (index)
         } else {
             if (is.character (index)) {
-                gen.universe <- index       ##see whether it is convenient this usage of the index variable; may be we should create a gene universe third variable
+                gen.universe <- index
             } else {
-                gen.universe <- names (index) ##assuming that 'index' is a vector
+                gen.universe <- names (index) #assuming that 'index' is a vector
             }
         }
         

@@ -80,7 +80,7 @@ Further description of the `mdgsa` methods may be found at:
 > [PLoS One. 2010 Apr 27;5(4):e10348. doi: 10.1371/journal.pone.0010348.][montaner2010]
 
 
-\newpage 
+
 
 
 Functional Profiling of Gene Expression Data
@@ -337,7 +337,7 @@ res.uv <- uvGsa (rindex, annot)
 
 ```
 ##    user  system elapsed 
-##  11.385   0.004  11.382
+##  11.245   0.016  11.254
 ```
 
 The output of the `uvGsa` function is a data frame
@@ -547,7 +547,7 @@ res.md <- mdGsa (rindex, annot)
 
 ```
 ##    user  system elapsed 
-##  12.884   0.000  12.876
+##  12.843   0.000  12.835
 ```
 
 As in the _univariate_ analysis,
@@ -629,7 +629,7 @@ This indicates us that "DNA replication" is a _pathway_
 jointly down regulated in both
 _ALL_ and _BCR_ when compared to the controls in the _NEG_ group.
 
-\  
+
 
 Similarly we can explore a _bimodal_ (__b13__) KEGG.
 This pattern classification indicates us that
@@ -650,7 +650,7 @@ plotMdGsa (rindex, block = annot[[BI]], main = res.md[BI, "KEGG"])
 
 ![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26-1.png) 
 
-\  
+
 
 
 As third example we could display some KEGG enriched in one dimension
@@ -665,6 +665,7 @@ Similarly an __yl__ pattern indicates a down-regulation of the block
 in the _BRC vs. NEG_ comparison but not in the _ALL vs. NEG_ one.
 
 The plot below displays one of such __yl__ classified KEGGs.
+
 
 
 ```r
@@ -682,14 +683,9 @@ plotMdGsa (rindex, block = annot[[YL]], main = res.md[YL, "KEGG"])
 
 ![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27-1.png) 
 
-\  
-
 
 All possible multidimensional enrichment __patterns__ are listed
 in the [Appendix](#appendix1).
-
-
-
 
 
 

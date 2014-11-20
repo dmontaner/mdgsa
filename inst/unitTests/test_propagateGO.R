@@ -14,7 +14,8 @@ test_propagateGO <- function () {
     cur <- propagateGO (mat)[,2]
     cur <- unique (cur)
     
-    tgt <- c(c("GO:0034390", "GO:0042889"), setdiff (unlist (as.list (GOBPANCESTOR[c("GO:0034390", "GO:0042889")])), "all"))
+    tgt <- c(c("GO:0034390", "GO:0042889"),
+             setdiff (unlist (as.list (GOBPANCESTOR[c("GO:0034390", "GO:0042889")])), "all"))
     tgt <- unique (tgt)
     
     checkEquals (tgt, cur)

@@ -35,6 +35,13 @@ enriched blocks are kept.
 Works as \code{\link{goLeaves}} but without removing redundant terms.
 }
 \examples{
+uvGsa.res <- as.data.frame (list (N    = c (10, 20, 30, 40),
+                                  lor  = c (1.45, -0.32, 1.89, -1.66),
+                                  pval = c (0.001, 0.002, 0.05, 0.06)))
+uvGsa.res[,"padj"] <- p.adjust (uvGsa.res$pval, "BY")
+uvGsa.res
+uvSignif (uvGsa.res)
+
 \dontrun{
 res <- uvGsa (rindex, annotList)
 uvSignif (res)

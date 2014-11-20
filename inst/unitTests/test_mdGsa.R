@@ -22,7 +22,8 @@ test_mdGsa <- function () {
     res
 
     Y <- rownames (rindexMat) %in% annotList$geneSet1
-    lin <- summary (glm (Y ~ rindexMat[,1] * rindexMat[,2], family = quasibinomial ()))
+    lin <- summary (glm (Y ~ rindexMat[,1] * rindexMat[,2],
+                         family = quasibinomial ()))
 
     tgt <- lin$coefficients[-1, c("Estimate", "Pr(>|t|)")]
     cur <- unlist (res[1, 2:7])
