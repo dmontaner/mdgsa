@@ -535,7 +535,7 @@ res.uv <- uvGsa (rindex, annot)
 
 ```
 ##    user  system elapsed 
-##  11.429   0.000  11.424
+##  11.389   0.012  11.395
 ```
 
 The output of the `uvGsa` function is a data frame
@@ -745,7 +745,7 @@ res.md <- mdGsa (rindex, annot)
 
 ```
 ##    user  system elapsed 
-##  13.122   0.000  13.114
+##  12.974   0.000  12.966
 ```
 
 As in the _univariate_ analysis,
