@@ -79,39 +79,43 @@
 ##' @export
 mdPat <- function (gsaout, cutoff = 0.05, pvalue = "padj") {
     
-  ##mdGsa Patterns
-    patron <- c ( 1,  1,  1, "q1i",
-                  1,  0,  1, "q1i",
-                  0,  1,  1, "q1i",
-                 -1, -1,  1, "q3i",
-                 -1,  0,  1, "q3i",
-                  0, -1,  1, "q3i",
-                 -1,  1, -1, "q2i",
-                 -1,  0, -1, "q2i",
-                  0,  1, -1, "q2i",
-                  1, -1, -1, "q4i",
-                  1,  0, -1, "q4i",
-                  0, -1, -1, "q4i",
-                  0,  0,  1, "b13",
-                  0,  0, -1, "b24", #corrected from the paper
-                  1,  1,  0, "q1f",
-                 -1, -1,  0, "q3f",
-                 -1,  1,  0, "q2f",
-                  1, -1,  0, "q4f",
-                  1,  0,  0, "xh",
-                 -1,  0,  0, "xl",
-                  0,  1,  0, "yh",
-                  0, -1,  0, "yl",
-                  0,  0,  0, "NS",
-                  1,  1, -1, "q1f", #not in the paper
-                 -1, -1, -1, "q3f", #not in the paper
-                 -1,  1,  1, "q2f", #not in the paper
-                  1, -1,  1, "q4f") #not in the paper
-  
-    patron <- matrix (patron, ncol = 4, byrow = TRUE)
-    ##colnames (patron) <- c("alpha", "beta", "gamma", "pattern")
-    mdGsaPattern <- patron[,4]
-    mdGsaPattern.name <- apply (patron[,1:3], 1, paste, collapse = "") 
+    ## ##mdGsa Patterns
+    ## patron <- c ( 1,  1,  1, "q1i",
+    ##               1,  0,  1, "q1i",
+    ##               0,  1,  1, "q1i",
+    ##              -1, -1,  1, "q3i",
+    ##              -1,  0,  1, "q3i",
+    ##               0, -1,  1, "q3i",
+    ##              -1,  1, -1, "q2i",
+    ##              -1,  0, -1, "q2i",
+    ##               0,  1, -1, "q2i",
+    ##               1, -1, -1, "q4i",
+    ##               1,  0, -1, "q4i",
+    ##               0, -1, -1, "q4i",
+    ##               0,  0,  1, "b13",
+    ##               0,  0, -1, "b24", #corrected from the paper
+    ##               1,  1,  0, "q1f",
+    ##              -1, -1,  0, "q3f",
+    ##              -1,  1,  0, "q2f",
+    ##               1, -1,  0, "q4f",
+    ##               1,  0,  0, "xh",
+    ##              -1,  0,  0, "xl",
+    ##               0,  1,  0, "yh",
+    ##               0, -1,  0, "yl",
+    ##               0,  0,  0, "NS",
+    ##               1,  1, -1, "q1f", #not in the paper
+    ##              -1, -1, -1, "q3f", #not in the paper
+    ##              -1,  1,  1, "q2f", #not in the paper
+    ##               1, -1,  1, "q4f") #not in the paper
+    ## patron <- matrix (patron, ncol = 4, byrow = TRUE)
+    ## colnames (patron) <- c ("alpha", "beta", "gamma", "pattern")
+    ## colnames (patron) <- c (  "X"  ,  "Y"  ,   "I"  , "pattern")
+    
+    patFile <- system.file (package = "mdgsa", "extdata","mdGsaPatterns.txt")
+    patron <- read.table (patFile, header = TRUE, colClasses = "character")
+    
+    mdGsaPattern <- patron[,"pattern"]
+    mdGsaPattern.name <- apply (patron[,c ("X", "Y", "I")], 1, paste, collapse = "") 
     names (mdGsaPattern) <- mdGsaPattern.name
     
     

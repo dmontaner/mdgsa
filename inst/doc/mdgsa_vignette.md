@@ -337,7 +337,7 @@ res.uv <- uvGsa (rindex, annot)
 
 ```
 ##    user  system elapsed 
-##  11.446   0.008  11.447
+##  11.683   0.012  11.692
 ```
 
 The output of the `uvGsa` function is a data frame
@@ -547,7 +547,7 @@ res.md <- mdGsa (rindex, annot)
 
 ```
 ##    user  system elapsed 
-##  13.416   0.020  13.437
+##  12.997   0.000  12.990
 ```
 
 As in the _univariate_ analysis,
@@ -800,7 +800,7 @@ sessionInfo()
 ## [8] methods   base     
 ## 
 ## other attached packages:
-##  [1] mdgsa_0.99.1         hgu95av2.db_3.0.0    org.Hs.eg.db_3.0.0  
+##  [1] mdgsa_0.99.2         hgu95av2.db_3.0.0    org.Hs.eg.db_3.0.0  
 ##  [4] RSQLite_1.0.0        DBI_0.3.1            AnnotationDbi_1.28.1
 ##  [7] GenomeInfoDb_1.2.3   IRanges_2.0.0        S4Vectors_0.4.0     
 ## [10] limma_3.22.1         ALL_1.7.1            Biobase_2.26.0      
@@ -824,7 +824,7 @@ sessionInfo()
     Biobase~2.26.0, BiocGenerics~0.12.1, DBI~0.3.1,
     devtools~1.6.1, GenomeInfoDb~1.2.3, hgu95av2.db~3.0.0,
     IRanges~2.0.0, knitr~1.8, limma~3.22.1, markdown~0.7.4,
-    mdgsa~0.99.1, org.Hs.eg.db~3.0.0, RSQLite~1.0.0,
+    mdgsa~0.99.2, org.Hs.eg.db~3.0.0, RSQLite~1.0.0,
     S4Vectors~0.4.0
   \item Loaded via a namespace (and not attached): cluster~1.15.3,
     digest~0.6.4, evaluate~0.5.5, formatR~1.0, GO.db~3.0.0,

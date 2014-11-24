@@ -50,7 +50,7 @@ splitOntologies <- function (annot, na.rm = TRUE, verbose = TRUE) {
     
     if (verbose) {
         message ("Using GO.db version: ",
-                 packageDescription ("GO.db", fields = "Version")) #2.3.5
+                 packageDescription ("GO.db", fields = "Version"))
     }
     
     ##go id to ontology

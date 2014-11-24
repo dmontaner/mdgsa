@@ -47,7 +47,7 @@ getGOnames <- function (x, verbose = TRUE) {
     
     if (verbose) {
         message ("Using GO.db version: ",
-                 packageDescription ("GO.db", fields = "Version")) #2.9.0
+                 packageDescription ("GO.db", fields = "Version"))
     }
     
     ##go id to ontology
@@ -118,7 +118,7 @@ getKEGGnames <- function (x, verbose = TRUE) {
     
     if (verbose) {
         message ("Using KEGG.db version: ",
-                 packageDescription ("KEGG.db", fields = "Version")) #2.9.0
+                 packageDescription ("KEGG.db", fields = "Version"))
     }
 
     ##kegg id to kegg name

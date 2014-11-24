@@ -89,7 +89,7 @@ propagateGO.matrix <- function (annotation, verbose = TRUE) {
 
     if (verbose) {
         message ("Using GO.db version: ",
-                 packageDescription ("GO.db", fields = "Version")) #2.3.5
+                 packageDescription ("GO.db", fields = "Version"))
     }
     
     columnas <- colnames (annotation)
