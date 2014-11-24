@@ -45,7 +45,7 @@ getOntology <- function (x, verbose = TRUE) {
     }
     
     if (verbose) {
-        message ("\n", "Using GO.db version: ",
+        message ("Using GO.db version: ",
                  packageDescription ("GO.db", fields = "Version"))
     }
     

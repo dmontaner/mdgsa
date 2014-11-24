@@ -2,9 +2,6 @@
 ##2009-11-16 dmontaner@cipf.es
 ##2013-03-25 dmontaner@cipf.es
 
-## To Do:
-##  CHECK na.action
-##  CHECK weights
 
 ##' @name mdGsa
 ## @docType 

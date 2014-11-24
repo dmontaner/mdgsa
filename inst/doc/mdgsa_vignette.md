@@ -1,16 +1,14 @@
 ---
 title: "mdgsa Library"
 author: "[David Montaner](http://www.dmontaner.com)"
-date: "(2014-11-10)  \\vspace{5mm}\\hrule"
+date: "(2014-11-24)"
 output:
-  pdf_document:
+  BiocStyle::pdf_document:
     toc: yes
-    highlight: default
     fig_width: 4
-    fig_height: 4
-  html_document:
+    fig_height: 4.5
+  BiocStyle::html_document:
     toc: yes
-    theme: cerulean
     fig_width: 5
     fig_height: 5
 vignette: >
@@ -19,11 +17,211 @@ vignette: >
   %\usepackage[utf8]{inputenc}
 ---
 
-\vspace{5mm}\hrule
 
 <!-- OPTIONS ------------------------------------------------------------------>
 
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelector("h1").style.marginTop = "0";
+});
+</script>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+  var links = document.links;  
+  for (var i = 0, linksLength = links.length; i < linksLength; i++)
+    if (links[i].hostname != window.location.hostname)
+      links[i].target = '_blank';
+});
+</script>
+<style type="text/css" scoped>
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
 
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1em 1em 2em;
+  line-height: 20px;
+}
+
+/* element spacing */
+
+p, pre { 
+  margin: 0em 0em 1em;
+}
+
+/* center images and tables */
+img, table {
+  margin: 0em auto 1em;
+}
+
+p {
+  text-align: justify;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1, h2, h3, h4, h5, h6 { 
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 1.2em 0em 0.6em 0em;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 250%;
+  font-weight: normal;
+  color: #87b13f;
+  line-height: 1.1em;
+}
+
+h2 {
+  font-size: 160%;
+  font-weight: normal;
+  line-height: 1.4em;
+  border-bottom: 1px #1a81c2 solid;
+}
+
+h3 {
+  font-size: 130%;  
+}
+
+h2, h3 {
+  color: #1a81c2;
+}
+
+h4, h5, h6 {
+  font-size:115%;
+} /* not expecting to dive deeper than four levels on a single page */
+
+/* links are simply blue, hovering slightly less blue */
+a { color: #1a81c2; }
+a:active { outline: none; }
+a:visited { color: #1a81c2; }
+a:hover { color: #4c94c2; }
+
+pre, img {
+  max-width: 100%;
+  display: block;
+}
+
+pre {
+  border: 0px none;
+  background-color: #F8F8F8;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+pre code {
+  border: 1px #aaa dashed;
+  background-color: white;
+  display: block;
+  padding: 1em;  
+  color: #111;
+  overflow-x: inherit;
+}
+
+/* markdown v1 */
+pre code[class] {
+  background-color: inherit;
+}
+
+/* markdown v2 */
+pre[class] code {
+  background-color: inherit;
+}
+
+
+
+/* formatting of inline code */
+code { 
+  color: #87b13f;
+  font-size: 92%;
+}
+
+/* formatting of tables */
+
+table, td, th {
+  border: none;
+  padding: 0 0.5em;
+}
+
+/* alternating row colors */
+tbody tr:nth-child(odd) td {
+  background-color: #F8F8F8;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
 
 
 
@@ -259,7 +457,7 @@ that is, the information of whether the gene is over or underexpressed.
 plot (fit$t[,"BCR - NEG"], rindex)
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
 
 but the evidence of the differential expression is taken directly
 from the p-value
@@ -269,7 +467,7 @@ from the p-value
 plot (fit$p.value[,"BCR - NEG"], rindex)
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
 
 Next we will need to format the annotation.
 The function `annotMat2list` in the `mdgsa` library
@@ -337,7 +535,7 @@ res.uv <- uvGsa (rindex, annot)
 
 ```
 ##    user  system elapsed 
-##  11.683   0.012  11.692
+##  11.429   0.000  11.424
 ```
 
 The output of the `uvGsa` function is a data frame
@@ -533,7 +731,7 @@ Now we can explore the bi-dimensional distribution of this ranking indexes
 plot (rindex, pch = ".")
 ```
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.png) 
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-1.png) 
 
 and search for gene sets enrichment patterns in both _dimensions_
 
@@ -547,7 +745,7 @@ res.md <- mdGsa (rindex, annot)
 
 ```
 ##    user  system elapsed 
-##  12.997   0.000  12.990
+##  13.122   0.000  13.114
 ```
 
 As in the _univariate_ analysis,
@@ -614,7 +812,7 @@ Q3
 plotMdGsa (rindex, block = annot[[Q3]], main = res.md[Q3, "KEGG"])
 ```
 
-![plot of chunk unnamed-chunk-25](figure/unnamed-chunk-25-1.png) 
+![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24-1.png) 
 
 Red dots in the figure represent the genes within the gene set.
 They show, in both dimensions of our ranking, 
@@ -648,7 +846,7 @@ BI <- rownames (res.md)[res.md$pat == "b13"]
 plotMdGsa (rindex, block = annot[[BI]], main = res.md[BI, "KEGG"])
 ```
 
-![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26-1.png) 
+![plot of chunk unnamed-chunk-25](figure/unnamed-chunk-25-1.png) 
 
 
 
@@ -681,7 +879,7 @@ YL <- "00280"
 plotMdGsa (rindex, block = annot[[YL]], main = res.md[YL, "KEGG"])
 ```
 
-![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27-1.png) 
+![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26-1.png) 
 
 
 All possible multidimensional enrichment __patterns__ are listed
@@ -705,7 +903,7 @@ Q2
 plotMdGsa (rindex, block = annot[[Q2]], main = res.md[Q2, "KEGG"])
 ```
 
-![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28-1.png) 
+![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27-1.png) 
 
 
 ```r
@@ -726,7 +924,7 @@ YH <- "05332"
 plotMdGsa (rindex, block = annot[[YH]], main = res.md[YH, "KEGG"])
 ```
 
-![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29-1.png) 
+![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28-1.png) 
 -->
 
 
@@ -804,8 +1002,8 @@ sessionInfo()
 ##  [4] RSQLite_1.0.0        DBI_0.3.1            AnnotationDbi_1.28.1
 ##  [7] GenomeInfoDb_1.2.3   IRanges_2.0.0        S4Vectors_0.4.0     
 ## [10] limma_3.22.1         ALL_1.7.1            Biobase_2.26.0      
-## [13] BiocGenerics_0.12.1  markdown_0.7.4       devtools_1.6.1      
-## [16] knitr_1.8           
+## [13] BiocGenerics_0.12.1  BiocStyle_1.4.1      markdown_0.7.4      
+## [16] devtools_1.6.1       knitr_1.8           
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] cluster_1.15.3  digest_0.6.4    evaluate_0.5.5  formatR_1.0    
@@ -821,11 +1019,11 @@ sessionInfo()
   \item Base packages: base, datasets, graphics, grDevices,
     methods, parallel, stats, stats4, utils
   \item Other packages: ALL~1.7.1, AnnotationDbi~1.28.1,
-    Biobase~2.26.0, BiocGenerics~0.12.1, DBI~0.3.1,
-    devtools~1.6.1, GenomeInfoDb~1.2.3, hgu95av2.db~3.0.0,
-    IRanges~2.0.0, knitr~1.8, limma~3.22.1, markdown~0.7.4,
-    mdgsa~0.99.2, org.Hs.eg.db~3.0.0, RSQLite~1.0.0,
-    S4Vectors~0.4.0
+    Biobase~2.26.0, BiocGenerics~0.12.1, BiocStyle~1.4.1,
+    DBI~0.3.1, devtools~1.6.1, GenomeInfoDb~1.2.3,
+    hgu95av2.db~3.0.0, IRanges~2.0.0, knitr~1.8, limma~3.22.1,
+    markdown~0.7.4, mdgsa~0.99.2, org.Hs.eg.db~3.0.0,
+    RSQLite~1.0.0, S4Vectors~0.4.0
   \item Loaded via a namespace (and not attached): cluster~1.15.3,
     digest~0.6.4, evaluate~0.5.5, formatR~1.0, GO.db~3.0.0,
     grid~3.1.2, htmltools~0.2.6, KEGG.db~3.0.0, lattice~0.20-29,

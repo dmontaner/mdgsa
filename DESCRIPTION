@@ -21,7 +21,9 @@ Imports:
     cluster,
     Matrix
 Suggests:
+    BiocStyle,
     knitr,
+    rmarkdown,
     limma,
     ALL,
     hgu95av2.db,

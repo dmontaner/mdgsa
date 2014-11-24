@@ -1,16 +1,14 @@
 ---
 title: "mdgsa Library"
 author: "[David Montaner](http://www.dmontaner.com)"
-date: "(2014-11-10)  \\vspace{5mm}\\hrule"
+date: "(2014-11-24)"
 output:
-  pdf_document:
+  BiocStyle::pdf_document:
     toc: yes
-    highlight: default
     fig_width: 4
-    fig_height: 4
-  html_document:
+    fig_height: 4.5
+  BiocStyle::html_document:
     toc: yes
-    theme: cerulean
     fig_width: 5
     fig_height: 5
 vignette: >
@@ -19,18 +17,16 @@ vignette: >
   %\usepackage[utf8]{inputenc}
 ---
 
-\vspace{5mm}\hrule
 
 <!-- OPTIONS ------------------------------------------------------------------>
+
+```{r style, echo = FALSE, results = 'asis'}
+BiocStyle::markdown()
+```
 
 ```{r, include = FALSE}
 library (knitr) ## this is needed when R CMD build
 opts_chunk$set (message = FALSE)
-#opts_chunk$set (fig.align = "center") ## use this just with HTML documents
-```
-
-```{r, echo = FALSE}
-#BiocStyle::latex() ##not working
 ```
 
 <!-- LINKS -------------------------------------------------------------------->

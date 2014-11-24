@@ -1,10 +1,9 @@
+## ----style, echo = FALSE, results = 'asis'-------------------------------
+BiocStyle::markdown()
+
 ## ----, include = FALSE---------------------------------------------------
 library (knitr) ## this is needed when R CMD build
 opts_chunk$set (message = FALSE)
-#opts_chunk$set (fig.align = "center") ## use this just with HTML documents
-
-## ----, echo = FALSE------------------------------------------------------
-#BiocStyle::latex() ##not working
 
 ## ------------------------------------------------------------------------
 library (ALL)
